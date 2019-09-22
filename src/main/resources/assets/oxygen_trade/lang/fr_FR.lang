@@ -1,0 +1,85 @@
+key.oxygen_trade.openTradeMenu=Open Trade Menu
+
+oxygen_trade.category.common=Tout
+oxygen_trade.category.blocks=Blocs
+oxygen_trade.category.blocks.building=Construction
+oxygen_trade.category.blocks.decoration=Décoration
+oxygen_trade.category.blocks.transportation=Transport
+oxygen_trade.category.blocks.redstone=Redstone
+oxygen_trade.category.items=Items
+oxygen_trade.category.items.misc=Autres
+oxygen_trade.category.items.food=Nourritures
+oxygen_trade.category.items.tools=Outils
+oxygen_trade.category.items.combat=Combat
+oxygen_trade.category.items.brewing=Potions
+oxygen_trade.category.items.enchanting=Enchantement
+
+oxygen_trade.status.itemPurchased=Item acheté
+oxygen_trade.status.itemPurchaseFailed=Item purchase failed
+oxygen_trade.status.offerCreated=Offre crée
+oxygen_trade.status.offerCreationFailed=Offer creation failed
+oxygen_trade.status.itemDamaged=Item endommagé
+oxygen_trade.status.itemBlacklisted=Item blacklisté
+oxygen_trade.status.offerCancelled=Offre annulé
+oxygen_trade.status.offerCancellationFailed=Offer cancel failed
+
+oxygen_trade.offersSorter.purchasePrice=Prix d'achat
+oxygen_trade.offersSorter.unitPrice=Prix unitaire
+oxygen_trade.offersSorter.sellerName=Nom du Vendeur
+oxygen_trade.offersSorter.timeLeft=Temps restant
+
+oxygen_trade.salesHistorySorter.purchases=Purchases
+oxygen_trade.salesHistorySorter.sales=Sales
+
+oxygen_trade.rarity.any=Any
+
+oxygen_trade.gui.trade.title=Trade
+oxygen_trade.gui.trade.buy=Buy
+oxygen_trade.gui.trade.selling=Selling
+oxygen_trade.gui.trade.offers=Offers
+oxygen_trade.gui.trade.salesHistory=History
+oxygen_trade.gui.trade.category=Category:
+oxygen_trade.gui.trade.subCategory=Sub Category:
+oxygen_trade.gui.trade.sortBy=Sorting:
+oxygen_trade.gui.trade.priceRange=Price Range:
+oxygen_trade.gui.trade.search=Search:
+oxygen_trade.gui.trade.rarity=Rarity:
+oxygen_trade.gui.trade.searchButton=Search
+
+oxygen_trade.gui.trade.noOffersFound=No Offers Found
+
+oxygen_trade.gui.trade.offersAmount=Offers:
+oxygen_trade.gui.trade.createOfferButton=Create
+oxygen_trade.gui.trade.amount=Amount:
+oxygen_trade.gui.trade.unitPrice=Unit Price:
+oxygen_trade.gui.trade.totalPrice=Total Price:
+oxygen_trade.gui.trade.listingFee=Listing Fee
+oxygen_trade.gui.trade.saleFee=Sale Fee
+oxygen_trade.gui.trade.profit=Profit
+
+oxygen_trade.gui.trade.filter=Filter
+oxygen_trade.gui.trade.filterButton=Load
+oxygen_trade.gui.trade.ago=%s ago
+oxygen_trade.gui.trade.noDataFound=No Data Found
+
+oxygen_trade.gui.trade.callback.offerCreation.title=Offer Creation
+oxygen_trade.gui.trade.callback.offerCreation.for=for
+
+oxygen_trade.gui.trade.seller=Seller: %s
+oxygen_trade.gui.trade.buyer=Buyer: %s
+
+oxygen_trade.gui.trade.tooltip.resetFilters=Reset Filters
+
+oxygen_trade.gui.trade.context.purchase=Purchase
+oxygen_trade.gui.trade.context.cancel=Cancel
+
+trade.purchased=Item Purchased
+trade.purchasedItemMessage=You purchased an item, it is attached to the letter.
+trade.sold=Item Sold
+trade.soldItemMessage=Your item has been purchased, sale income is attached to the letter.
+trade.cancel=Offer Canceled
+trade.cancelOfferMessage=You canceled offer, offered item is attached to the letter.
+trade.expired=Offer Expired
+trade.expiredOfferMessage=Your offer expired, item is attached to the letter.
+
+oxygen_trade.command.dataReset=Oxygen Trade client data reset.
