@@ -28,50 +28,50 @@ oxygen_trade.offersSorter.unitPrice=Prix unitaire
 oxygen_trade.offersSorter.sellerName=Nom du Vendeur
 oxygen_trade.offersSorter.timeLeft=Temps restant
 
-oxygen_trade.salesHistorySorter.purchases=Purchases
-oxygen_trade.salesHistorySorter.sales=Sales
+oxygen_trade.salesHistorySorter.purchases=Achats
+oxygen_trade.salesHistorySorter.sales=Ventes
 
-oxygen_trade.rarity.any=Any
+oxygen_trade.rarity.any=Tout
 
-oxygen_trade.gui.trade.title=Trade
-oxygen_trade.gui.trade.buy=Buy
-oxygen_trade.gui.trade.selling=Selling
-oxygen_trade.gui.trade.offers=Offers
-oxygen_trade.gui.trade.salesHistory=History
-oxygen_trade.gui.trade.category=Category:
-oxygen_trade.gui.trade.subCategory=Sub Category:
-oxygen_trade.gui.trade.sortBy=Sorting:
-oxygen_trade.gui.trade.priceRange=Price Range:
-oxygen_trade.gui.trade.search=Search:
-oxygen_trade.gui.trade.rarity=Rarity:
-oxygen_trade.gui.trade.searchButton=Search
+oxygen_trade.gui.trade.title=Echange
+oxygen_trade.gui.trade.buy=Achat
+oxygen_trade.gui.trade.selling=Vente
+oxygen_trade.gui.trade.offers=Offres
+oxygen_trade.gui.trade.salesHistory=Historique
+oxygen_trade.gui.trade.category=Categorie:
+oxygen_trade.gui.trade.subCategory=Sous Catégories:
+oxygen_trade.gui.trade.sortBy=Trier:
+oxygen_trade.gui.trade.priceRange=Ecarts de prix:
+oxygen_trade.gui.trade.search=Recherche:
+oxygen_trade.gui.trade.rarity=Rareté:
+oxygen_trade.gui.trade.searchButton=Recherche
 
-oxygen_trade.gui.trade.noOffersFound=No Offers Found
+oxygen_trade.gui.trade.noOffersFound=Pas d'offres trouvés
 
-oxygen_trade.gui.trade.offersAmount=Offers:
-oxygen_trade.gui.trade.createOfferButton=Create
-oxygen_trade.gui.trade.amount=Amount:
-oxygen_trade.gui.trade.unitPrice=Unit Price:
-oxygen_trade.gui.trade.totalPrice=Total Price:
-oxygen_trade.gui.trade.listingFee=Listing Fee
-oxygen_trade.gui.trade.saleFee=Sale Fee
+oxygen_trade.gui.trade.offersAmount=Offres:
+oxygen_trade.gui.trade.createOfferButton=Crée
+oxygen_trade.gui.trade.amount=Quantité:
+oxygen_trade.gui.trade.unitPrice=Prix Unitaire:
+oxygen_trade.gui.trade.totalPrice=Prix Total:
+oxygen_trade.gui.trade.listingFee=Frais de liste
+oxygen_trade.gui.trade.saleFee=Frais de vente
 oxygen_trade.gui.trade.profit=Profit
 
-oxygen_trade.gui.trade.filter=Filter
-oxygen_trade.gui.trade.filterButton=Load
-oxygen_trade.gui.trade.ago=%s ago
-oxygen_trade.gui.trade.noDataFound=No Data Found
+oxygen_trade.gui.trade.filter=Filtre
+oxygen_trade.gui.trade.filterButton=Chargement
+oxygen_trade.gui.trade.ago=il y a %s
+oxygen_trade.gui.trade.noDataFound=Pas de données trouvés
 
-oxygen_trade.gui.trade.callback.offerCreation.title=Offer Creation
-oxygen_trade.gui.trade.callback.offerCreation.for=for
+oxygen_trade.gui.trade.callback.offerCreation.title=Création d'offre
+oxygen_trade.gui.trade.callback.offerCreation.for=pour
 
-oxygen_trade.gui.trade.seller=Seller: %s
-oxygen_trade.gui.trade.buyer=Buyer: %s
+oxygen_trade.gui.trade.seller=Vendeur: %s
+oxygen_trade.gui.trade.buyer=Acheteur: %s
 
-oxygen_trade.gui.trade.tooltip.resetFilters=Reset Filters
+oxygen_trade.gui.trade.tooltip.resetFilters=Reinit. Filtres
 
-oxygen_trade.gui.trade.context.purchase=Purchase
-oxygen_trade.gui.trade.context.cancel=Cancel
+oxygen_trade.gui.trade.context.purchase=Achat
+oxygen_trade.gui.trade.context.cancel=Annuler
 
 trade.purchased=Item Purchased
 trade.purchasedItemMessage=You purchased an item, it is attached to the letter.
