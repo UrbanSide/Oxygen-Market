@@ -72,7 +72,7 @@ public class OffersManagerServer {
                 }
                 if (removed > 0)
                     this.manager.getOffersContainer().setChanged(true);
-                TradeMain.LOGGER.info("Removed <{}> expired offers.", removed);
+                TradeMain.LOGGER.info("Removed {} expired offers.", removed);
             }
         });
     }

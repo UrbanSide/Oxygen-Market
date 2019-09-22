@@ -79,7 +79,7 @@ public class SalesHistoryContainerServer extends AbstractPersistentData {
             entry.read(bis);
             this.addEntry(entry);
         }
-        TradeMain.LOGGER.info("Loaded <{}> sales history entries.", this.getEntriesAmount());
+        TradeMain.LOGGER.info("Loaded {} sales history entries.", this.getEntriesAmount());
         TradeManagerServer.instance().getSalesHistoryManager().processExpiredEntries();
     }
 

@@ -78,7 +78,7 @@ public class OffersContainerServer extends AbstractPersistentData {
             offer.read(bis);
             this.addOffer(offer);
         }
-        TradeMain.LOGGER.info("Loaded <{}> trade offers.", this.getOffersAmount());
+        TradeMain.LOGGER.info("Loaded {} trade offers.", this.getOffersAmount());
         TradeManagerServer.instance().getOffersManager().processExpiredOffers();
     }
 

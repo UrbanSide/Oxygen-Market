@@ -32,7 +32,7 @@ public class SalesHistoryManagerServer {
                 }
                 if (removed > 0)
                     this.manager.getSalesHistoryContainer().setChanged(true);
-                TradeMain.LOGGER.info("Removed <{}> expired sales entries.", removed);
+                TradeMain.LOGGER.info("Removed {} expired sales entries.", removed);
             }
         });
     }

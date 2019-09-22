@@ -175,7 +175,7 @@ public class BuyGUISection extends AbstractGUISection {
     }
 
     private static String getRarityName(EnumRarity rarity) {
-        return rarity.rarityColor + ClientReference.localize(rarity.getName());
+        return rarity.rarityColor + ClientReference.localize(rarity.rarityName);
     }
 
     public void filterOffers() {
