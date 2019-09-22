@@ -1,4 +1,4 @@
-key.oxygen_trade.openTradeMenu=Open Trade Menu
+key.oxygen_trade.openTradeMenu=Ouvrir le menu d'échange
 
 oxygen_trade.category.common=Tout
 oxygen_trade.category.blocks=Blocs
@@ -15,13 +15,13 @@ oxygen_trade.category.items.brewing=Potions
 oxygen_trade.category.items.enchanting=Enchantement
 
 oxygen_trade.status.itemPurchased=Item acheté
-oxygen_trade.status.itemPurchaseFailed=Item purchase failed
+oxygen_trade.status.itemPurchaseFailed=Erreur achat d'item
 oxygen_trade.status.offerCreated=Offre crée
-oxygen_trade.status.offerCreationFailed=Offer creation failed
+oxygen_trade.status.offerCreationFailed=Erreur création d'offre
 oxygen_trade.status.itemDamaged=Item endommagé
 oxygen_trade.status.itemBlacklisted=Item blacklisté
 oxygen_trade.status.offerCancelled=Offre annulé
-oxygen_trade.status.offerCancellationFailed=Offer cancel failed
+oxygen_trade.status.offerCancellationFailed=Erreur annulation doffre
 
 oxygen_trade.offersSorter.purchasePrice=Prix d'achat
 oxygen_trade.offersSorter.unitPrice=Prix unitaire
@@ -73,13 +73,13 @@ oxygen_trade.gui.trade.tooltip.resetFilters=Reinit. Filtres
 oxygen_trade.gui.trade.context.purchase=Achat
 oxygen_trade.gui.trade.context.cancel=Annuler
 
-trade.purchased=Item Purchased
-trade.purchasedItemMessage=You purchased an item, it is attached to the letter.
-trade.sold=Item Sold
-trade.soldItemMessage=Your item has been purchased, sale income is attached to the letter.
-trade.cancel=Offer Canceled
-trade.cancelOfferMessage=You canceled offer, offered item is attached to the letter.
-trade.expired=Offer Expired
-trade.expiredOfferMessage=Your offer expired, item is attached to the letter.
+trade.purchased=Item acheté
+trade.purchasedItemMessage=Vous avez acheté un item, il est joint à la lettre.
+trade.sold=Item Vendu
+trade.soldItemMessage=Votre item a été vendu, vous recevez le bénéfice joint à la lettre.
+trade.cancel=Offre annulé
+trade.cancelOfferMessage=Vous avez annulé l'offre, Votre item est joint à la lettre.
+trade.expired=Offer Expiré
+trade.expiredOfferMessage=Votre offre a expiré, votre item est joint à la lettre.
 
-oxygen_trade.command.dataReset=Oxygen Trade client data reset.
+oxygen_trade.command.dataReset=Oxygen Trade données client réinitialisé.
