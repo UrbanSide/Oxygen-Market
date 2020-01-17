@@ -1,18 +1,4 @@
-key.oxygen_trade.openTradeMenu=Ouvrir le menu d'échange
-
-oxygen_trade.category.common=Tout
-oxygen_trade.category.blocks=Blocs
-oxygen_trade.category.blocks.building=Construction
-oxygen_trade.category.blocks.decoration=Décoration
-oxygen_trade.category.blocks.transportation=Transport
-oxygen_trade.category.blocks.redstone=Redstone
-oxygen_trade.category.items=Items
-oxygen_trade.category.items.misc=Autres
-oxygen_trade.category.items.food=Nourritures
-oxygen_trade.category.items.tools=Outils
-oxygen_trade.category.items.combat=Combat
-oxygen_trade.category.items.brewing=Potions
-oxygen_trade.category.items.enchanting=Enchantement
+key.oxygen_trade.tradeMenu=Ouvrir le menu d'échange
 
 oxygen_trade.status.itemPurchased=Item acheté
 oxygen_trade.status.itemPurchaseFailed=Erreur achat d'item
@@ -37,14 +23,13 @@ oxygen_trade.gui.trade.title=Echange
 oxygen_trade.gui.trade.buy=Achat
 oxygen_trade.gui.trade.selling=Vente
 oxygen_trade.gui.trade.offers=Offres
-oxygen_trade.gui.trade.salesHistory=Historique
+oxygen_trade.gui.trade.history=Historique
 oxygen_trade.gui.trade.category=Categorie:
-oxygen_trade.gui.trade.subCategory=Sous Catégories:
 oxygen_trade.gui.trade.sortBy=Trier:
 oxygen_trade.gui.trade.priceRange=Ecarts de prix:
 oxygen_trade.gui.trade.search=Recherche:
 oxygen_trade.gui.trade.rarity=Rareté:
-oxygen_trade.gui.trade.searchButton=Recherche
+oxygen_trade.gui.trade.filterButton=Recherche
 
 oxygen_trade.gui.trade.noOffersFound=Pas d'offres trouvés
 
@@ -57,13 +42,12 @@ oxygen_trade.gui.trade.listingFee=Frais de liste
 oxygen_trade.gui.trade.saleFee=Frais de vente
 oxygen_trade.gui.trade.profit=Profit
 
-oxygen_trade.gui.trade.filter=Filtre
+oxygen_trade.gui.trade.filter=Filtre:
 oxygen_trade.gui.trade.filterButton=Chargement
 oxygen_trade.gui.trade.ago=il y a %s
 oxygen_trade.gui.trade.noDataFound=Pas de données trouvés
 
 oxygen_trade.gui.trade.callback.offerCreation.title=Création d'offre
-oxygen_trade.gui.trade.callback.offerCreation.for=pour
 
 oxygen_trade.gui.trade.seller=Vendeur: %s
 oxygen_trade.gui.trade.buyer=Acheteur: %s

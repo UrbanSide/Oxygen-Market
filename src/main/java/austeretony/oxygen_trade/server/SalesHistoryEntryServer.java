@@ -7,13 +7,13 @@ import java.util.UUID;
 
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.persistent.PersistentEntry;
-import austeretony.oxygen_core.common.sync.SynchronizedData;
+import austeretony.oxygen_core.common.sync.SynchronousEntry;
 import austeretony.oxygen_core.common.util.ByteBufUtils;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import io.netty.buffer.ByteBuf;
 
-public class SalesHistoryEntryServer implements PersistentEntry, SynchronizedData {
+public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntry {
 
     private long entryId, price;
 
@@ -36,7 +36,7 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronizedDat
         this.price = price;
     }
 
-    public static SalesHistoryEntryServer fromOffer(PlayerOfferServer offer, UUID buyerUUID) {
+    public static SalesHistoryEntryServer fromOffer(OfferServer offer, UUID buyerUUID) {
         long id = System.currentTimeMillis();
         while (TradeManagerServer.instance().getSalesHistoryContainer().isEntryExist(id))
             id++;

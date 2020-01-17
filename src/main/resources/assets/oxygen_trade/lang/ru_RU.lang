@@ -1,18 +1,8 @@
-key.oxygen_trade.openTradeMenu=Открыть Меню Торговли
+key.oxygen_trade.tradeMenu=Открыть Меню Торговли
 
-oxygen_trade.category.common=Всё
-oxygen_trade.category.blocks=Блоки
-oxygen_trade.category.blocks.building=Строительство
-oxygen_trade.category.blocks.decoration=Декорации
-oxygen_trade.category.blocks.transportation=Транспортировка
-oxygen_trade.category.blocks.redstone=Редстоун
-oxygen_trade.category.items=Предметы
-oxygen_trade.category.items.misc=Разное
-oxygen_trade.category.items.food=Еда
-oxygen_trade.category.items.tools=Инструменты
-oxygen_trade.category.items.combat=Экипировка
-oxygen_trade.category.items.brewing=Алхимия
-oxygen_trade.category.items.enchanting=Зачаровывание
+oxygen_trade.gui.settings.option.addTradeMenu=Меню Торговли
+oxygen_trade.gui.settings.option.alignmentTradeMenu=Меню Торговли
+oxygen_trade.gui.settings.option.profitabilityCalculation=Расчёт Привлекательности Сделок
 
 oxygen_trade.status.itemPurchased=Предмет приобретён
 oxygen_trade.status.itemPurchaseFailed=Сбой при покупке
@@ -32,19 +22,20 @@ oxygen_trade.salesHistorySorter.purchases=Покупки
 oxygen_trade.salesHistorySorter.sales=Продажи
 
 oxygen_trade.rarity.any=Любое
+oxygen_trade.profitability.any=Любое
 
 oxygen_trade.gui.trade.title=Торговля
 oxygen_trade.gui.trade.buy=Покупка
 oxygen_trade.gui.trade.selling=Продажа
 oxygen_trade.gui.trade.offers=Сделки
-oxygen_trade.gui.trade.salesHistory=История
+oxygen_trade.gui.trade.history=История
 oxygen_trade.gui.trade.category=Категория:
-oxygen_trade.gui.trade.subCategory=Подкатегория:
 oxygen_trade.gui.trade.sortBy=Сортировка:
 oxygen_trade.gui.trade.priceRange=Диапазон Стоимости:
-oxygen_trade.gui.trade.search=Поиск:
+oxygen_trade.gui.trade.search=Текстовый Поиск:
 oxygen_trade.gui.trade.rarity=Качество:
-oxygen_trade.gui.trade.searchButton=Поиск
+oxygen_trade.gui.trade.profitability=Рентабельность:
+oxygen_trade.gui.trade.filterButton=Поиск
 
 oxygen_trade.gui.trade.noOffersFound=Предложений Не Найдено
 
@@ -57,7 +48,7 @@ oxygen_trade.gui.trade.listingFee=Стоимость Размещения
 oxygen_trade.gui.trade.saleFee=Комиссия
 oxygen_trade.gui.trade.profit=Доход
 
-oxygen_trade.gui.trade.filter=Фильтр
+oxygen_trade.gui.trade.filter=Фильтр:
 oxygen_trade.gui.trade.filterButton=Загрузить
 oxygen_trade.gui.trade.purchasedFrom=Куплено у: %s
 oxygen_trade.gui.trade.soldTo=Продано: %s
@@ -65,14 +56,23 @@ oxygen_trade.gui.trade.ago=%s назад
 oxygen_trade.gui.trade.noDataFound=Нет Данных
 
 oxygen_trade.gui.trade.callback.offerCreation.title=Создание Сделки
-oxygen_trade.gui.trade.callback.offerCreation.for=за
 
 oxygen_trade.gui.trade.seller=Продавец: %s
 
+oxygen_trade.gui.trade.tooltip.latestFilters=Недавние Фильтры
 oxygen_trade.gui.trade.tooltip.resetFilters=Сбросить Фильтры
+oxygen_trade.gui.trade.tooltip.applyRecommended=Рыночная Стоимость
+
+oxygen_trade.historySorter.time=Время
+oxygen_trade.historySorter.buyerName=Имя Покупателя
 
 oxygen_trade.gui.trade.context.purchase=Купить
 oxygen_trade.gui.trade.context.cancel=Снять
+
+oxygen_trade.gui.history.title=История Продаж
+oxygen_trade.gui.history.buyer=Покупатель:
+oxygen_trade.gui.history.seller=Продавец:
+oxygen_trade.gui.history.bought=%s купил у %s
 
 trade.purchased=Предмет Куплен
 trade.purchasedItemMessage=Вы преобрели предмет, предмет приложен к письму.
@@ -84,3 +84,6 @@ trade.expired=Сделка Закрыта
 trade.expiredOfferMessage=Время действия сделки истекло, предмет приложен к письму.
 
 oxygen_trade.command.dataReset=Данные клиента для Oxygen Trade сброшены.
+
+oxygen_trade.message.command.oxygens.trade.clearHistoryGlobal=История продаж за последние %s часов очищена.
+oxygen_trade.message.command.oxygens.trade.clearHistoryItem=История продаж за последние %s часов очищена для предмета: %s.

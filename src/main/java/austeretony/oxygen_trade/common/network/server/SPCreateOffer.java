@@ -2,9 +2,11 @@ package austeretony.oxygen_trade.common.network.server;
 
 import austeretony.oxygen_core.common.api.CommonReference;
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
+import austeretony.oxygen_core.common.main.EnumOxygenStatusMessage;
+import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.common.network.Packet;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
-import austeretony.oxygen_core.server.api.RequestsFilterHelper;
+import austeretony.oxygen_trade.common.config.TradeConfig;
 import austeretony.oxygen_trade.common.main.TradeMain;
 import austeretony.oxygen_trade.server.TradeManagerServer;
 import io.netty.buffer.ByteBuf;
@@ -37,11 +39,16 @@ public class SPCreateOffer extends Packet {
     @Override
     public void read(ByteBuf buffer, INetHandler netHandler) {  
         final EntityPlayerMP playerMP = getEntityPlayerMP(netHandler);
-        if (RequestsFilterHelper.getLock(CommonReference.getPersistentUUID(playerMP), TradeMain.CREATE_OFFER_REQUEST_ID)) {
-            final ItemStackWrapper stackWrapper = ItemStackWrapper.read(buffer);
-            final int amount = buffer.readShort();
-            final long price = buffer.readLong();
-            OxygenHelperServer.addRoutineTask(()->TradeManagerServer.instance().getOffersManager().createOffer(playerMP, stackWrapper, amount, price));
+        if (OxygenHelperServer.isNetworkRequestAvailable(CommonReference.getPersistentUUID(playerMP), TradeMain.OFFER_OPERATION_REQUEST_ID)) {
+            if (TradeConfig.ENABLE_TRADE_MENU_ACCESS_CLIENTSIDE.asBoolean() 
+                    || OxygenHelperServer.checkTimeOut(CommonReference.getPersistentUUID(playerMP), TradeMain.TRADE_MENU_TIMEOUT_ID) 
+                    || CommonReference.isPlayerOpped(playerMP)) {
+                final ItemStackWrapper stackWrapper = ItemStackWrapper.read(buffer);
+                final int amount = buffer.readShort();
+                final long price = buffer.readLong();
+                OxygenHelperServer.addRoutineTask(()->TradeManagerServer.instance().getOffersManager().createOffer(playerMP, stackWrapper, amount, price));
+            } else
+                OxygenHelperServer.sendStatusMessage(playerMP, OxygenMain.OXYGEN_CORE_MOD_INDEX, EnumOxygenStatusMessage.ACTION_TIMEOUT.ordinal()); 
         }
     }
 }

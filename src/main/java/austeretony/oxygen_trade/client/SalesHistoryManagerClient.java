@@ -27,6 +27,7 @@ public class SalesHistoryManagerClient {
         return this.manager.getSalesHistoryContainer().getEntries()
                 .stream()
                 .filter((entry)->entry.getSellerUsername().equals(username))
+                .sorted((e1, e2)->e2.getId() < e1.getId() ? - 1 : e2.getId() > e1.getId() ? 1 : 0)
                 .collect(Collectors.toList());
     }
 
@@ -35,6 +36,7 @@ public class SalesHistoryManagerClient {
         return this.manager.getSalesHistoryContainer().getEntries()
                 .stream()
                 .filter((entry)->entry.getBuyerUsername().equals(username))
+                .sorted((e1, e2)->e2.getId() < e1.getId() ? - 1 : e2.getId() > e1.getId() ? 1 : 0)
                 .collect(Collectors.toList());
     }
 }

@@ -6,13 +6,12 @@ import java.io.IOException;
 
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.persistent.PersistentEntry;
-import austeretony.oxygen_core.common.sync.SynchronizedData;
+import austeretony.oxygen_core.common.sync.SynchronousEntry;
 import austeretony.oxygen_core.common.util.ByteBufUtils;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.item.ItemStack;
 
-public class SalesHistoryEntryClient implements PersistentEntry, SynchronizedData {
+public class SalesHistoryEntryClient implements PersistentEntry, SynchronousEntry {
 
     private long entryId, price;
 
@@ -22,9 +21,16 @@ public class SalesHistoryEntryClient implements PersistentEntry, SynchronizedDat
 
     private int amount;
 
-    private ItemStack itemStack;
-
     public SalesHistoryEntryClient() {}
+
+    public SalesHistoryEntryClient(String sellerUsername, String buyerUsername, ItemStackWrapper offeredStack, int amount, long price) {
+        this.entryId = System.currentTimeMillis();
+        this.sellerUsername = sellerUsername;
+        this.buyerUsername = buyerUsername;
+        this.offeredStack = offeredStack;
+        this.amount = amount;
+        this.price = price;
+    }
 
     @Override
     public long getId() {
@@ -49,12 +55,6 @@ public class SalesHistoryEntryClient implements PersistentEntry, SynchronizedDat
 
     public long getPrice() {
         return this.price;
-    }
-
-    public ItemStack getItemStack() {
-        if (this.itemStack == null)
-            this.itemStack = this.offeredStack.getItemStack();
-        return this.itemStack;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package austeretony.oxygen_trade.server;
 
+import java.util.concurrent.TimeUnit;
+
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import austeretony.oxygen_core.server.item.ItemsBlackList;
 
@@ -27,10 +29,19 @@ public final class TradeManagerServer {
         OxygenHelperServer.registerPersistentData(this.salesHistoryContainer);
     }
 
+    private void scheduleRepeatableProcesses() {
+        OxygenHelperServer.getSchedulerExecutorService().scheduleAtFixedRate(
+                ()->{
+                    this.offersManager.processOfferCreationQueue();
+                    this.offersManager.processOfferActionsQueue();
+                }, 500L, 500L, TimeUnit.MILLISECONDS);
+    }
+
     public static void create() {
         if (instance == null) {
             instance = new TradeManagerServer();
             instance.registerPersistentData();
+            instance.scheduleRepeatableProcesses();
         }
     }
 

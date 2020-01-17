@@ -1,6 +1,6 @@
 package austeretony.oxygen_trade.client;
 
-import austeretony.oxygen_core.common.status.ChatMessagesHandler;
+import austeretony.oxygen_core.common.chat.ChatMessagesHandler;
 import austeretony.oxygen_trade.common.main.EnumTradeStatusMessage;
 import austeretony.oxygen_trade.common.main.TradeMain;
 

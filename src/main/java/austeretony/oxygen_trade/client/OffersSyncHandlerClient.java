@@ -6,7 +6,7 @@ import austeretony.oxygen_core.client.sync.DataSyncHandlerClient;
 import austeretony.oxygen_core.client.sync.DataSyncListener;
 import austeretony.oxygen_trade.common.main.TradeMain;
 
-public class OffersSyncHandlerClient implements DataSyncHandlerClient<PlayerOfferClient> {
+public class OffersSyncHandlerClient implements DataSyncHandlerClient<OfferClient> {
 
     @Override
     public int getDataId() {
@@ -14,8 +14,8 @@ public class OffersSyncHandlerClient implements DataSyncHandlerClient<PlayerOffe
     }
 
     @Override
-    public Class<PlayerOfferClient> getDataContainerClass() {
-        return PlayerOfferClient.class;
+    public Class<OfferClient> getDataContainerClass() {
+        return OfferClient.class;
     }
 
     @Override
@@ -29,12 +29,12 @@ public class OffersSyncHandlerClient implements DataSyncHandlerClient<PlayerOffe
     }
 
     @Override
-    public PlayerOfferClient getEntry(long entryId) {
+    public OfferClient getEntry(long entryId) {
         return TradeManagerClient.instance().getOffersContainer().getOffer(entryId);
     }
 
     @Override
-    public void addEntry(PlayerOfferClient entry) {
+    public void addEntry(OfferClient entry) {
         TradeManagerClient.instance().getOffersContainer().addOffer(entry);
     }
 

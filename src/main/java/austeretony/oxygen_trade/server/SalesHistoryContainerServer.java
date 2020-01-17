@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import austeretony.oxygen_core.common.persistent.AbstractPersistentData;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
-import austeretony.oxygen_trade.common.config.TradeConfig;
 import austeretony.oxygen_trade.common.main.TradeMain;
 
 public class SalesHistoryContainerServer extends AbstractPersistentData {
@@ -56,11 +55,6 @@ public class SalesHistoryContainerServer extends AbstractPersistentData {
     @Override
     public String getPath() {
         return OxygenHelperServer.getDataFolder() + "/server/world/trade/sales_history.dat";
-    }
-
-    @Override
-    public long getSaveDelayMinutes() {
-        return TradeConfig.DATA_SAVE_DELAY_MINUTES.getIntValue();
     }
 
     @Override

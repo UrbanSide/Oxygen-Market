@@ -1,42 +1,52 @@
 package austeretony.oxygen_trade.client;
 
 import austeretony.oxygen_core.client.api.ClientReference;
-import austeretony.oxygen_core.client.api.OxygenHelperClient;
-import austeretony.oxygen_trade.client.gui.trade.TradeMenuGUIScreen;
+import austeretony.oxygen_trade.client.gui.history.SalesHistoryScreen;
+import austeretony.oxygen_trade.client.gui.trade.TradeMenuScreen;
 import austeretony.oxygen_trade.common.main.EnumOfferAction;
-import austeretony.oxygen_trade.common.main.TradeMain;
 
 public final class TradeMenuManagerClient {
 
-    protected TradeMenuManagerClient() {}
+    private final TradeManagerClient manager;
+
+    protected TradeMenuManagerClient(TradeManagerClient manager) {
+        this.manager = manager;
+    }
 
     public void openTradeMenu() {
-        if (TradeManagerClient.instance().getItemCategoriesPreset().isVerified())
-            ClientReference.displayGuiScreen(new TradeMenuGUIScreen());
+        ClientReference.displayGuiScreen(new TradeMenuScreen());
     }
 
     public void offersSynchronized() {
         ClientReference.delegateToClientThread(()->{
-            if (isMenuOpened())
-                ((TradeMenuGUIScreen) ClientReference.getCurrentScreen()).offersSynchronized();
+            if (isTradeMenuOpened())
+                ((TradeMenuScreen) ClientReference.getCurrentScreen()).offersSynchronized();
         });
     }
 
     public void salesHistoryDataSynchronized() {
+        this.manager.getMarketDataManager().updateMarketData();
+
         ClientReference.delegateToClientThread(()->{
-            if (isMenuOpened())
-                ((TradeMenuGUIScreen) ClientReference.getCurrentScreen()).salesHistorySynchronized();
-        });
-    }
-    
-    public void performedOfferAction(EnumOfferAction action, PlayerOfferClient offer, long balance) {
-        ClientReference.delegateToClientThread(()->{
-            if (isMenuOpened())
-                ((TradeMenuGUIScreen) ClientReference.getCurrentScreen()).performedOfferAction(action, offer, balance);
+            if (isTradeMenuOpened())
+                ((TradeMenuScreen) ClientReference.getCurrentScreen()).salesHistorySynchronized();
+            if (isSalesHistoryScreenOpened())
+                ((SalesHistoryScreen) ClientReference.getCurrentScreen()).salesHistorySynchronized();
         });
     }
 
-    public static boolean isMenuOpened() {
-        return ClientReference.hasActiveGUI() && ClientReference.getCurrentScreen() instanceof TradeMenuGUIScreen;
+    public void performedOfferAction(EnumOfferAction action, OfferClient offer, long balance) {
+        ClientReference.delegateToClientThread(()->{
+            if (isTradeMenuOpened())
+                ((TradeMenuScreen) ClientReference.getCurrentScreen()).performedOfferAction(action, offer, balance);
+        });
+    }
+
+    public static boolean isTradeMenuOpened() {
+        return ClientReference.hasActiveGUI() && ClientReference.getCurrentScreen() instanceof TradeMenuScreen;
+    }
+
+    public static boolean isSalesHistoryScreenOpened() {
+        return ClientReference.hasActiveGUI() && ClientReference.getCurrentScreen() instanceof SalesHistoryScreen;
     }
 }

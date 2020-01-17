@@ -2,36 +2,33 @@ package austeretony.oxygen_trade.common.config;
 
 import java.util.List;
 
-import austeretony.oxygen_core.common.EnumValueType;
 import austeretony.oxygen_core.common.api.CommonReference;
-import austeretony.oxygen_core.common.api.config.AbstractConfigHolder;
-import austeretony.oxygen_core.common.api.config.ConfigValueImpl;
+import austeretony.oxygen_core.common.api.config.AbstractConfig;
 import austeretony.oxygen_core.common.config.ConfigValue;
+import austeretony.oxygen_core.common.config.ConfigValueUtils;
 import austeretony.oxygen_trade.common.main.TradeMain;
 
-public class TradeConfig extends AbstractConfigHolder {
+public class TradeConfig extends AbstractConfig {
 
     public static final ConfigValue
-    DATA_SAVE_DELAY_MINUTES = new ConfigValueImpl(EnumValueType.INT, "setup", "data_save_delay_minutes"),
+    ENABLE_TRADE_MENU_KEY = ConfigValueUtils.getValue("client", "enable_trade_menu_key", true),
 
-    MAX_OFFERS_PER_PLAYER = new ConfigValueImpl(EnumValueType.INT, "main", "max_offers_per_player"),
-    ITEMS_PER_OFFER_MAX_AMOUNT = new ConfigValueImpl(EnumValueType.INT, "main", "items_per_offer_max_amount"),
-    PRICE_MAX_VALUE = new ConfigValueImpl(EnumValueType.LONG, "main", "price_max_value"),   
-    OFFER_EXPIRE_TIME_HOURS = new ConfigValueImpl(EnumValueType.INT, "main", "offer_expire_time_hours"),
-    ENABLE_SALES_HISTORY = new ConfigValueImpl(EnumValueType.BOOLEAN, "main", "enable_sales_history"),
-    ENABLE_SALES_HISTORY_SYNC = new ConfigValueImpl(EnumValueType.BOOLEAN, "main", "enable_sales_history_sync"),
-    SALES_HISTORY_EXPIRE_TIME_HOURS = new ConfigValueImpl(EnumValueType.INT, "main", "sales_history_expire_time_hours"),
-    OFFER_CREATION_FEE_PERCENT = new ConfigValueImpl(EnumValueType.INT, "main", "offer_creation_fee_percent"),
-    OFFER_SALE_FEE_PERCENT = new ConfigValueImpl(EnumValueType.INT, "main", "offer_sale_fee_percent");
+    TRADE_MENU_OPERATIONS_TIMEOUT_MILLIS = ConfigValueUtils.getValue("server", "trade_menu_operations_timeout_millis", 240000),
+    ENABLE_TRADE_MENU_ACCESS_CLIENTSIDE = ConfigValueUtils.getValue("server", "enable_trade_menu_access_clientside", true, true),
+    ENABLE_SELF_PURCHASE = ConfigValueUtils.getValue("server", "enable_self_purchase", true),
+    MAX_OFFERS_PER_PLAYER = ConfigValueUtils.getValue("server", "max_offers_per_player", 30, true),
+    ITEMS_PER_OFFER_MAX_AMOUNT = ConfigValueUtils.getValue("server", "items_per_offer_max_amount", - 1, true),
+    PRICE_MAX_VALUE = ConfigValueUtils.getValue("server", "price_max_value", 100000L, true),   
+    OFFER_EXPIRE_TIME_HOURS = ConfigValueUtils.getValue("server", "offer_expire_time_hours", 240, true),
+    ENABLE_SALES_HISTORY = ConfigValueUtils.getValue("server", "enable_sales_history", true),
+    ENABLE_SALES_HISTORY_SYNC = ConfigValueUtils.getValue("server", "enable_sales_history_sync", true, true),
+    SALES_HISTORY_EXPIRE_TIME_HOURS = ConfigValueUtils.getValue("server", "sales_history_expire_time_hours", 240),
+    OFFER_CREATION_FEE_PERCENT = ConfigValueUtils.getValue("server", "offer_creation_fee_percent", 1, true),
+    OFFER_SALE_FEE_PERCENT = ConfigValueUtils.getValue("server", "offer_sale_fee_percent", 5, true);
 
     @Override
     public String getDomain() {
         return TradeMain.MODID;
-    }
-
-    @Override
-    public String getVersion() {
-        return TradeMain.VERSION_CUSTOM;
     }
 
     @Override
@@ -40,14 +37,12 @@ public class TradeConfig extends AbstractConfigHolder {
     }
 
     @Override
-    public String getInternalPath() {
-        return "assets/oxygen_trade/trade.json";
-    }
-
-    @Override
     public void getValues(List<ConfigValue> values) {
-        values.add(DATA_SAVE_DELAY_MINUTES);
+        values.add(ENABLE_TRADE_MENU_KEY);
 
+        values.add(TRADE_MENU_OPERATIONS_TIMEOUT_MILLIS);
+        values.add(ENABLE_TRADE_MENU_ACCESS_CLIENTSIDE);
+        values.add(ENABLE_SELF_PURCHASE);
         values.add(MAX_OFFERS_PER_PLAYER);
         values.add(ITEMS_PER_OFFER_MAX_AMOUNT);
         values.add(PRICE_MAX_VALUE);
@@ -57,10 +52,5 @@ public class TradeConfig extends AbstractConfigHolder {
         values.add(SALES_HISTORY_EXPIRE_TIME_HOURS);
         values.add(OFFER_CREATION_FEE_PERCENT);
         values.add(OFFER_SALE_FEE_PERCENT);
-    }
-
-    @Override
-    public boolean sync() {
-        return true;
     }
 }

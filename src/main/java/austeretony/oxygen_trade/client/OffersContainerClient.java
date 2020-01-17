@@ -11,12 +11,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import austeretony.oxygen_core.client.api.OxygenHelperClient;
 import austeretony.oxygen_core.common.persistent.AbstractPersistentData;
 import austeretony.oxygen_core.common.util.StreamUtils;
-import austeretony.oxygen_trade.common.config.TradeConfig;
 import austeretony.oxygen_trade.common.main.TradeMain;
 
 public class OffersContainerClient extends AbstractPersistentData {
 
-    private final Map<Long, PlayerOfferClient> offers = new ConcurrentHashMap<>();
+    private final Map<Long, OfferClient> offers = new ConcurrentHashMap<>();
 
     public int getOffersAmount() {
         return this.offers.size();
@@ -26,15 +25,15 @@ public class OffersContainerClient extends AbstractPersistentData {
         return this.offers.keySet();
     }
 
-    public Collection<PlayerOfferClient> getOffers() {
+    public Collection<OfferClient> getOffers() {
         return this.offers.values();
     }
 
-    public PlayerOfferClient getOffer(long offerId) {
+    public OfferClient getOffer(long offerId) {
         return this.offers.get(offerId);
     }
 
-    public void addOffer(PlayerOfferClient offer) {
+    public void addOffer(OfferClient offer) {
         this.offers.put(offer.getId(), offer);
     }
 
@@ -53,16 +52,11 @@ public class OffersContainerClient extends AbstractPersistentData {
     }
 
     @Override
-    public long getSaveDelayMinutes() {
-        return TradeConfig.DATA_SAVE_DELAY_MINUTES.getIntValue();
-    }
-
-    @Override
     public void read(BufferedInputStream bis) throws IOException {
         int amount = StreamUtils.readInt(bis);
-        PlayerOfferClient offer;
+        OfferClient offer;
         for (int i = 0; i < amount; i++) {
-            offer = new PlayerOfferClient();
+            offer = new OfferClient();
             offer.read(bis);
             this.addOffer(offer);
         }
@@ -72,7 +66,7 @@ public class OffersContainerClient extends AbstractPersistentData {
     @Override
     public void write(BufferedOutputStream bos) throws IOException {
         StreamUtils.write(this.offers.size(), bos);
-        for (PlayerOfferClient offer : this.offers.values())
+        for (OfferClient offer : this.offers.values())
             offer.write(bos);
     }
 

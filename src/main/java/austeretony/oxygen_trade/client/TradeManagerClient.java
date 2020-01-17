@@ -1,10 +1,8 @@
 package austeretony.oxygen_trade.client;
 
-import austeretony.oxygen_core.client.api.ClientReference;
 import austeretony.oxygen_core.client.api.OxygenHelperClient;
-import austeretony.oxygen_trade.client.categories.ItemCategoriesPresetClient;
-import austeretony.oxygen_trade.client.gui.trade.TradeMenuGUIScreen;
-import austeretony.oxygen_trade.common.main.EnumTradeStatusMessage;
+import austeretony.oxygen_core.common.api.CommonReference;
+import austeretony.oxygen_trade.client.input.TradeKeyHandler;
 
 public final class TradeManagerClient {
 
@@ -18,13 +16,18 @@ public final class TradeManagerClient {
 
     private final SalesHistoryManagerClient salesHistoryManager;
 
-    private final TradeMenuManagerClient tradeMenuManager = new TradeMenuManagerClient();
+    private final MarketDataManagerClient marketDataManager;
 
-    private final ItemCategoriesPresetClient itemCategoriesPreset = new ItemCategoriesPresetClient();
+    private final TradeMenuManagerClient tradeMenuManager;    
+
+    private final TradeKeyHandler keyHandler = new TradeKeyHandler();
 
     private TradeManagerClient() {
         this.offersManager = new OffersManagerClient(this);
         this.salesHistoryManager = new SalesHistoryManagerClient(this);
+        this.marketDataManager = new MarketDataManagerClient(this);
+        this.tradeMenuManager = new TradeMenuManagerClient(this);
+        CommonReference.registerEvent(this.keyHandler);
     }
 
     private void registerPersistentData() {
@@ -32,15 +35,10 @@ public final class TradeManagerClient {
         OxygenHelperClient.registerPersistentData(this.salesHistoryContainer);
     }
 
-    private void registerPresets() {
-        OxygenHelperClient.registerPreset(this.itemCategoriesPreset);
-    }
-
     public static void create() {
         if (instance == null) {
             instance = new TradeManagerClient();
             instance.registerPersistentData();
-            instance.registerPresets();
         }
     }
 
@@ -64,12 +62,16 @@ public final class TradeManagerClient {
         return this.salesHistoryManager;
     }
 
+    public MarketDataManagerClient getMarketDataManager() {
+        return this.marketDataManager;
+    }
+
     public TradeMenuManagerClient getTradeMenuManager() {
         return this.tradeMenuManager;
     }
 
-    public ItemCategoriesPresetClient getItemCategoriesPreset() {
-        return this.itemCategoriesPreset;
+    public TradeKeyHandler getKeyHandler() {
+        return this.keyHandler;
     }
 
     public void worldLoaded() {
