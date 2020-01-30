@@ -10,7 +10,6 @@ import austeretony.oxygen_core.common.persistent.PersistentEntry;
 import austeretony.oxygen_core.common.sync.SynchronousEntry;
 import austeretony.oxygen_core.common.util.ByteBufUtils;
 import austeretony.oxygen_core.common.util.StreamUtils;
-import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import io.netty.buffer.ByteBuf;
 
 public class OfferServer implements PersistentEntry, SynchronousEntry {
@@ -56,8 +55,8 @@ public class OfferServer implements PersistentEntry, SynchronousEntry {
         return this.price;
     }
 
-    public void updateOwnerUsername() {
-        this.username = OxygenHelperServer.getPlayerSharedData(this.playerUUID).getUsername();
+    public void setOwnerUsername(String username) {
+        this.username = username;
     }
 
     public boolean isOwner(UUID playerUUID) {

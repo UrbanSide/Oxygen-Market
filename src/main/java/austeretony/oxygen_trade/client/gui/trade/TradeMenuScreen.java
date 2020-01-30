@@ -52,7 +52,7 @@ public class TradeMenuScreen extends AbstractGUIScreen {
 
     private HistorySection salesHistorySection;
 
-    public boolean enableProfitabilityCalculations, enableMarketAccess;
+    public boolean enableProfitabilityCalculations, enableMarketAccess, historySynchronized;
 
     public TradeMenuScreen() {
         OxygenHelperClient.syncData(TradeMain.OFFERS_DATA_ID);        
@@ -112,6 +112,10 @@ public class TradeMenuScreen extends AbstractGUIScreen {
     }
 
     public void salesHistorySynchronized() {
+        this.historySynchronized = true;
+        this.buySection.salesHistorySynchronized();
+        this.sellingSection.salesHistorySynchronized();
+        this.offersSection.salesHistorySynchronized();
         this.salesHistorySection.salesHistorySynchronized();
     }
 

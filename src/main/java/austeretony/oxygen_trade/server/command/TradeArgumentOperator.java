@@ -49,7 +49,7 @@ public class TradeArgumentOperator implements ArgumentExecutor {
 
                 if (args.length == 4) {
                     int period = CommandBase.parseInt(args[3], - 1, TradeConfig.SALES_HISTORY_EXPIRE_TIME_HOURS.asInt());
-                    if (args[2].equals("global")) {
+                    if (args[2].equals("-global")) {
                         TradeManagerServer.instance().getSalesHistoryManager().clearSalesHistoryGlobal(period);
 
                         if (sender instanceof EntityPlayerMP)
@@ -58,7 +58,7 @@ public class TradeArgumentOperator implements ArgumentExecutor {
                         else
                             server.sendMessage(new TextComponentString(String.format("Sales history cleared for last <%s> hours.", 
                                     period)));
-                    } else if (args[2].equals("item")) {
+                    } else if (args[2].equals("-item")) {
                         if (!(sender instanceof EntityPlayerMP))
                             throw new WrongUsageException("Command available only for player!");
                         if (senderPlayerMP.getHeldItemMainhand() != ItemStack.EMPTY)

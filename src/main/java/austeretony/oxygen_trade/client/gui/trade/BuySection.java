@@ -252,12 +252,15 @@ public class BuySection extends AbstractGUISection {
         this.offersEmptyLabel.setVisible(offers.isEmpty());
 
         this.offersPanel.reset();
-        for (OfferClient offer : offers)
-            this.offersPanel.addEntry(new OfferPanelEntry(
+        OfferPanelEntry entry;
+        for (OfferClient offer : offers) {
+            this.offersPanel.addEntry(entry = new OfferPanelEntry(
                     offer, 
-                    this.screen.getOfferProfitability(offer),
                     this.screen.getCurrencyProperties(), 
                     this.screen.getEqualStackAmount(offer.getOfferedStack()), offer.getPrice() > this.balanceValue.getValue()));
+            if (this.screen.historySynchronized)
+                entry.initProfitability(this.screen.getOfferProfitability(offer));
+        }
 
         this.offersAmountLabel.setDisplayText(String.valueOf(offers.size()) + "/" + String.valueOf(TradeManagerClient.instance().getOffersContainer().getOffersAmount()));
 
@@ -395,26 +398,40 @@ public class BuySection extends AbstractGUISection {
         this.setFilterButtonState(this.screen.enableMarketAccess);
     }
 
+    public void salesHistorySynchronized() {
+        OfferPanelEntry entry;
+        for (GUIButton button : this.offersPanel.buttonsBuffer) {
+            entry = (OfferPanelEntry) button;
+            entry.initProfitability(this.screen.getOfferProfitability(entry.index));
+        }
+    }
+
     public void itemPurchased(OfferClient offer, long balance) {
         this.balanceValue.updateValue(balance);
+
+        OfferPanelEntry entry;
         for (GUIButton button : this.offersPanel.buttonsBuffer) {
-            OfferPanelEntry entry = (OfferPanelEntry) button;
+            entry = (OfferPanelEntry) button;
             if (entry.index.getPrice() > balance)
                 entry.setOverpriced();
             if (entry.index.getId() == offer.getId())
                 entry.setPurchased();
         }
+
         this.offersAmountLabel.setDisplayText(String.valueOf(this.offersPanel.buttonsBuffer.size() - 1) + "/" + String.valueOf(TradeManagerClient.instance().getOffersContainer().getOffersAmount()));
     }
 
     public void offerCreated(OfferClient offer, long balance) {
         this.balanceValue.updateValue(balance);
         this.inventoryLoad.setLoad(this.screen.getSellingSection().getInventoryLoad().getLoad());
+
+        OfferPanelEntry entry;
         for (GUIButton button : this.offersPanel.buttonsBuffer) {
-            OfferPanelEntry entry = (OfferPanelEntry) button;
+            entry = (OfferPanelEntry) button;
             if (entry.index.getPrice() > balance)
                 entry.setOverpriced();
         }
+
         this.offersAmountLabel.setDisplayText(String.valueOf(this.offersPanel.buttonsBuffer.size()) + "/" + String.valueOf(TradeManagerClient.instance().getOffersContainer().getOffersAmount()));
     }
 

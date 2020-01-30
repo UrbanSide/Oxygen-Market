@@ -1,5 +1,7 @@
 package austeretony.oxygen_trade.client.gui.trade.buy;
 
+import java.util.concurrent.TimeUnit;
+
 import austeretony.alternateui.screen.core.GUIAdvancedElement;
 import austeretony.alternateui.util.EnumGUIAlignment;
 import austeretony.oxygen_core.client.api.ClientReference;
@@ -38,12 +40,12 @@ public class OfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> {
     //cache
     private boolean overpriced, purchased;
 
-    public OfferPanelEntry(OfferClient offer, OfferProfitability profitability, CurrencyProperties properties, int playerStock, boolean overpriced) {
+    public OfferPanelEntry(OfferClient offer, CurrencyProperties properties, int playerStock, boolean overpriced) {
         super(offer);
         this.playerStockStr = String.valueOf(playerStock);
         this.amountStr = String.valueOf(offer.getAmount());
         this.sellerStr = ClientReference.localize("oxygen_trade.gui.trade.seller", offer.getUsername());
-        this.expireTimeStr = OxygenUtils.getExpirationTimeLocalizedString(TradeConfig.OFFER_EXPIRE_TIME_HOURS.asInt() * 3_600_000L, offer.getId());
+        this.expireTimeStr = OxygenUtils.getExpirationTimeLocalizedString(TimeUnit.HOURS.toMillis(TradeConfig.OFFER_EXPIRE_TIME_HOURS.asInt()), offer.getId());
         this.priceStr = OxygenUtils.formatCurrencyValue(String.valueOf(offer.getPrice()));
         this.unitPriceStr = OxygenUtils.formatDecimalCurrencyValue(TradeMenuScreen.DECIMAL_FORMAT.format((float) offer.getPrice() / (float) offer.getAmount()));
         this.offerIdStr = String.valueOf(offer.getId());
@@ -51,15 +53,6 @@ public class OfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> {
         this.overpriced = overpriced;
 
         this.currencyProperties = properties;
-
-        if (profitability != null) {
-            if (profitability.profitabilityIndex != - 1)
-                this.profitabilityPercentStr = profitability.profitabilityPercentStr;
-            else
-                this.profitabilityPercentStr = null;
-            this.profitabilityColorHex = profitability.colorHex;
-            this.profitabilityTooltipStr = profitability.profitabilityTooltipStr;
-        }
 
         if (!overpriced)
             this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? this.index.getOfferedStack().getCachedItemStack().getRarity().rarityColor + this.index.getOfferedStack().getCachedItemStack().getDisplayName() : this.index.getOfferedStack().getCachedItemStack().getDisplayName());
@@ -78,6 +71,17 @@ public class OfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> {
         this.tooltipFrameColor = EnumBaseGUISetting.BACKGROUND_ADDITIONAL_COLOR.get().asInt();
     }
 
+    public void initProfitability(OfferProfitability profitability) {
+        if (profitability != null) {
+            if (profitability.profitabilityIndex != - 1)
+                this.profitabilityPercentStr = profitability.profitabilityPercentStr;
+            else
+                this.profitabilityPercentStr = null;
+            this.profitabilityColorHex = profitability.colorHex;
+            this.profitabilityTooltipStr = profitability.profitabilityTooltipStr;
+        }
+    }
+
     @Override
     public void draw(int mouseX, int mouseY) {
         if (this.isVisible()) {      
@@ -94,7 +98,7 @@ public class OfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> {
 
             GlStateManager.disableDepth();
             RenderHelper.disableStandardItemLighting();
-            
+
             GlStateManager.pushMatrix();           
             GlStateManager.translate(this.getX(), this.getY(), 0.0F);            
             GlStateManager.scale(this.getScale(), this.getScale(), 0.0F);
@@ -191,7 +195,7 @@ public class OfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> {
     public void drawTooltip(int mouseX, int mouseY) {
         if (mouseX >= this.getX() + 2 && mouseY >= this.getY() && mouseX < this.getX() + 18 && mouseY < this.getY() + this.getHeight())
             this.screen.drawToolTip(this.index.getOfferedStack().getCachedItemStack(), mouseX + 6, mouseY);
-        if (this.profitabilityPercentStr != null && mouseX >= this.getX() + this.getWidth() - 80 && mouseY >= this.getY() + 10 && mouseX < this.getX() + this.getWidth() - 60 && mouseY < this.getY() + this.getHeight())
+        else if (this.profitabilityPercentStr != null && mouseX >= this.getX() + this.getWidth() - 80 && mouseY >= this.getY() + 10 && mouseX < this.getX() + this.getWidth() - 60 && mouseY < this.getY() + this.getHeight())
             this.drawMarketDataTooltip(mouseX, mouseY);
     }
 

@@ -38,7 +38,7 @@ public class OffersContainerServer extends AbstractPersistentData {
     }
 
     public void addOffer(OfferServer offer) {
-        offer.updateOwnerUsername();
+        offer.setOwnerUsername(OxygenHelperServer.getPlayerSharedData(offer.getPlayerUUID()).getUsername());
         this.offers.put(offer.getId(), offer);
     }
 
@@ -72,6 +72,7 @@ public class OffersContainerServer extends AbstractPersistentData {
             offer.read(bis);
             this.addOffer(offer);
         }
+
         TradeMain.LOGGER.info("Loaded {} trade offers.", this.getOffersAmount());
         TradeManagerServer.instance().getOffersManager().processExpiredOffers();
     }

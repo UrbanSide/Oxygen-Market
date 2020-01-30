@@ -1,5 +1,7 @@
 package austeretony.oxygen_trade.client.gui.trade.offers;
 
+import java.util.concurrent.TimeUnit;
+
 import austeretony.alternateui.screen.core.GUIAdvancedElement;
 import austeretony.alternateui.util.EnumGUIAlignment;
 import austeretony.oxygen_core.client.api.EnumBaseClientSetting;
@@ -39,24 +41,15 @@ public class PlayerOfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> 
 
     private OxygenTexturedButton cancelOfferButton;
 
-    public PlayerOfferPanelEntry(OfferClient offer, OfferProfitability profitability, CurrencyProperties properties) {
+    public PlayerOfferPanelEntry(OfferClient offer, CurrencyProperties properties) {
         super(offer);
         this.amountStr = String.valueOf(offer.getAmount());
-        this.expireTimeStr = OxygenUtils.getExpirationTimeLocalizedString(TradeConfig.OFFER_EXPIRE_TIME_HOURS.asInt() * 3_600_000L, offer.getId());
+        this.expireTimeStr = OxygenUtils.getExpirationTimeLocalizedString(TimeUnit.HOURS.toMillis(TradeConfig.OFFER_EXPIRE_TIME_HOURS.asInt()), offer.getId());
         this.priceStr = OxygenUtils.formatCurrencyValue(String.valueOf(offer.getPrice()));
         this.unitPriceStr = OxygenUtils.formatDecimalCurrencyValue(TradeMenuScreen.DECIMAL_FORMAT.format((float) offer.getPrice() / (float) offer.getAmount()));
         this.singleItem = offer.getAmount() == 1;
 
         this.currencyProperties = properties;
-
-        if (profitability != null) {
-            if (profitability.profitabilityIndex != - 1)
-                this.profitabilityPercentStr = profitability.profitabilityPercentStr;
-            else
-                this.profitabilityPercentStr = null;
-            this.profitabilityColorHex = profitability.colorHex;
-            this.profitabilityTooltipStr = profitability.profitabilityTooltipStr;
-        }
 
         this.enableDurabilityBar = EnumBaseClientSetting.ENABLE_ITEMS_DURABILITY_BAR.get().asBoolean();
         this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? this.index.getOfferedStack().getCachedItemStack().getRarity().rarityColor + this.index.getOfferedStack().getCachedItemStack().getDisplayName() : this.index.getOfferedStack().getCachedItemStack().getDisplayName());
@@ -65,6 +58,17 @@ public class PlayerOfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> 
         this.setTooltipScaleFactor(EnumBaseGUISetting.TEXT_TOOLTIP_SCALE.get().asFloat());
         this.tooltipBackgroundColor = EnumBaseGUISetting.BACKGROUND_BASE_COLOR.get().asInt();
         this.tooltipFrameColor = EnumBaseGUISetting.BACKGROUND_ADDITIONAL_COLOR.get().asInt();
+    }
+
+    public void initProfitability(OfferProfitability profitability) {
+        if (profitability != null) {
+            if (profitability.profitabilityIndex != - 1)
+                this.profitabilityPercentStr = profitability.profitabilityPercentStr;
+            else
+                this.profitabilityPercentStr = null;
+            this.profitabilityColorHex = profitability.colorHex;
+            this.profitabilityTooltipStr = profitability.profitabilityTooltipStr;
+        }
     }
 
     @Override
@@ -170,7 +174,7 @@ public class PlayerOfferPanelEntry extends OxygenIndexedPanelEntry<OfferClient> 
     public void drawTooltip(int mouseX, int mouseY) {
         if (mouseX >= this.getX() + 2 && mouseY >= this.getY() && mouseX < this.getX() + 18 && mouseY < this.getY() + this.getHeight())
             this.screen.drawToolTip(this.index.getOfferedStack().getCachedItemStack(), mouseX + 6, mouseY);
-        if (this.profitabilityPercentStr != null && mouseX >= this.getX() + this.getWidth() - 100 && mouseY >= this.getY() + 10 && mouseX < this.getX() + this.getWidth() - 80 && mouseY < this.getY() + this.getHeight())
+        else if (this.profitabilityPercentStr != null && mouseX >= this.getX() + this.getWidth() - 100 && mouseY >= this.getY() + 10 && mouseX < this.getX() + this.getWidth() - 80 && mouseY < this.getY() + this.getHeight())
             this.drawMarketDataTooltip(mouseX, mouseY);
     }
 

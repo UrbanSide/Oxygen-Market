@@ -26,7 +26,6 @@ import austeretony.oxygen_core.client.gui.elements.OxygenTexturedButton;
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.common.util.MathUtils;
-import austeretony.oxygen_trade.client.MarketDataManagerClient.ItemStackMarketData;
 import austeretony.oxygen_trade.client.OfferClient;
 import austeretony.oxygen_trade.client.TradeManagerClient;
 import austeretony.oxygen_trade.client.gui.trade.buy.BuySectionBackgroundFiller;
@@ -153,21 +152,13 @@ public class SellingSection extends AbstractGUISection {
         this.inventoryContentPanel.reset();
         Set<String> stacks = new HashSet<>();
         String key;
-        ItemStackMarketData marketData;
-        float averageMarketPrice;
         for (ItemStackWrapper stackWrapper : this.screen.inventoryContent.keySet()) {
             key = getKey(stackWrapper);
             if (!stacks.contains(key)) {
-                marketData = TradeManagerClient.instance().getMarketDataManager().getItemStackMarketData(stackWrapper);
-                if (this.screen.enableProfitabilityCalculations && marketData != null)
-                    averageMarketPrice = marketData.getAveragePrice();
-                else
-                    averageMarketPrice = 0.0F;
                 this.inventoryContentPanel.addEntry(new InventoryItemPanelEntry(
                         stackWrapper, 
                         this.screen.getEqualStackAmount(stackWrapper),
-                        this.screen.getCurrencyProperties(),
-                        averageMarketPrice));
+                        this.screen.getCurrencyProperties()));
                 stacks.add(key);
             }              
         }
@@ -290,6 +281,14 @@ public class SellingSection extends AbstractGUISection {
 
     public void offersSynchronized() {
         this.updateOffersAmount();
+    }
+
+    public void salesHistorySynchronized() {
+        InventoryItemPanelEntry entry;
+        for (GUIButton button : this.inventoryContentPanel.buttonsBuffer) {
+            entry = (InventoryItemPanelEntry) button;
+            entry.initMarketData(TradeManagerClient.instance().getMarketDataManager().getItemStackMarketData(entry.index));
+        }
     }
 
     public void setCreateOfferButtonState(boolean enabled) {

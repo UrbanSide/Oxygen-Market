@@ -58,7 +58,7 @@ public class OffersManagerServer {
                     offer = iterator.next();
                     if (currTimeMillis - offer.getId() > expireTimeMillis) {
                         iterator.remove();
-                        this.returnItemToSeller(offer);
+                        this.returnExpiredItemToSeller(offer);
                         removed++;
                     }
                 }

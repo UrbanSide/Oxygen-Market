@@ -38,8 +38,8 @@ public class MarketDataManagerClient {
             long summaryPrice = 0L;
             float 
             unitPrice,
-            minPrice = - 1.0F, 
-            maxPrice = - 1.0F;
+            minPrice = Float.MAX_VALUE, 
+            maxPrice = Float.MIN_VALUE;
             int totalItemsSoldAmount = 0;
 
             for (Map.Entry<ItemStackWrapper, Set<HistoryEntryData>> entry : historyData.entrySet()) {
@@ -50,9 +50,9 @@ public class MarketDataManagerClient {
                     summaryPrice += data.price;
 
                     unitPrice = (float) data.price / (float) data.amount;
-                    if (minPrice == - 1.0F || unitPrice < minPrice)
+                    if (unitPrice < minPrice)
                         minPrice = unitPrice;
-                    if (maxPrice == - 1.0F || unitPrice > maxPrice)
+                    if (unitPrice > maxPrice)
                         maxPrice = unitPrice;
 
                     totalItemsSoldAmount += data.amount;
@@ -66,8 +66,8 @@ public class MarketDataManagerClient {
                         totalItemsSoldAmount));
 
                 summaryPrice = 0L;
-                minPrice = - 1.0F;
-                maxPrice = - 1.0F;
+                minPrice = Float.MAX_VALUE;
+                maxPrice = Float.MIN_VALUE;
                 totalItemsSoldAmount = 0;
             }
         }

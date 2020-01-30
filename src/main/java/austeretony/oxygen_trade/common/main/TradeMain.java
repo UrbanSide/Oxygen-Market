@@ -46,7 +46,7 @@ import net.minecraftforge.fml.relauncher.Side;
         modid = TradeMain.MODID, 
         name = TradeMain.NAME, 
         version = TradeMain.VERSION,
-        dependencies = "required-after:oxygen_core@[0.10.0,);required-after:oxygen_mail@[0.10.0,);",
+        dependencies = "required-after:oxygen_core@[0.10.1,);required-after:oxygen_mail@[0.10.1,);",
         certificateFingerprint = "@FINGERPRINT@",
         updateJSON = TradeMain.VERSIONS_FORGE_URL)
 public class TradeMain {
@@ -54,7 +54,7 @@ public class TradeMain {
     public static final String 
     MODID = "oxygen_trade",
     NAME = "Oxygen: Trade",
-    VERSION = "0.10.0",
+    VERSION = "0.10.1",
     VERSION_CUSTOM = VERSION + ":beta:0",
     GAME_VERSION = "1.12.2",
     VERSIONS_FORGE_URL = "https://raw.githubusercontent.com/AustereTony-MCMods/Oxygen-Trade/info/mod_versions_forge.json";
@@ -64,8 +64,6 @@ public class TradeMain {
 
     OFFERS_DATA_ID = 100,
     SALES_HISTORY_DATA_ID = 101,
-
-    ITEM_CATEGORIES_PRESET_ID = 100,
 
     TRADE_MENU_SCREEN_ID = 100,
 

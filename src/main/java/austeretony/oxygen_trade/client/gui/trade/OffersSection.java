@@ -3,6 +3,7 @@ package austeretony.oxygen_trade.client.gui.trade;
 import java.util.Collections;
 import java.util.List;
 
+import austeretony.alternateui.screen.button.GUIButton;
 import austeretony.alternateui.screen.core.AbstractGUISection;
 import austeretony.alternateui.screen.core.GUIBaseElement;
 import austeretony.oxygen_core.client.api.ClientReference;
@@ -72,10 +73,13 @@ public class OffersSection extends AbstractGUISection {
 
         this.offersPanel.reset();
         long totalPrice = 0L;
+        PlayerOfferPanelEntry entry;
         for (OfferClient offer : offers) {
             totalPrice += offer.getPrice();
             this.screen.calculateOfferProfitability(offer);
-            this.offersPanel.addEntry(new PlayerOfferPanelEntry(offer, this.screen.getOfferProfitability(offer), this.screen.getCurrencyProperties()));
+            this.offersPanel.addEntry(entry = new PlayerOfferPanelEntry(offer, this.screen.getCurrencyProperties()));
+            if (this.screen.historySynchronized)
+                entry.initProfitability(this.screen.getOfferProfitability(offer));
         }
         this.totalPriceValue.updateValue(totalPrice);
 
@@ -89,6 +93,14 @@ public class OffersSection extends AbstractGUISection {
     public void offersSynchronized() {
         this.updateOffersAmount();
         this.loadPlayerOffers();
+    }
+
+    public void salesHistorySynchronized() {
+        PlayerOfferPanelEntry entry;
+        for (GUIButton button : this.offersPanel.buttonsBuffer) {
+            entry = (PlayerOfferPanelEntry) button;
+            entry.initProfitability(this.screen.getOfferProfitability(entry.index));
+        }
     }
 
     public void itemPurchased(OfferClient offer, long balance) {
