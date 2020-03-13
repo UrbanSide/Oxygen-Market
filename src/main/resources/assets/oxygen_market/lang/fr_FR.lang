@@ -1,0 +1,66 @@
+key.oxygen_market.marketMenu=Ouvrir le menu d'échange
+
+oxygen_market.status.message.itemPurchased=Item acheté
+oxygen_market.status.message.itemPurchaseFailed=Erreur achat d'item
+oxygen_market.status.message.offerCreated=Offre crée
+oxygen_market.status.message.offerCreationFailed=Erreur création d'offre
+oxygen_market.status.message.itemDamaged=Item endommagé
+oxygen_market.status.message.itemBlacklisted=Item blacklisté
+oxygen_market.status.message.offerCancelled=Offre annulé
+oxygen_market.status.message.offerCancellationFailed=Erreur annulation doffre
+
+oxygen_market.offersSorter.purchasePrice=Prix d'achat
+oxygen_market.offersSorter.unitPrice=Prix unitaire
+oxygen_market.offersSorter.sellerName=Nom du Vendeur
+oxygen_market.offersSorter.timeLeft=Temps restant
+
+oxygen_market.salesHistorySorter.purchases=Achats
+oxygen_market.salesHistorySorter.sales=Ventes
+
+oxygen_market.rarity.any=Tout
+
+oxygen_market.gui.market.title=Echange
+oxygen_market.gui.market.buy=Achat
+oxygen_market.gui.market.selling=Vente
+oxygen_market.gui.market.offers=Offres
+oxygen_market.gui.market.history=Historique
+oxygen_market.gui.market.category=Categorie:
+oxygen_market.gui.market.sortBy=Trier:
+oxygen_market.gui.market.priceRange=Ecarts de prix:
+oxygen_market.gui.market.search=Recherche:
+oxygen_market.gui.market.rarity=Rareté:
+oxygen_market.gui.market.filterButton=Recherche
+
+oxygen_market.gui.market.noOffersFound=Pas d'offres trouvés
+
+oxygen_market.gui.market.offersAmount=Offres:
+oxygen_market.gui.market.createOfferButton=Crée
+oxygen_market.gui.market.amount=Quantité:
+oxygen_market.gui.market.unitPrice=Prix Unitaire:
+oxygen_market.gui.market.totalPrice=Prix Total:
+oxygen_market.gui.market.listingFee=Frais de liste
+oxygen_market.gui.market.saleFee=Frais de vente
+oxygen_market.gui.market.profit=Profit
+
+oxygen_market.gui.market.filter=Filtre:
+oxygen_market.gui.market.filterButton=Chargement
+oxygen_market.gui.market.ago=il y a %s
+oxygen_market.gui.market.noDataFound=Pas de données trouvés
+
+oxygen_market.gui.market.callback.offerCreation.title=Création d'offre
+
+oxygen_market.gui.market.seller=Vendeur: %s
+oxygen_market.gui.market.buyer=Acheteur: %s
+
+oxygen_market.gui.trade.tooltip.resetFilters=Reinit. Filtres
+
+market.purchased=Item acheté
+market.purchasedItemMessage=Vous avez acheté un item, il est joint à la lettre.
+market.sold=Item Vendu
+market.soldItemMessage=Votre item a été vendu, vous recevez le bénéfice joint à la lettre.
+market.cancel=Offre annulé
+market.cancelOfferMessage=Vous avez annulé l'offre, Votre item est joint à la lettre.
+market.expired=Offer Expiré
+market.expiredOfferMessage=Votre offre a expiré, votre item est joint à la lettre.
+
+oxygen_market.command.dataReset=Oxygen Market données client réinitialisé.

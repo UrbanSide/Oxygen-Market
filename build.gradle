@@ -11,9 +11,9 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.12.2-0.10.1"
-group = "austeretony.oxygen_trade" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "oxygen-trade"
+version = "1.12.2-0.11.0"
+group = "austeretony.oxygen_market" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "oxygen-market"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
