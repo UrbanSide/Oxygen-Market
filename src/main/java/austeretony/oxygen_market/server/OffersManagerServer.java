@@ -37,7 +37,7 @@ public class OffersManagerServer {
 
     private final Queue<QueuedOfferCreation> offerCreationQueue = new ConcurrentLinkedQueue<>();
 
-    private final Queue<QueuedOfferActionServer> offerActionsQueue = new ConcurrentLinkedQueue<>();
+    private final Queue<QueuedOfferAction> offerActionsQueue = new ConcurrentLinkedQueue<>();
 
     public OffersManagerServer(MarketManagerServer manager) {
         this.manager = manager;
@@ -177,17 +177,17 @@ public class OffersManagerServer {
 
     public void purchaseItem(EntityPlayerMP playerMP, long offerId) {
         if (PrivilegesProviderServer.getAsBoolean(CommonReference.getPersistentUUID(playerMP), EnumMarketPrivilege.MARKET_ACCESS.id(), true))
-            this.offerActionsQueue.offer(new QueuedOfferActionServer(playerMP, EnumOfferAction.PURCHASE, offerId));
+            this.offerActionsQueue.offer(new QueuedOfferAction(playerMP, EnumOfferAction.PURCHASE, offerId));
     }
 
     public void cancelOffer(EntityPlayerMP playerMP, long offerId) {
-        this.offerActionsQueue.offer(new QueuedOfferActionServer(playerMP, EnumOfferAction.CANCEL, offerId));
+        this.offerActionsQueue.offer(new QueuedOfferAction(playerMP, EnumOfferAction.CANCEL, offerId));
     }
 
     private void processOfferActionsQueue() {
         Runnable task = ()->{
             while (!this.offerActionsQueue.isEmpty()) {
-                final QueuedOfferActionServer queued = this.offerActionsQueue.poll();
+                final QueuedOfferAction queued = this.offerActionsQueue.poll();
                 if (queued != null)
                     this.processOfferAction(queued.playerMP, queued.action, queued.offerId);
             }

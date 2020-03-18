@@ -134,7 +134,7 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
             }
 
             GlStateManager.pushMatrix();           
-            GlStateManager.translate(30.0F, (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F, 0.0F);            
+            GlStateManager.translate(31.0F, (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F, 0.0F);            
             GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);           
 
             this.mc.fontRenderer.drawString(this.getDisplayText(), 0, 0, color, false);

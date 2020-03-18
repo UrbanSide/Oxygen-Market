@@ -76,13 +76,13 @@ oxygen_market.gui.history.seller=Продавец:
 oxygen_market.gui.history.bought=%s купил у %s
 
 market.sender.market=Маркет
-market.purchased=Предмет Куплен
-market.purchasedItemMessage=Вы приобрели <§f%s§rx§f%s§r> у игрока §f%s§r.
-market.sold=Предмет Продан
-market.soldItemMessage=Ваш предмет <§f%s§rx§f%s§r> был куплен игроком §f%s§r.
-market.cancel=Сделка Отменена
+market.purchased=Маркет: Покупка
+market.purchasedItemMessage=Вы приобрели <§f%s§rx§f%s§r> у §f%s§r.
+market.sold=Маркет: Продажа
+market.soldItemMessage=Ваш предмет <§f%s§rx§f%s§r> был куплен §f%s§r.
+market.cancel=Маркет: Отмена
 market.cancelOfferMessage=Вы сняли предмет <§f%s§rx§f%s§r> с продажи.
-market.expired=Сделка Закрыта
+market.expired=Маркет: Возврат
 market.expiredOfferMessage=Время размещения предмета <§f%s§rx§f%s§r> истекло.
 
 oxygen_market.command.dataReset=Данные клиента для Oxygen Market сброшены.

@@ -77,13 +77,13 @@ oxygen_market.gui.history.seller=Seller:
 oxygen_market.gui.history.bought=%s bought from %s
 
 market.sender.market=Market
-market.purchased=Item Purchased
-market.purchasedItemMessage=You purchased <§f%s§rx§f%s§r> from player §f%s§r.
-market.sold=Item Sold
-market.soldItemMessage=Your offer <§f%s§rx§f%s§r> has been purchased by player §f%s§r.
-market.cancel=Offer Canceled
+market.purchased=Market: Purchase
+market.purchasedItemMessage=You purchased <§f%s§rx§f%s§r> from §f%s§r.
+market.sold=Market: Sale
+market.soldItemMessage=Your offer <§f%s§rx§f%s§r> has been purchased by §f%s§r.
+market.cancel=Market: Cancel
 market.cancelOfferMessage=You canceled offer <§f%s§rx§f%s§r>.
-market.expired=Offer Expired
+market.expired=Market: Return
 market.expiredOfferMessage=Your offer <§f%s§rx§f%s§r> expired.
 
 oxygen_market.command.dataReset=Oxygen Market client data reset.

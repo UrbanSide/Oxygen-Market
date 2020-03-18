@@ -175,7 +175,7 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
             }
 
             GlStateManager.pushMatrix();           
-            GlStateManager.translate(30.0F, 2.0F, 0.0F);            
+            GlStateManager.translate(31.0F, 2.0F, 0.0F);            
             GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);           
             this.mc.fontRenderer.drawString(this.getDisplayText(), 0, 0, !this.overpriced ? color : this.getDebugColor(), false);
             GlStateManager.popMatrix();             
