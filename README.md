@@ -1,3 +1,3 @@
-# Oxygen-Trade
-Ingame store, allowing players to trade with each other. 
-Project page: https://www.curseforge.com/minecraft/mc-mods/oxygen-trade
+# Oxygen-Market
+Online trading platform for players.
+Project page: https://www.curseforge.com/minecraft/mc-mods/oxygen-market
