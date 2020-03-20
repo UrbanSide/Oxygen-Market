@@ -1,0 +1,100 @@
+#Chinese Translated By ahdg,lian20,Lingdong,NEWLY_1129514
+key.oxygen_market.marketMenu=打开市场菜单
+ 
+oxygen_market.gui.settings.module.market=市场
+ 
+oxygen_market.gui.settings.option.addmarketMenu=市场菜单
+oxygen_market.gui.settings.option.alignmentmarketMenu=市场菜单
+oxygen_market.gui.settings.option.profitabilityCalculation=报价利润率计算
+
+ oxygen_market.status.message.itemPurchased=物品已购买。请检查邮件:
+
+oxygen_market.status.message.itemPurchaseFailed=物品购买失败
+oxygen_market.status.message.offerCreated=报价已创建
+oxygen_market.status.message.offerCreationFailed=新建报价失败
+oxygen_market.status.message.itemDamaged=已受损的物品
+oxygen_market.status.message.itemBlacklisted=已被列入黑名单的物品
+oxygen_market.status.message.offerCancelled=报价已取消
+oxygen_market.status.message.offerCancellationFailed=报价取消失败
+ 
+oxygen_market.message.clickHere=点击这里
+oxygen_market.offersSorter.purchasePrice=买入价格
+oxygen_market.offersSorter.unitPrice=单价
+oxygen_market.offersSorter.sellerName=卖家姓名
+oxygen_market.offersSorter.timeLeft=剩余时间
+ 
+oxygen_market.salesHistorySorter.purchases=买入
+oxygen_market.salesHistorySorter.sales=卖出
+ 
+oxygen_market.rarity.any=任意
+oxygen_market.profitability.any=任意
+ 
+oxygen_market.gui.market.title=交易
+oxygen_market.gui.market.buy=买
+oxygen_market.gui.market.selling=卖
+oxygen_market.gui.market.offers=报价
+oxygen_market.gui.market.history=记录
+oxygen_market.gui.market.category=类别：
+oxygen_market.gui.market.sortBy=排序：
+oxygen_market.gui.market.priceRange=价格搜索：
+oxygen_market.gui.market.search=文本搜索：
+oxygen_market.gui.market.rarity=稀有度：
+oxygen_market.gui.market.profitability=利润率:
+oxygen_market.gui.market.button.filterOffers=筛选报价
+oxygen_market.gui.market.button.createOffer=创建报价
+oxygen_market.gui.market.button.filterHistory=筛选器历史
+ 
+oxygen_market.gui.market.noOffersFound=未找到报价
+ 
+
+oxygen_market.gui.market.offersAmount=报价列表:
+
+oxygen_market.gui.market.amount=数量：
+oxygen_market.gui.market.unitPrice=单价：
+oxygen_market.gui.market.totalPrice=总价格：
+oxygen_market.gui.market.listingFee=上市费
+oxygen_market.gui.market.saleFee=销售税
+oxygen_market.gui.market.profit=收益
+ 
+oxygen_market.gui.market.filter=筛选：
+oxygen_market.gui.market.filterButton=加载
+oxygen_market.gui.market.ago=%s 以前
+oxygen_market.gui.market.noDataFound=未找到数据
+ 
+oxygen_market.gui.market.callback.offerCreation.title=新建报价
+ 
+oxygen_market.gui.market.seller=卖家： %s
+oxygen_market.gui.market.buyer=买家： %s
+ 
+oxygen_market.gui.market.tooltip.latestFilters=最近使用的筛选配置
+oxygen_market.gui.market.tooltip.resetFilters=重置筛选
+oxygen_market.gui.market.tooltip.applyRecommended=市场价格
+ 
+oxygen_market.historySorter.time=时间
+oxygen_market.historySorter.buyerName=买家姓名
+ 
+oxygen_market.gui.market.context.purchase=购买
+oxygen_market.gui.market.context.cancel=取消
+ 
+oxygen_market.gui.history.title=交易记录
+oxygen_market.gui.history.buyer=买家：
+oxygen_market.gui.history.seller=卖家：
+oxygen_market.gui.history.bought=%s 从 %s 手中买到
+market.sender.market=市场
+market.purchased=市场: 购买
+market.purchasedItemMessage=你购买了一个物品，该物品已附在信件中。
+
+market.sold=市场: 收购
+market.soldItemMessage=你的物品已被购买，销售所得已附在信件中。
+
+market.cancel=取消报价
+market.cancelOfferMessage=你取消了报价，被报价的物品已附在信件中。
+
+market.expired=市场: 返还
+market.expiredOfferMessage=你的报价已到期，被报价的物品已附在信件中。
+
+ 
+oxygen_market.command.dataReset=Oxygen 贸易客户端数据重置.
+ 
+oxygen_market.message.command.oxygens.trade.clearHistoryGlobal=最近%s小时的交易记录已清除。
+oxygen_market.message.command.oxygens.trade.clearHistoryItem=最近%s小时%s的交易记录已清除。
