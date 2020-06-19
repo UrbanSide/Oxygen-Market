@@ -19,6 +19,7 @@ import austeretony.oxygen_core.server.api.InventoryProviderServer;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import austeretony.oxygen_core.server.api.PrivilegesProviderServer;
 import austeretony.oxygen_core.server.api.SoundEventHelperServer;
+import austeretony.oxygen_core.server.api.TimeHelperServer;
 import austeretony.oxygen_mail.common.mail.Attachments;
 import austeretony.oxygen_mail.common.mail.EnumMail;
 import austeretony.oxygen_mail.server.api.MailHelperServer;
@@ -27,6 +28,8 @@ import austeretony.oxygen_market.common.main.EnumMarketPrivilege;
 import austeretony.oxygen_market.common.main.EnumMarketStatusMessage;
 import austeretony.oxygen_market.common.main.EnumOfferAction;
 import austeretony.oxygen_market.common.network.client.CPOfferAction;
+import austeretony.oxygen_market.server.market.OfferServer;
+import austeretony.oxygen_market.server.market.SalesHistoryEntryServer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -49,27 +52,30 @@ public class OffersManagerServer {
     }
 
     public void processExpiredOffers() {
-        OxygenHelperServer.addRoutineTask(()->{
+        final Runnable task = ()->{
             if (this.manager.getOffersContainer().getOffersAmount() > 0) {
                 Iterator<OfferServer> iterator = this.manager.getOffersContainer().getOffers().iterator();
                 OfferServer offer;
                 long 
-                currTimeMillis = System.currentTimeMillis(),
+                currTimeMillis = TimeHelperServer.getCurrentMillis(),
                 expireTimeMillis = MarketConfig.OFFER_EXPIRE_TIME_HOURS.asInt() * 3_600_000L;
                 int removed = 0;
                 while (iterator.hasNext()) {
                     offer = iterator.next();
-                    if (currTimeMillis - offer.getId() > expireTimeMillis) {
-                        iterator.remove();
-                        this.returnExpiredItemToSeller(offer);
-                        removed++;
+                    if (offer != null) {
+                        if (currTimeMillis - offer.getId() > expireTimeMillis) {
+                            iterator.remove();
+                            this.returnExpiredItemToSeller(offer);
+                            removed++;
+                        }
                     }
                 }
                 if (removed > 0)
                     this.manager.getOffersContainer().setChanged(true);
                 OxygenMain.LOGGER.info("[Market] Removed {} expired offers.", removed);
             }
-        });
+        };
+        OxygenHelperServer.addRoutineTask(task);
     }
 
     private void returnExpiredItemToSeller(OfferServer offer) {
@@ -103,7 +109,7 @@ public class OffersManagerServer {
     }
 
     private void processOfferCreationQueue() {
-        Runnable task = ()->{
+        final Runnable task = ()->{
             while (!this.offerCreationQueue.isEmpty()) {
                 final QueuedOfferCreation queued = this.offerCreationQueue.poll();
                 if (queued != null)
@@ -138,6 +144,8 @@ public class OffersManagerServer {
                 if (InventoryProviderServer.getPlayerInventory().getEqualItemAmount(playerMP, stackWrapper) >= amount 
                         && (!feeExist || CurrencyHelperServer.enoughCurrency(playerUUID, offerCreationFee, OxygenMain.COMMON_CURRENCY_INDEX))) {
                     InventoryProviderServer.getPlayerInventory().removeItem(playerMP, stackWrapper, amount);
+
+                    SoundEventHelperServer.playSoundClient(playerMP, OxygenSoundEffects.INVENTORY_OPERATION.getId());
 
                     if (feeExist) {
                         CurrencyHelperServer.removeCurrency(playerUUID, offerCreationFee, OxygenMain.COMMON_CURRENCY_INDEX);
@@ -185,7 +193,7 @@ public class OffersManagerServer {
     }
 
     private void processOfferActionsQueue() {
-        Runnable task = ()->{
+        final Runnable task = ()->{
             while (!this.offerActionsQueue.isEmpty()) {
                 final QueuedOfferAction queued = this.offerActionsQueue.poll();
                 if (queued != null)

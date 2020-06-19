@@ -18,9 +18,9 @@ import austeretony.oxygen_core.client.gui.elements.OxygenSectionSwitcher;
 import austeretony.oxygen_core.client.gui.elements.OxygenTextLabel;
 import austeretony.oxygen_core.common.util.MathUtils;
 import austeretony.oxygen_market.client.MarketManagerClient;
-import austeretony.oxygen_market.client.SalesHistoryEntryClient;
 import austeretony.oxygen_market.client.gui.market.history.EnumSalesHistoryFilter;
 import austeretony.oxygen_market.client.gui.market.history.HistoryPanelEntry;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import net.minecraft.client.gui.ScaledResolution;
 

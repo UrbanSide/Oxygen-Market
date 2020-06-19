@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 import austeretony.oxygen_market.client.settings.EnumMarketClientSetting;
 
 public class MarketDataManagerClient {

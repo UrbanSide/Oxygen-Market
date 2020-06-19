@@ -34,11 +34,11 @@ import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient.ItemSubC
 import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.common.util.MathUtils;
 import austeretony.oxygen_market.client.MarketManagerClient;
-import austeretony.oxygen_market.client.OfferClient;
 import austeretony.oxygen_market.client.gui.market.buy.EnumOffersSorter;
 import austeretony.oxygen_market.client.gui.market.buy.OfferPanelEntry;
 import austeretony.oxygen_market.client.gui.market.buy.context.CancelOfferContextAction;
 import austeretony.oxygen_market.client.gui.market.buy.context.RemoveOfferContextAction;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.client.settings.EnumMarketClientSetting;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.EnumMarketPrivilege;

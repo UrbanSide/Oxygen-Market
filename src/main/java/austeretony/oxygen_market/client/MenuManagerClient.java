@@ -3,6 +3,7 @@ package austeretony.oxygen_market.client;
 import austeretony.oxygen_core.client.api.ClientReference;
 import austeretony.oxygen_market.client.gui.history.SalesHistoryScreen;
 import austeretony.oxygen_market.client.gui.market.MarketMenuScreen;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.common.main.EnumOfferAction;
 
 public final class MenuManagerClient {

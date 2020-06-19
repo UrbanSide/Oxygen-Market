@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import austeretony.oxygen_core.client.api.OxygenHelperClient;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 
 public class SalesHistoryManagerClient {
 

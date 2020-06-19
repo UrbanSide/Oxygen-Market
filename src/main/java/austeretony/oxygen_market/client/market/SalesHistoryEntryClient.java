@@ -1,4 +1,4 @@
-package austeretony.oxygen_market.client;
+package austeretony.oxygen_market.client.market;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,25 +11,38 @@ import austeretony.oxygen_core.common.util.ByteBufUtils;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import io.netty.buffer.ByteBuf;
 
-public class OfferClient implements PersistentEntry, SynchronousEntry {
+public class SalesHistoryEntryClient implements PersistentEntry, SynchronousEntry {
 
-    private long offerId, price;
+    private long entryId, price;
 
-    private String username;
+    private String sellerUsername, buyerUsername;
 
     private ItemStackWrapper stackWrapper;
 
     private int amount;
 
-    public OfferClient() {}
+    public SalesHistoryEntryClient() {}
+
+    public SalesHistoryEntryClient(String sellerUsername, String buyerUsername, ItemStackWrapper offeredStack, int amount, long price) {
+        this.entryId = System.currentTimeMillis();
+        this.sellerUsername = sellerUsername;
+        this.buyerUsername = buyerUsername;
+        this.stackWrapper = offeredStack;
+        this.amount = amount;
+        this.price = price;
+    }
 
     @Override
     public long getId() {
-        return this.offerId;
+        return this.entryId;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getSellerUsername() {
+        return this.sellerUsername;
+    }
+
+    public String getBuyerUsername() {
+        return this.buyerUsername;
     }
 
     public ItemStackWrapper getStackWrapper() {
@@ -44,14 +57,11 @@ public class OfferClient implements PersistentEntry, SynchronousEntry {
         return this.price;
     }
 
-    public boolean isOwner(String username) {
-        return this.username.equals(username);
-    }
-
     @Override
     public void write(BufferedOutputStream bos) throws IOException {
-        StreamUtils.write(this.offerId, bos);
-        StreamUtils.write(this.username, bos);
+        StreamUtils.write(this.entryId, bos);
+        StreamUtils.write(this.sellerUsername, bos);
+        StreamUtils.write(this.buyerUsername, bos);
         this.stackWrapper.write(bos);
         StreamUtils.write((short) this.amount, bos);
         StreamUtils.write(this.price, bos);
@@ -59,8 +69,9 @@ public class OfferClient implements PersistentEntry, SynchronousEntry {
 
     @Override
     public void read(BufferedInputStream bis) throws IOException {
-        this.offerId = StreamUtils.readLong(bis);
-        this.username = StreamUtils.readString(bis);
+        this.entryId = StreamUtils.readLong(bis);
+        this.sellerUsername = StreamUtils.readString(bis);
+        this.buyerUsername = StreamUtils.readString(bis);
         this.stackWrapper = ItemStackWrapper.read(bis);
         this.amount = StreamUtils.readShort(bis);
         this.price = StreamUtils.readLong(bis);
@@ -71,8 +82,9 @@ public class OfferClient implements PersistentEntry, SynchronousEntry {
 
     @Override
     public void read(ByteBuf buffer) {
-        this.offerId = buffer.readLong();
-        this.username = ByteBufUtils.readString(buffer);
+        this.entryId = buffer.readLong();
+        this.sellerUsername = ByteBufUtils.readString(buffer);
+        this.buyerUsername = ByteBufUtils.readString(buffer);
         this.stackWrapper = ItemStackWrapper.read(buffer);
         this.amount = buffer.readShort();
         this.price = buffer.readLong();

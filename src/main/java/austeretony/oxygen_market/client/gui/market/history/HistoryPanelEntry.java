@@ -9,7 +9,7 @@ import austeretony.oxygen_core.client.api.EnumBaseGUISetting;
 import austeretony.oxygen_core.client.currency.CurrencyProperties;
 import austeretony.oxygen_core.client.gui.OxygenGUIUtils;
 import austeretony.oxygen_core.common.util.OxygenUtils;
-import austeretony.oxygen_market.client.SalesHistoryEntryClient;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;

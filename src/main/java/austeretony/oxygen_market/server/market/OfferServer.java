@@ -1,4 +1,4 @@
-package austeretony.oxygen_market.server;
+package austeretony.oxygen_market.server.market;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,24 +12,23 @@ import austeretony.oxygen_core.common.util.ByteBufUtils;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import io.netty.buffer.ByteBuf;
 
-public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntry {
+public class OfferServer implements PersistentEntry, SynchronousEntry {
 
-    private long entryId, price;
+    private long offerId, price;
 
-    private UUID sellerUUID, buyerUUID;
+    private UUID playerUUID;
 
     private ItemStackWrapper stackWrapper;
 
     private int amount;
 
-    private String sellerUsername, buyerUsername;
+    private String username;
 
-    public SalesHistoryEntryServer() {}
+    public OfferServer() {}
 
-    public SalesHistoryEntryServer(long entryId, UUID ownerUUID, UUID buyerUUID, ItemStackWrapper offeredStack, int amount, long price) {
-        this.entryId = entryId;
-        this.sellerUUID = ownerUUID;
-        this.buyerUUID = buyerUUID;
+    public OfferServer(long offerId, UUID playerUUID, ItemStackWrapper offeredStack, int amount, long price) {
+        this.offerId = offerId;
+        this.playerUUID = playerUUID;
         this.stackWrapper = offeredStack;
         this.amount = amount;
         this.price = price;
@@ -37,18 +36,14 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntr
 
     @Override
     public long getId() {
-        return this.entryId;
+        return this.offerId;
     }
 
-    public UUID getSellerUUID() {
-        return this.sellerUUID;
+    public UUID getPlayerUUID() {
+        return this.playerUUID;
     }
 
-    public UUID getBuyerUUID() {
-        return this.buyerUUID;
-    }
-
-    public ItemStackWrapper getStackWrapperStack() {
+    public ItemStackWrapper getStackWrapper() {
         return this.stackWrapper;
     }
 
@@ -60,19 +55,22 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntr
         return this.price;
     }
 
-    public void setSellerUsername(String username) {
-        this.sellerUsername = username;
+    public void setOwnerUsername(String username) {
+        this.username = username;
     }
 
-    public void setBuyerUsername(String username) {
-        this.buyerUsername = username;
+    public String getOwnerUsername() {
+        return this.username;
+    }
+
+    public boolean isOwner(UUID playerUUID) {
+        return this.playerUUID.equals(playerUUID);
     }
 
     @Override
     public void write(BufferedOutputStream bos) throws IOException {
-        StreamUtils.write(this.entryId, bos);
-        StreamUtils.write(this.sellerUUID, bos);
-        StreamUtils.write(this.buyerUUID, bos);
+        StreamUtils.write(this.offerId, bos);
+        StreamUtils.write(this.playerUUID, bos);
         this.stackWrapper.write(bos);
         StreamUtils.write((short) this.amount, bos);
         StreamUtils.write(this.price, bos);
@@ -80,9 +78,8 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntr
 
     @Override
     public void read(BufferedInputStream bis) throws IOException {
-        this.entryId = StreamUtils.readLong(bis);
-        this.sellerUUID = StreamUtils.readUUID(bis);
-        this.buyerUUID = StreamUtils.readUUID(bis);
+        this.offerId = StreamUtils.readLong(bis);
+        this.playerUUID = StreamUtils.readUUID(bis);
         this.stackWrapper = ItemStackWrapper.read(bis);
         this.amount = StreamUtils.readShort(bis);
         this.price = StreamUtils.readLong(bis);
@@ -90,9 +87,8 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntr
 
     @Override
     public void write(ByteBuf buffer) {
-        buffer.writeLong(this.entryId);
-        ByteBufUtils.writeString(this.sellerUsername, buffer);
-        ByteBufUtils.writeString(this.buyerUsername, buffer);
+        buffer.writeLong(this.offerId);
+        ByteBufUtils.writeString(this.username, buffer);
         this.stackWrapper.write(buffer);
         buffer.writeShort(this.amount);
         buffer.writeLong(this.price);
@@ -100,4 +96,15 @@ public class SalesHistoryEntryServer implements PersistentEntry, SynchronousEntr
 
     @Override
     public void read(ByteBuf buffer) {}
+
+    @Override
+    public String toString() {
+        return String.format("OfferServer[id: %d, seller: %s/%s, itemstack: %s, amount: %d, price: %s]", 
+                this.offerId,
+                this.username,
+                this.playerUUID,
+                this.stackWrapper,
+                this.amount,
+                this.price);
+    }
 }

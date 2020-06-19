@@ -2,6 +2,7 @@ package austeretony.oxygen_market.client.gui.market.selling;
 
 import austeretony.alternateui.screen.core.GUIAdvancedElement;
 import austeretony.alternateui.util.EnumGUIAlignment;
+import austeretony.alternateui.util.UIUtils;
 import austeretony.oxygen_core.client.api.EnumBaseClientSetting;
 import austeretony.oxygen_core.client.api.EnumBaseGUISetting;
 import austeretony.oxygen_core.client.currency.CurrencyProperties;
@@ -173,7 +174,7 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         GlStateManager.pushMatrix();           
-        GlStateManager.translate(((width - 8) - this.textWidth(this.marketDataTooltipStr, this.getTooltipScaleFactor())) / 2, (height - this.textHeight(this.getTooltipScaleFactor())) / 2 + 1.0F, 0.0F);            
+        GlStateManager.translate(((width - 8) - this.textWidth(this.marketDataTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);            
         GlStateManager.scale(this.getTooltipScaleFactor(), this.getTooltipScaleFactor(), 0.0F);
 
         this.mc.fontRenderer.drawString(this.marketDataTooltipStr, 0, 0, this.getEnabledTextColor(), false);

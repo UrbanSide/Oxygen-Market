@@ -6,6 +6,7 @@ import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import austeretony.oxygen_market.common.config.MarketConfig;
+import austeretony.oxygen_market.server.market.SalesHistoryEntryServer;
 
 public class SalesHistoryManagerServer {
 

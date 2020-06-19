@@ -8,6 +8,8 @@ import austeretony.oxygen_core.client.api.OxygenHelperClient;
 import austeretony.oxygen_core.client.api.PrivilegesProviderClient;
 import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.main.OxygenMain;
+import austeretony.oxygen_market.client.market.OfferClient;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.EnumOfferAction;
 import austeretony.oxygen_market.common.main.EnumMarketPrivilege;

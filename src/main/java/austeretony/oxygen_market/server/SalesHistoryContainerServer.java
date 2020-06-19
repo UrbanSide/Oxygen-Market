@@ -15,6 +15,7 @@ import austeretony.oxygen_core.common.persistent.AbstractPersistentData;
 import austeretony.oxygen_core.common.util.StreamUtils;
 import austeretony.oxygen_core.server.api.OxygenHelperServer;
 import austeretony.oxygen_core.server.api.TimeHelperServer;
+import austeretony.oxygen_market.server.market.SalesHistoryEntryServer;
 
 public class SalesHistoryContainerServer extends AbstractPersistentData {
 

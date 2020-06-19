@@ -45,12 +45,12 @@ oxygen_market.gui.market.button.filterHistory=Фильтровать Истор�
 oxygen_market.gui.market.noOffersFound=Предложений Не Найдено
 
 oxygen_market.gui.market.offersAmount=Сделки:
-oxygen_market.gui.market.listItemButton=Создать
 oxygen_market.gui.market.amount=Количество:
-oxygen_market.gui.market.unitPrice=Стоимость за Единицу:
-oxygen_market.gui.market.listingFee=Стоимость Размещения
-oxygen_market.gui.market.saleFee=Комиссия
-oxygen_market.gui.market.profit=Доход
+oxygen_market.gui.market.unitPrice=Стоимость за Ед.:
+oxygen_market.gui.market.totalPrice=Общая Стоимость:
+oxygen_market.gui.market.listingFee=Размещение:
+oxygen_market.gui.market.saleFee=Комиссия:
+oxygen_market.gui.market.profit=Доход:
 
 oxygen_market.gui.market.filter=Фильтр:
 oxygen_market.gui.market.purchasedFrom=Куплено у: %s

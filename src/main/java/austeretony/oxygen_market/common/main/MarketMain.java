@@ -16,24 +16,24 @@ import austeretony.oxygen_core.server.network.NetworkRequestsRegistryServer;
 import austeretony.oxygen_core.server.timeout.TimeOutRegistryServer;
 import austeretony.oxygen_market.client.MarketManagerClient;
 import austeretony.oxygen_market.client.MarketStatusMessagesHandler;
-import austeretony.oxygen_market.client.OffersSyncHandlerClient;
-import austeretony.oxygen_market.client.SalesHistorySyncHandlerClient;
 import austeretony.oxygen_market.client.command.MarketArgumentClient;
 import austeretony.oxygen_market.client.event.MarketEventsClient;
 import austeretony.oxygen_market.client.gui.market.MarketMenuScreen;
 import austeretony.oxygen_market.client.gui.settings.MarketSettingsContainer;
 import austeretony.oxygen_market.client.settings.EnumMarketClientSetting;
 import austeretony.oxygen_market.client.settings.gui.EnumMarketGUISetting;
+import austeretony.oxygen_market.client.sync.OffersSyncHandlerClient;
+import austeretony.oxygen_market.client.sync.SalesHistorySyncHandlerClient;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.network.client.CPOfferAction;
 import austeretony.oxygen_market.common.network.client.CPOpenMarketMenu;
 import austeretony.oxygen_market.common.network.server.SPCreateOffer;
 import austeretony.oxygen_market.common.network.server.SPPurchaseOrCancelOffer;
 import austeretony.oxygen_market.server.MarketManagerServer;
-import austeretony.oxygen_market.server.OffersSyncHandlerServer;
-import austeretony.oxygen_market.server.SalesHistorySyncHandlerServer;
 import austeretony.oxygen_market.server.command.MarketArgumentOperator;
 import austeretony.oxygen_market.server.event.MarketEventsServer;
+import austeretony.oxygen_market.server.sync.OffersSyncHandlerServer;
+import austeretony.oxygen_market.server.sync.SalesHistorySyncHandlerServer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.Side;
         modid = MarketMain.MODID, 
         name = MarketMain.NAME, 
         version = MarketMain.VERSION,
-        dependencies = "required-after:oxygen_core@[0.11.0,);required-after:oxygen_mail@[0.11.0,);",
+        dependencies = "required-after:oxygen_core@[0.11.3,);required-after:oxygen_mail@[0.11.2,);",
         certificateFingerprint = "@FINGERPRINT@",
         updateJSON = MarketMain.VERSIONS_FORGE_URL)
 public class MarketMain {
@@ -52,7 +52,7 @@ public class MarketMain {
     public static final String 
     MODID = "oxygen_market",
     NAME = "Oxygen: Market",
-    VERSION = "0.11.0",
+    VERSION = "0.11.2",
     VERSION_CUSTOM = VERSION + ":beta:0",
     GAME_VERSION = "1.12.2",
     VERSIONS_FORGE_URL = "https://raw.githubusercontent.com/AustereTony-MCMods/Oxygen-Market/info/mod_versions_forge.json";
@@ -83,7 +83,7 @@ public class MarketMain {
         CommonReference.registerEvent(new MarketEventsServer());
         OxygenHelperServer.registerDataSyncHandler(new OffersSyncHandlerServer());
         OxygenHelperServer.registerDataSyncHandler(new SalesHistorySyncHandlerServer());
-        NetworkRequestsRegistryServer.registerRequest(OFFER_OPERATION_REQUEST_ID, 1000);
+        NetworkRequestsRegistryServer.registerRequest(OFFER_OPERATION_REQUEST_ID, 500);
         TimeOutRegistryServer.registerTimeOut(MARKET_MENU_TIMEOUT_ID, MarketConfig.MARKET_MENU_OPERATIONS_TIMEOUT_MILLIS.asInt());
         CommandOxygenOperator.registerArgument(new MarketArgumentOperator());
         EnumMarketPrivilege.register();

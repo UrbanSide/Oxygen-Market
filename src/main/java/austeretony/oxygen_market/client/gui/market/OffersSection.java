@@ -17,9 +17,9 @@ import austeretony.oxygen_core.client.gui.elements.OxygenTextLabel;
 import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.common.util.MathUtils;
 import austeretony.oxygen_market.client.MarketManagerClient;
-import austeretony.oxygen_market.client.OfferClient;
 import austeretony.oxygen_market.client.gui.market.offers.PlayerOfferPanelEntry;
 import austeretony.oxygen_market.client.gui.market.selling.OffersAmount;
+import austeretony.oxygen_market.client.market.OfferClient;
 
 public class OffersSection extends AbstractGUISection {
 

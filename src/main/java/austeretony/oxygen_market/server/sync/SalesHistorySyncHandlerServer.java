@@ -1,4 +1,4 @@
-package austeretony.oxygen_market.server;
+package austeretony.oxygen_market.server.sync;
 
 import java.util.Set;
 import java.util.UUID;
@@ -10,27 +10,29 @@ import austeretony.oxygen_core.server.sync.DataSyncHandlerServer;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.EnumMarketPrivilege;
 import austeretony.oxygen_market.common.main.MarketMain;
+import austeretony.oxygen_market.server.MarketManagerServer;
+import austeretony.oxygen_market.server.market.SalesHistoryEntryServer;
 
-public class OffersSyncHandlerServer implements DataSyncHandlerServer<OfferServer> {
+public class SalesHistorySyncHandlerServer implements DataSyncHandlerServer<SalesHistoryEntryServer> {
 
     @Override
     public int getDataId() {
-        return MarketMain.OFFERS_DATA_ID;
+        return MarketMain.SALES_HISTORY_DATA_ID;
     }
 
     @Override
     public boolean allowSync(UUID playerUUID) {
         return (MarketConfig.ENABLE_MARKET_MENU_ACCESS_CLIENTSIDE.asBoolean() || OxygenHelperServer.checkTimeOut(playerUUID, MarketMain.MARKET_MENU_TIMEOUT_ID) || CommonReference.isPlayerOpped(CommonReference.playerByUUID(playerUUID))) 
-                && PrivilegesProviderServer.getAsBoolean(playerUUID, EnumMarketPrivilege.MARKET_ACCESS.id(), true);
+                && PrivilegesProviderServer.getAsBoolean(playerUUID, EnumMarketPrivilege.SALES_HISTORY_ACCESS.id(), MarketConfig.ENABLE_SALES_HISTORY_SYNC.asBoolean());
     }
 
     @Override
     public Set<Long> getIds(UUID playerUUID) {
-        return MarketManagerServer.instance().getOffersContainer().getOfferIds();
+        return MarketManagerServer.instance().getSalesHistoryContainer().getEntriesIds();
     }
 
     @Override
-    public OfferServer getEntry(UUID playerUUID, long entryId) {
-        return MarketManagerServer.instance().getOffersContainer().getOffer(entryId);
+    public SalesHistoryEntryServer getEntry(UUID playerUUID, long entryId) {
+        return MarketManagerServer.instance().getSalesHistoryContainer().getEntry(entryId);
     }
 }

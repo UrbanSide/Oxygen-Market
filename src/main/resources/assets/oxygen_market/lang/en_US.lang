@@ -50,9 +50,9 @@ oxygen_market.gui.market.offersAmount=Offers:
 oxygen_market.gui.market.amount=Amount:
 oxygen_market.gui.market.unitPrice=Unit Price:
 oxygen_market.gui.market.totalPrice=Total Price:
-oxygen_market.gui.market.listingFee=Listing Fee
-oxygen_market.gui.market.saleFee=Sale Fee
-oxygen_market.gui.market.profit=Profit
+oxygen_market.gui.market.listingFee=Listing Fee:
+oxygen_market.gui.market.saleFee=Sale Fee:
+oxygen_market.gui.market.profit=Profit:
 
 oxygen_market.gui.market.filter=Filter:
 oxygen_market.gui.market.filterButton=Load

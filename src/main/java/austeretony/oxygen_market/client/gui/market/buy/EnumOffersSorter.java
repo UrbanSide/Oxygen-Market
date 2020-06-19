@@ -3,7 +3,7 @@ package austeretony.oxygen_market.client.gui.market.buy;
 import java.util.Comparator;
 
 import austeretony.oxygen_core.client.api.ClientReference;
-import austeretony.oxygen_market.client.OfferClient;
+import austeretony.oxygen_market.client.market.OfferClient;
 
 public enum EnumOffersSorter {
 

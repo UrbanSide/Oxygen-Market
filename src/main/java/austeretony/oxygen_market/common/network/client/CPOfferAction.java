@@ -2,10 +2,10 @@ package austeretony.oxygen_market.common.network.client;
 
 import austeretony.oxygen_core.client.api.OxygenHelperClient;
 import austeretony.oxygen_core.common.network.Packet;
-import austeretony.oxygen_market.client.OfferClient;
 import austeretony.oxygen_market.client.MarketManagerClient;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.common.main.EnumOfferAction;
-import austeretony.oxygen_market.server.OfferServer;
+import austeretony.oxygen_market.server.market.OfferServer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.INetHandler;
 

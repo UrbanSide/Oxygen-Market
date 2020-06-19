@@ -3,7 +3,7 @@ package austeretony.oxygen_market.client.gui.history;
 import java.util.Comparator;
 
 import austeretony.oxygen_core.client.api.ClientReference;
-import austeretony.oxygen_market.client.SalesHistoryEntryClient;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 
 public enum EnumHistorySorter {
 

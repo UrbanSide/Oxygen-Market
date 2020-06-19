@@ -14,7 +14,7 @@ import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.MarketMain;
 import austeretony.oxygen_market.common.network.client.CPOpenMarketMenu;
 import austeretony.oxygen_market.server.MarketManagerServer;
-import austeretony.oxygen_market.server.OfferServer;
+import austeretony.oxygen_market.server.market.OfferServer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -57,15 +57,15 @@ public class MarketArgumentOperator implements ArgumentExecutor {
                     long offerId = CommandBase.parseLong(args[2], 0L, Long.MAX_VALUE);
                     boolean returnItemToSeller = CommandBase.parseBoolean(args[3]);
                     OfferServer offer = MarketManagerServer.instance().getOffersManager().cancelOfferOp(offerId, returnItemToSeller);
-                    if (offer != null)                    
+                    if (offer != null) {                   
                         if (MarketConfig.ADVANCED_LOGGING.asBoolean())
                             OxygenMain.LOGGER.info("[Market] (Operator/Console) {} canceled offer: {}.", 
                                     sender.getName(),
                                     offer);
-                        else
-                            OxygenMain.LOGGER.info("[Market] (Operator/Console) {} failed to cancel offer: {}.", 
-                                    sender.getName(),
-                                    offerId);
+                    } else
+                        OxygenMain.LOGGER.info("[Market] (Operator/Console) {} failed to cancel offer: {}.", 
+                                sender.getName(),
+                                offerId);
                 }
             } else if (args[1].equals("-clear-history")) {
 

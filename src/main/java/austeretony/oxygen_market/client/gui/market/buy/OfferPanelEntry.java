@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import austeretony.alternateui.screen.core.GUIAdvancedElement;
 import austeretony.alternateui.util.EnumGUIAlignment;
+import austeretony.alternateui.util.UIUtils;
 import austeretony.oxygen_core.client.api.ClientReference;
 import austeretony.oxygen_core.client.api.EnumBaseClientSetting;
 import austeretony.oxygen_core.client.api.EnumBaseGUISetting;
@@ -11,9 +12,9 @@ import austeretony.oxygen_core.client.currency.CurrencyProperties;
 import austeretony.oxygen_core.client.gui.OxygenGUIUtils;
 import austeretony.oxygen_core.client.gui.elements.OxygenWrapperPanelEntry;
 import austeretony.oxygen_core.common.util.OxygenUtils;
-import austeretony.oxygen_market.client.OfferClient;
 import austeretony.oxygen_market.client.gui.market.MarketMenuScreen;
 import austeretony.oxygen_market.client.gui.market.OfferProfitability;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -219,7 +220,7 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         GlStateManager.pushMatrix();           
-        GlStateManager.translate(((width - 8) - this.textWidth(this.profitabilityTooltipStr, this.getTooltipScaleFactor())) / 2, (height - this.textHeight(this.getTooltipScaleFactor())) / 2 + 1.0F, 0.0F);            
+        GlStateManager.translate(((width - 8) - this.textWidth(this.profitabilityTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);            
         GlStateManager.scale(this.getTooltipScaleFactor(), this.getTooltipScaleFactor(), 0.0F);
 
         this.mc.fontRenderer.drawString(this.profitabilityTooltipStr, 0, 0, this.getEnabledTextColor(), false);

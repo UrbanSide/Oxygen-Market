@@ -28,11 +28,11 @@ import austeretony.oxygen_core.common.item.ItemStackWrapper;
 import austeretony.oxygen_core.common.main.OxygenMain;
 import austeretony.oxygen_core.common.util.MathUtils;
 import austeretony.oxygen_market.client.MarketManagerClient;
-import austeretony.oxygen_market.client.OfferClient;
 import austeretony.oxygen_market.client.gui.market.selling.InventoryItemPanelEntry;
 import austeretony.oxygen_market.client.gui.market.selling.OffersAmount;
 import austeretony.oxygen_market.client.gui.market.selling.SelectedItem;
 import austeretony.oxygen_market.client.gui.market.selling.callback.OfferCreationCallback;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.EnumMarketPrivilege;
 import net.minecraft.client.gui.ScaledResolution;
@@ -336,8 +336,15 @@ public class SellingSection extends AbstractGUISection {
                 }
             }
         }
-        if (reloadContent)
+        if (reloadContent) {
             this.loadInventoryContent();
+            
+            InventoryItemPanelEntry entry;
+            for (GUIButton button : this.inventoryContentPanel.buttonsBuffer) {
+                entry = (InventoryItemPanelEntry) button;
+                entry.initMarketData(MarketManagerClient.instance().getMarketDataManager().getItemStackMarketData(entry.getWrapped()));
+            }
+        }
     }
 
     public void offerCanceled(OfferClient offer, long balance) {

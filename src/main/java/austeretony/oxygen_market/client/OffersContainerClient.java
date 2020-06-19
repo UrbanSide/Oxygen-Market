@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 import austeretony.oxygen_core.client.api.OxygenHelperClient;
 import austeretony.oxygen_core.common.persistent.AbstractPersistentData;
 import austeretony.oxygen_core.common.util.StreamUtils;
+import austeretony.oxygen_market.client.market.OfferClient;
 
 public class OffersContainerClient extends AbstractPersistentData {
 

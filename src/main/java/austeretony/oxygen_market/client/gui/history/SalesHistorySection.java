@@ -25,9 +25,9 @@ import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient.ItemCate
 import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient.ItemSubCategory;
 import austeretony.oxygen_core.common.util.MathUtils;
 import austeretony.oxygen_market.client.MarketManagerClient;
-import austeretony.oxygen_market.client.SalesHistoryEntryClient;
 import austeretony.oxygen_market.client.gui.market.BuySection;
 import austeretony.oxygen_market.client.gui.market.history.HistoryPanelEntry;
+import austeretony.oxygen_market.client.market.SalesHistoryEntryClient;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.EnumRarity;
 

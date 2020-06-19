@@ -1,9 +1,11 @@
-package austeretony.oxygen_market.client;
+package austeretony.oxygen_market.client.sync;
 
 import java.util.Set;
 
 import austeretony.oxygen_core.client.sync.DataSyncHandlerClient;
 import austeretony.oxygen_core.client.sync.DataSyncListener;
+import austeretony.oxygen_market.client.MarketManagerClient;
+import austeretony.oxygen_market.client.market.OfferClient;
 import austeretony.oxygen_market.common.main.MarketMain;
 
 public class OffersSyncHandlerClient implements DataSyncHandlerClient<OfferClient> {
