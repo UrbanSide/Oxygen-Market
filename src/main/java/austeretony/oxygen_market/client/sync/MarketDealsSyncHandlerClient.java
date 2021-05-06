@@ -5,31 +5,31 @@ import austeretony.oxygen_core.client.sync.DataSyncListener;
 import austeretony.oxygen_market.client.MarketManagerClient;
 import austeretony.oxygen_market.client.gui.market.MarketScreen;
 import austeretony.oxygen_market.common.main.MarketMain;
-import austeretony.oxygen_market.common.market.SalesHistoryEntry;
+import austeretony.oxygen_market.common.market.Deal;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class SalesHistorySyncHandlerClient implements DataSyncHandlerClient<SalesHistoryEntry> {
+public class MarketDealsSyncHandlerClient implements DataSyncHandlerClient<Deal> {
 
     @Override
     public int getDataId() {
-        return MarketMain.DATA_ID_MARKET_HISTORY;
+        return MarketMain.DATA_ID_MARKET_DEALS;
     }
 
     @Override
-    public Class<SalesHistoryEntry> getSynchronousEntryClass() {
-        return SalesHistoryEntry.class;
+    public Class<Deal> getSynchronousEntryClass() {
+        return Deal.class;
     }
 
     @Override
-    public Map<Long, SalesHistoryEntry> getDataMap() {
-        return MarketManagerClient.instance().getSalesHistoryMap();
+    public Map<Long, Deal> getDataMap() {
+        return MarketManagerClient.instance().getDealsMap();
     }
 
     @Override
     public void clear() {
-        MarketManagerClient.instance().getSalesHistoryMap().clear();
+        MarketManagerClient.instance().getDealsMap().clear();
     }
 
     @Override
@@ -40,6 +40,6 @@ public class SalesHistorySyncHandlerClient implements DataSyncHandlerClient<Sale
     @Nullable
     @Override
     public DataSyncListener getSyncListener() {
-        return updated -> MarketScreen.salesHistoryDataSynchronized();
+        return updated -> MarketScreen.dealsDataSynchronized();
     }
 }
