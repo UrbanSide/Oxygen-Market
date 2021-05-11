@@ -258,12 +258,12 @@ public class MarketScreen extends OxygenScreen {
             }
 
             if (delta <= 0.0) {
-                if (deltaPercents >= 0.4) {
-                    profitability = Profitability.VERY_GOOD;
-                } else if (deltaPercents >= 0.2) {
-                    profitability = Profitability.GOOD;
-                } else {
-                    profitability = Profitability.NORMAL;
+                Profitability[] values = Profitability.values();
+                for (int i = values.length - 1; i >= 0; i--) {
+                    if (deltaPercents >= values[i].getDeltaFactor()) {
+                        profitability = values[i];
+                        break;
+                    }
                 }
             }
 
