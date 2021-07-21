@@ -19,6 +19,7 @@ import austeretony.oxygen_market.client.MarketManagerClient;
 import austeretony.oxygen_market.client.gui.market.MarketScreen;
 import austeretony.oxygen_market.common.config.MarketConfig;
 import austeretony.oxygen_market.common.main.MarketPrivileges;
+import austeretony.oxygen_market.common.market.Deal;
 
 public class CreateDealCallback extends Callback {
 
@@ -31,12 +32,12 @@ public class CreateDealCallback extends Callback {
     private ItemStackSelectionWidget itemSelectionWidget;
     private NumberField unitPriceField, totalPriceField;
     private QuantitySelectionWidget dealsQuantityWidget;
-    private CurrencyValue dealPlaceFeeValue, saleFeeValue, incomeValue;
+    private CurrencyValue dealPlaceFeeValue, saleFeeValue, incomeValue, balanceValue;
 
     private KeyButton confirmButton;
 
     public CreateDealCallback() {
-        super(120, 148);
+        super(120, 160);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class CreateDealCallback extends Callback {
         addWidget(new TextLabel(6, 23, Texts.additionalDark("oxygen_market.gui.market.my_deals.label.item")));
         int maxQuantity = PrivilegesClient.getInt(MarketPrivileges.DEAL_MAX_STACK_SIZE.getId(),
                 MarketConfig.DEAL_MAX_STACK_SIZE.asInt());
-        addWidget(itemSelectionWidget = new ItemStackSelectionWidget(6, 26, maxQuantity)
+        addWidget(itemSelectionWidget = new ItemStackSelectionWidget(6, 27, maxQuantity)
                 .setItemStackSelectionListener((stackWrapper, quantity) -> itemSelected()));
 
         long maxPrice = getMaxPrice();
@@ -77,6 +78,9 @@ public class CreateDealCallback extends Callback {
         addWidget(new TextLabel(6, 114 + 18, Texts.additionalDark("oxygen_market.gui.market.my_deals.label.sale_income")));
         addWidget(incomeValue = new CurrencyValue(6 + 100, 107 + 18)
                 .setCurrency(OxygenMain.CURRENCY_COINS, 0L));
+
+        addWidget(balanceValue = new CurrencyValue(6 + 100, 118 + 18)
+                .setCurrency(OxygenMain.CURRENCY_COINS, getPlayerBalance()));
 
         int buttonPosSegment = (int) (getWidth() / 2F);
         addWidget(confirmButton = new KeyButton(0, getHeight() - 10, Keys.CONFIRM_KEY, "oxygen_core.gui.button.confirm")
@@ -212,6 +216,10 @@ public class CreateDealCallback extends Callback {
         if (stock <= 0 || MarketManagerClient.instance().getClientPlayerDeals().size() >= maxDeals) {
             close();
         }
+    }
+
+    public void dealsCreated(int dealsQuantity, Deal deal, long balance) {
+        balanceValue.setValue(balance);
     }
 
     private enum ChangedValue {
