@@ -452,7 +452,7 @@ public final class MarketManagerServer extends AbstractPersistentData {
                 .withSenderName("oxygen_market.mail.sender")
                 .withMessage("oxygen_market.mail.income.message",
                         MinecraftCommon.getEntityName(buyer),
-                        deal.getStackWrapper().getItemStackCached().getTranslationKey() + ".name")
+                        deal.getStackWrapper().getItemStackCached().getUnlocalizedName() + ".name")
                 .withAttachment(Attachments.remittance(OxygenMain.CURRENCY_COINS, income))
                 .withMailBoxCapacityIgnore()
                 .send();
