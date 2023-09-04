@@ -1,30 +1,30 @@
-key.oxygen_market.open_market_screen=Открыть Меню Торговли
+key.oxygen_market.open_market_screen=Открыть Маркет
 
-oxygen.gui.setting.market_screen_alignment=Меню торговли
+oxygen.gui.setting.market_screen_alignment=Выравнивание меню маркета
 oxygen.gui.setting.market_screen_max_displayed_deals=Количество отображаемых сделок
 
-oxygen.gui.setting.add_market_screen=Показывать меню торговли
+oxygen.gui.setting.add_market_screen=Добавить меню маркета
 
-oxygen.gui.setting.enable_deals_profitability_display=Показывать профитность
+oxygen.gui.setting.enable_deals_profitability_display=Показывать профитность сделок
 
-oxygen_market.deals_sorter.purchase_price_min_to_max=Стоимость (больше)
-oxygen_market.deals_sorter.purchase_price_max_to_min=Стоимость (меньше)
-oxygen_market.deals_sorter.unit_price_min_to_max=Стоимость за ед. (больше)
-oxygen_market.deals_sorter.unit_price_max_to_min=Стоимость за ед. (меньше)
-oxygen_market.deals_sorter.seller_name=Ник продавца
-oxygen_market.deals_sorter.time_left_min_to_max=Оставшееся время (больше)
-oxygen_market.deals_sorter.time_left_max_to_min=Оставшееся время (меньше)
+oxygen_market.deals_sorter.purchase_price_min_to_max=Стоимость +
+oxygen_market.deals_sorter.purchase_price_max_to_min=Стоимость -
+oxygen_market.deals_sorter.unit_price_min_to_max=Стоимость за ед. +
+oxygen_market.deals_sorter.unit_price_max_to_min=Стоимость за ед. -
+oxygen_market.deals_sorter.seller_name=Имя продавца
+oxygen_market.deals_sorter.time_left_min_to_max=Оставшееся время +
+oxygen_market.deals_sorter.time_left_max_to_min=Оставшееся время -
 
-oxygen_market.gui.market.title=Торговля
-oxygen_market.gui.market.section.buy=Купить
+oxygen_market.gui.market.title=Маркет
+oxygen_market.gui.market.section.buy=Покупка
 oxygen_market.gui.market.section.my_deals=Мои Сделки
 
-oxygen_shop.gui.shop.image_button.apply_latest_filters=недавние фильтры
-oxygen_shop.gui.shop.image_button.reset_filters=сбросить фильтры
+oxygen_shop.gui.shop.image_button.apply_latest_filters=Применить недавние фильтры
+oxygen_shop.gui.shop.image_button.reset_filters=Сбросить фильтры
 
 oxygen_market.gui.market.buy.sort_by=Сортировка
 oxygen_market.gui.market.buy.price_range=Диапазон стоимости
-oxygen_market.gui.market.buy.text_search=По названию
+oxygen_market.gui.market.buy.text_search=Текстовый поиск
 oxygen_market.gui.market.buy.rarity=Редкость
 oxygen_market.gui.market.buy.rarity.any=Любая
 oxygen_market.gui.market.buy.profitability=Профитность
@@ -44,11 +44,11 @@ oxygen_market.gui.market.my_deals.label.sale_fee=Комиссия с прода�
 oxygen_market.gui.market.my_deals.label.sale_income=Доход с продажи
 
 oxygen_market.gui.market.buy.callback.select_purchase_quantity=Покупка Предмета
-oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Укажите количество товаров, которое вы хотите приобрести.
+oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Укажите количество товаров, которое вы хотите приобрести
 oxygen_market.gui.market.my_deals.callback.item_selection=Выбор Предмета
-oxygen_market.gui.market.my_deals.callback.item_selection.message=Выбирите предмет и количество для создания сделки.
+oxygen_market.gui.market.my_deals.callback.item_selection.message=Выбирите предмет и количество для создания сделки
 oxygen_market.gui.market.my_deals.callback.select_cancel_quantity=Отмена Сделок
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Укажите количество сделок которые вы хотите отменить.
+oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Укажите количество сделок которые вы хотите отменить
 
 oxygen_market.gui.market.label.my_deals.no_deals=Нет сделок
 oxygen_market.gui.market.label.buy.no_deals=Нет сделок

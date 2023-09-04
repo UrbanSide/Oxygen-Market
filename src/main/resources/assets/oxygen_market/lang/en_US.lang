@@ -1,30 +1,30 @@
 key.oxygen_market.open_market_screen=Open Market Screen
 
-oxygen.gui.setting.market_screen_alignment=Market screen
+oxygen.gui.setting.market_screen_alignment=Market screen alignment
 oxygen.gui.setting.market_screen_max_displayed_deals=Max displayed deals
 
-oxygen.gui.setting.add_market_screen=Show market screen
+oxygen.gui.setting.add_market_screen=Add market screen
 
-oxygen.gui.setting.enable_deals_profitability_display=Profitability display
+oxygen.gui.setting.enable_deals_profitability_display=Enable profitability display
 
-oxygen_market.deals_sorter.purchase_price_min_to_max=Purchase price (low)
-oxygen_market.deals_sorter.purchase_price_max_to_min=Purchase price (high)
-oxygen_market.deals_sorter.unit_price_min_to_max=Unit price (low)
-oxygen_market.deals_sorter.unit_price_max_to_min=Unit price (high)
+oxygen_market.deals_sorter.purchase_price_min_to_max=Purchase price +
+oxygen_market.deals_sorter.purchase_price_max_to_min=Purchase price -
+oxygen_market.deals_sorter.unit_price_min_to_max=Unit price +
+oxygen_market.deals_sorter.unit_price_max_to_min=Unit price -
 oxygen_market.deals_sorter.seller_name=Seller name
-oxygen_market.deals_sorter.time_left_min_to_max=Time left (min)
-oxygen_market.deals_sorter.time_left_max_to_min=Time left (max)
+oxygen_market.deals_sorter.time_left_min_to_max=Time left +
+oxygen_market.deals_sorter.time_left_max_to_min=Time left -
 
 oxygen_market.gui.market.title=Market
 oxygen_market.gui.market.section.buy=Buy
 oxygen_market.gui.market.section.my_deals=My Deals
 
-oxygen_shop.gui.shop.image_button.apply_latest_filters=latest filters
-oxygen_shop.gui.shop.image_button.reset_filters=reset filters
+oxygen_shop.gui.shop.image_button.apply_latest_filters=Apply latest filters
+oxygen_shop.gui.shop.image_button.reset_filters=Reset filters
 
 oxygen_market.gui.market.buy.sort_by=Sort by
 oxygen_market.gui.market.buy.price_range=Price range
-oxygen_market.gui.market.buy.text_search=By name
+oxygen_market.gui.market.buy.text_search=Text search
 oxygen_market.gui.market.buy.rarity=Rarity
 oxygen_market.gui.market.buy.rarity.any=Any
 oxygen_market.gui.market.buy.profitability=Profitability
@@ -44,11 +44,11 @@ oxygen_market.gui.market.my_deals.label.sale_fee=Sale fee
 oxygen_market.gui.market.my_deals.label.sale_income=Sale income
 
 oxygen_market.gui.market.buy.callback.select_purchase_quantity=Select Quantity
-oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Specify the number of items that you want to buy.
+oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Specify the number of items that you want to buy
 oxygen_market.gui.market.my_deals.callback.item_selection=Buy Items
-oxygen_market.gui.market.my_deals.callback.item_selection.message=Select an item and quantity to create a deal.
+oxygen_market.gui.market.my_deals.callback.item_selection.message=Select an item and quantity to create a deal
 oxygen_market.gui.market.my_deals.callback.select_cancel_quantity=Cancel Deals
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Specify the number of deals you want to cancel.
+oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Specify the number of deals you want to cancel
 
 oxygen_market.gui.market.label.my_deals.no_deals=No deals
 oxygen_market.gui.market.label.buy.no_deals=No deals

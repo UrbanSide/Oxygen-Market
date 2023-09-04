@@ -123,8 +123,6 @@ public class MyDealsSection extends Section {
         if (getCurrentCallback() instanceof CreateDealCallback) {
             if (!createDealButton.isEnabled()) {
                 closeCallback();
-            } else {
-                ((CreateDealCallback) getCurrentCallback()).dealsCreated(dealsQuantity, deal, balance);
             }
         }
     }
