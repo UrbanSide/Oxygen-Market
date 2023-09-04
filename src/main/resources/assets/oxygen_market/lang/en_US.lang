@@ -1,88 +1,92 @@
-key.oxygen_market.open_market_screen=Open Market Screen
+key.oxygen_market.marketMenu=Open Market Menu
 
-oxygen.gui.setting.market_screen_alignment=Market screen alignment
-oxygen.gui.setting.market_screen_max_displayed_deals=Max displayed deals
+oxygen_market.gui.settings.module.market=Market
 
-oxygen.gui.setting.add_market_screen=Add market screen
+oxygen_market.gui.settings.option.addMarketMenu=Market Menu
+oxygen_market.gui.settings.option.alignmentMarketMenu=Market Menu
+oxygen_market.gui.settings.option.profitabilityCalculation=Offers Profitability Calculation
 
-oxygen.gui.setting.enable_deals_profitability_display=Enable profitability display
+oxygen_market.status.message.itemPurchased=Item purchased. Check mail: 
+oxygen_market.status.message.itemPurchaseFailed=Item purchase failed
+oxygen_market.status.message.offerCreated=Offer created
+oxygen_market.status.message.offerCreationFailed=Offer creation failed
+oxygen_market.status.message.itemDamaged=Item damaged
+oxygen_market.status.message.itemBlacklisted=Item blacklisted
+oxygen_market.status.message.offerCancelled=Offer canceled
+oxygen_market.status.message.offerCancellationFailed=Offer cancel failed
 
-oxygen_market.deals_sorter.purchase_price_min_to_max=Purchase price +
-oxygen_market.deals_sorter.purchase_price_max_to_min=Purchase price -
-oxygen_market.deals_sorter.unit_price_min_to_max=Unit price +
-oxygen_market.deals_sorter.unit_price_max_to_min=Unit price -
-oxygen_market.deals_sorter.seller_name=Seller name
-oxygen_market.deals_sorter.time_left_min_to_max=Time left +
-oxygen_market.deals_sorter.time_left_max_to_min=Time left -
+oxygen_market.message.clickHere=click here
+
+oxygen_market.offersSorter.purchasePrice=Purchase Price
+oxygen_market.offersSorter.unitPrice=Unit Price
+oxygen_market.offersSorter.sellerName=Seller Name
+oxygen_market.offersSorter.timeLeft=Time Left
+
+oxygen_market.salesHistorySorter.purchases=Purchases
+oxygen_market.salesHistorySorter.sales=Sales
+
+oxygen_market.rarity.any=Any
+oxygen_market.profitability.any=Any
 
 oxygen_market.gui.market.title=Market
-oxygen_market.gui.market.section.buy=Buy
-oxygen_market.gui.market.section.my_deals=My Deals
+oxygen_market.gui.market.buy=Buy
+oxygen_market.gui.market.selling=Selling
+oxygen_market.gui.market.offers=Offers
+oxygen_market.gui.market.history=History
+oxygen_market.gui.market.category=Category:
+oxygen_market.gui.market.sortBy=Sorting:
+oxygen_market.gui.market.priceRange=Price Range:
+oxygen_market.gui.market.search=Text Search:
+oxygen_market.gui.market.rarity=Rarity:
+oxygen_market.gui.market.profitability=Profitability:
 
-oxygen_shop.gui.shop.image_button.apply_latest_filters=Apply latest filters
-oxygen_shop.gui.shop.image_button.reset_filters=Reset filters
+oxygen_market.gui.market.button.filterOffers=Filter Offers
+oxygen_market.gui.market.button.createOffer=Create Offer
+oxygen_market.gui.market.button.filterHistory=Filter History
 
-oxygen_market.gui.market.buy.sort_by=Sort by
-oxygen_market.gui.market.buy.price_range=Price range
-oxygen_market.gui.market.buy.text_search=Text search
-oxygen_market.gui.market.buy.rarity=Rarity
-oxygen_market.gui.market.buy.rarity.any=Any
-oxygen_market.gui.market.buy.profitability=Profitability
-oxygen_market.gui.market.buy.profitability.any=Any
+oxygen_market.gui.market.noOffersFound=No Offers Found
 
-oxygen_market.gui.market.my_deals.label.deals_amount=Deals amount:
-oxygen_market.gui.market.my_deals.button.create_deal=Create deal
-oxygen_market.gui.market.my_deals.button.cancel_deal=Cancel deal
+oxygen_market.gui.market.offersAmount=Offers:
+oxygen_market.gui.market.amount=Amount:
+oxygen_market.gui.market.unitPrice=Unit Price:
+oxygen_market.gui.market.totalPrice=Total Price:
+oxygen_market.gui.market.listingFee=Listing Fee:
+oxygen_market.gui.market.saleFee=Sale Fee:
+oxygen_market.gui.market.profit=Profit:
 
-oxygen_market.gui.market.my_deals.callback.create_deal=Create Deal
-oxygen_market.gui.market.my_deals.label.item=Item
-oxygen_market.gui.market.my_deals.label.unit_price=Unit price
-oxygen_market.gui.market.my_deals.label.total_price=Total price
-oxygen_market.gui.market.my_deals.label.deals_quantity=Deals quantity
-oxygen_market.gui.market.my_deals.label.deal_place_fee=Deal place fee
-oxygen_market.gui.market.my_deals.label.sale_fee=Sale fee
-oxygen_market.gui.market.my_deals.label.sale_income=Sale income
+oxygen_market.gui.market.filter=Filter:
+oxygen_market.gui.market.filterButton=Load
+oxygen_market.gui.market.ago=%s ago
+oxygen_market.gui.market.noDataFound=No Data Found
 
-oxygen_market.gui.market.buy.callback.select_purchase_quantity=Select Quantity
-oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Specify the number of items that you want to buy
-oxygen_market.gui.market.my_deals.callback.item_selection=Buy Items
-oxygen_market.gui.market.my_deals.callback.item_selection.message=Select an item and quantity to create a deal
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity=Cancel Deals
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Specify the number of deals you want to cancel
+oxygen_market.gui.market.callback.offerCreation.title=Offer Creation
 
-oxygen_market.gui.market.label.my_deals.no_deals=No deals
-oxygen_market.gui.market.label.buy.no_deals=No deals
-oxygen_market.gui.market.label.no_access=No access
+oxygen_market.gui.market.seller=Seller: %s
+oxygen_market.gui.market.buyer=Buyer: %s
 
-oxygen_market.gui.market.tooltip.now=Now
-oxygen_market.gui.market.tooltip.transactions_amount=Transactions amount: %s
-oxygen_market.gui.market.tooltip.sold_amount=Items sold: %s
+oxygen_market.gui.market.tooltip.latestFilters=Latest Filters
+oxygen_market.gui.market.tooltip.resetFilters=Reset Filters
+oxygen_market.gui.market.tooltip.applyRecommended=Market Price
 
-oxygen_market.gui.market.buy.context.select_item_quantity=Select quantity
+oxygen_market.historySorter.time=Time
+oxygen_market.historySorter.buyerName=Buyer Name
 
-oxygen_market.status_message.too_many_deals=Too many deals
-oxygen_market.status_message.too_many_items=Too many items
-oxygen_market.status_message.too_high_price=Too high price
+oxygen_market.gui.history.title=Sales History
+oxygen_market.gui.history.buyer=Buyer:
+oxygen_market.gui.history.seller=Seller:
+oxygen_market.gui.history.bought=%s bought from %s
 
-oxygen_market.profitability.no_data=No data
-oxygen_market.profitability.overprice=Overprice
-oxygen_market.profitability.normal=Normal
-oxygen_market.profitability.good=Good
-oxygen_market.profitability.very_good=Very good
+market.sender.market=Market
+market.purchased=Market: Purchase
+market.purchasedItemMessage=You purchased <§f%s§rx§f%s§r> from §f%s§r.
+market.sold=Market: Sale
+market.soldItemMessage=Your offer <§f%s§rx§f%s§r> has been purchased by §f%s§r.
+market.cancel=Market: Cancel
+market.cancelOfferMessage=You canceled offer <§f%s§rx§f%s§r>.
+market.expired=Market: Return
+market.expiredOfferMessage=Your offer <§f%s§rx§f%s§r> expired.
 
-oxygen_market.mail.sender=Market
-oxygen_market.mail.return.subject=Deal expired
-oxygen_market.mail.return.message=Your item has expired. The item is attached to the letter.
-oxygen_market.mail.cancel.subject=Deal canceled
-oxygen_market.mail.cancel.message=You have removed an item from sale. The item is attached to the letter.
-oxygen_market.mail.purchase.subject=Purchase
-oxygen_market.mail.purchase.message=You bought an item from player '%s'. The item is attached to the letter.
-oxygen_market.mail.income.subject=Sale income
-oxygen_market.mail.income.message=The player '%s' bought your item '%s'. Income from the sale is attached to the letter.
+oxygen_market.command.dataReset=Oxygen Market client data reset.
 
-oxygen_market.status_message.deal_created=Deal created
-oxygen_market.status_message.deal_canceled=Deal canceled
-oxygen_market.status_message.mailbox_is_full=Mailbox is full
-oxygen_market.status_message.deal_not_found=Deal not found
-oxygen_market.status_message.self_purchase_disabled=Self purchase disabled
-oxygen_market.status_message.purchased=Item purchased
+oxygen_market.message.command.oxygens.trade.clearHistoryGlobal=Sales history cleared for last %s hours.
+oxygen_market.message.command.oxygens.trade.clearHistoryItem=Sales history cleared for last %s hours for item: %s.

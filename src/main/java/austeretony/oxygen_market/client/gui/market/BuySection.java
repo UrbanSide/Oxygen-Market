@@ -1,415 +1,457 @@
 package austeretony.oxygen_market.client.gui.market;
 
-import austeretony.oxygen_core.client.api.OxygenClient;
-import austeretony.oxygen_core.client.gui.base.Fills;
-import austeretony.oxygen_core.client.gui.base.Texts;
-import austeretony.oxygen_core.client.gui.base.background.Background;
-import austeretony.oxygen_core.client.gui.base.button.ImageButton;
-import austeretony.oxygen_core.client.gui.base.button.VerticalSlider;
-import austeretony.oxygen_core.client.gui.base.common.ListEntry;
-import austeretony.oxygen_core.client.gui.base.core.Section;
-import austeretony.oxygen_core.client.gui.base.core.Widget;
-import austeretony.oxygen_core.client.gui.base.list.DropDownList;
-import austeretony.oxygen_core.client.gui.base.list.ScrollableList;
-import austeretony.oxygen_core.client.gui.base.special.CurrencyValue;
-import austeretony.oxygen_core.client.gui.base.special.InventoryLoad;
-import austeretony.oxygen_core.client.gui.base.special.SectionSwitcher;
-import austeretony.oxygen_core.client.gui.base.text.NumberField;
-import austeretony.oxygen_core.client.gui.base.text.TextField;
-import austeretony.oxygen_core.client.gui.base.text.TextLabel;
-import austeretony.oxygen_core.client.gui.util.OxygenGUIUtils;
-import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient;
-import austeretony.oxygen_core.client.preset.ItemsSubCategory;
-import austeretony.oxygen_core.client.settings.CoreSettings;
-import austeretony.oxygen_core.common.main.OxygenMain;
-import austeretony.oxygen_market.client.gui.DealsSorter;
-import austeretony.oxygen_market.client.gui.market.buy.CombinedDealsEntry;
-import austeretony.oxygen_market.client.gui.market.buy.DealProfitability;
-import austeretony.oxygen_market.client.gui.market.buy.MarketDealListEntry;
-import austeretony.oxygen_market.client.gui.market.buy.context.MarketBuySelectItemQuantityContextAction;
-import austeretony.oxygen_market.client.market.Profitability;
-import austeretony.oxygen_market.client.settings.MarketSettings;
-import austeretony.oxygen_market.common.market.Deal;
-import net.minecraft.item.EnumRarity;
-
-import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-public class BuySection extends Section {
+import org.lwjgl.input.Keyboard;
 
-    private final MarketScreen screen;
+import austeretony.alternateui.screen.button.GUIButton;
+import austeretony.alternateui.screen.core.AbstractGUISection;
+import austeretony.alternateui.screen.core.GUIBaseElement;
+import austeretony.oxygen_core.client.OxygenManagerClient;
+import austeretony.oxygen_core.client.api.ClientReference;
+import austeretony.oxygen_core.client.api.EnumBaseGUISetting;
+import austeretony.oxygen_core.client.api.OxygenGUIHelper;
+import austeretony.oxygen_core.client.api.PrivilegesProviderClient;
+import austeretony.oxygen_core.client.api.WatcherHelperClient;
+import austeretony.oxygen_core.client.gui.OxygenGUITextures;
+import austeretony.oxygen_core.client.gui.elements.OxygenContextMenu;
+import austeretony.oxygen_core.client.gui.elements.OxygenCurrencyValue;
+import austeretony.oxygen_core.client.gui.elements.OxygenDefaultBackgroundWithButtonsUnderlinedFiller;
+import austeretony.oxygen_core.client.gui.elements.OxygenDropDownList;
+import austeretony.oxygen_core.client.gui.elements.OxygenDropDownList.OxygenDropDownListWrapperEntry;
+import austeretony.oxygen_core.client.gui.elements.OxygenInventoryLoad;
+import austeretony.oxygen_core.client.gui.elements.OxygenKeyButton;
+import austeretony.oxygen_core.client.gui.elements.OxygenNumberField;
+import austeretony.oxygen_core.client.gui.elements.OxygenScrollablePanel;
+import austeretony.oxygen_core.client.gui.elements.OxygenSectionSwitcher;
+import austeretony.oxygen_core.client.gui.elements.OxygenTextField;
+import austeretony.oxygen_core.client.gui.elements.OxygenTextLabel;
+import austeretony.oxygen_core.client.gui.elements.OxygenTexturedButton;
+import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient;
+import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient.ItemCategory;
+import austeretony.oxygen_core.client.preset.ItemCategoriesPresetClient.ItemSubCategory;
+import austeretony.oxygen_core.common.main.OxygenMain;
+import austeretony.oxygen_core.common.util.MathUtils;
+import austeretony.oxygen_market.client.MarketManagerClient;
+import austeretony.oxygen_market.client.gui.market.buy.EnumOffersSorter;
+import austeretony.oxygen_market.client.gui.market.buy.OfferPanelEntry;
+import austeretony.oxygen_market.client.gui.market.buy.context.CancelOfferContextAction;
+import austeretony.oxygen_market.client.gui.market.buy.context.RemoveOfferContextAction;
+import austeretony.oxygen_market.client.market.OfferClient;
+import austeretony.oxygen_market.client.settings.EnumMarketClientSetting;
+import austeretony.oxygen_market.common.config.MarketConfig;
+import austeretony.oxygen_market.common.main.EnumMarketPrivilege;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.item.EnumRarity;
 
-    private TextLabel dealsAmountLabel, noDealsLabel;
-    private ScrollableList<CombinedDealsEntry> dealsList;
-    private TextField textFiled;
-    private NumberField minPriceField, maxPriceField;
-    private ImageButton resetFiltersButton, applyLatestFiltersButton;
-    private DropDownList<String> itemCategoryDDList, itemSubCategoryDDList;
-    private DropDownList<Integer> sorterDDList, rarityDDList, profitabilityDDList;
-    private InventoryLoad inventoryLoad;
-    private CurrencyValue balanceValue;
+public class BuySection extends AbstractGUISection {
 
-    private String currItemCategory = ItemCategoriesPresetClient.COMMON_CATEGORY_NAME;
-    private String currItemSubCategory = ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME;
-    private DealsSorter currDealsSorter = DealsSorter.PURCHASE_PRICE_MIN_TO_MAX;
-    private long currMinPrice = 0L, currMaxPrice = Long.MAX_VALUE;
-    private String currTextSearch = "";
-    private int currRarityOrdinal = -1, currProfitabilityOrdinal = -1;
+    private final MarketMenuScreen screen;
 
-    private static String cachedItemCategory = ItemCategoriesPresetClient.COMMON_CATEGORY_NAME;
-    private static String cachedItemSubCategory = ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME;
-    private static DealsSorter cachedDealsSorter = DealsSorter.PURCHASE_PRICE_MIN_TO_MAX;
-    private long cachedMinPrice = 0L, cachedMaxPrice = Long.MAX_VALUE;
-    private String cachedTextSearch = "";
-    private static int cachedRarityOrdinal = -1, cachedProfitabilityOrdinal = -1;
+    private OxygenKeyButton filterOffersButton;
 
-    public BuySection(@Nonnull MarketScreen screen) {
-        super(screen, localize("oxygen_market.gui.market.section.buy"), true);
+    private OxygenTextLabel offersAmountLabel, offersEmptyLabel;
+
+    private OxygenTexturedButton applyLatestFiltersButton, resetFiltersButton;
+
+    private OxygenScrollablePanel offersPanel;
+
+    private OxygenDropDownList categoriesList, subCategoriesList, sortersList, rarityList, profitabilityList;
+
+    private OxygenTextField textField;
+
+    private OxygenNumberField minPriceField, maxPriceField;
+
+    private OxygenInventoryLoad inventoryLoad;
+
+    private OxygenCurrencyValue balanceValue;
+
+    //filters
+
+    private ItemCategory currentCategory = ItemCategoriesPresetClient.COMMON_CATEGORY;
+
+    private ItemSubCategory currentSubCategory;
+
+    private EnumOffersSorter currentSorter = EnumOffersSorter.PURCHASE_PRICE;
+
+    private int 
+    currentRarity = - 1,
+    currentProfitability = - 1;
+
+    private long 
+    currentMinPrice = 0L, 
+    currentMaxPrice = Long.MAX_VALUE;
+
+    //cache
+
+    private static ItemCategory categoryCached = ItemCategoriesPresetClient.COMMON_CATEGORY;
+
+    private static ItemSubCategory subCategoryCached;
+
+    private static EnumOffersSorter sorterCached = EnumOffersSorter.PURCHASE_PRICE;
+
+    private static int 
+    rarityCached = - 1,
+    profitabilityCached = - 1;
+
+    private static long 
+    minPriceCached = 0L, 
+    maxPriceCached = Long.MAX_VALUE;
+
+    private static String textSearchCached = "";
+
+    public BuySection(MarketMenuScreen screen) {
+        super(screen);
         this.screen = screen;
+        this.setDisplayText(ClientReference.localize("oxygen_market.gui.market.buy"));
     }
 
     @Override
-    public void init() {
-        addWidget(new Background.UnderlinedTitleBottom(this));
-        addWidget(new TextLabel(4, 12, Texts.title("oxygen_market.gui.market.title")));
-        addWidget(new SectionSwitcher(this));
+    public void init() {                
+        this.addElement(new OxygenDefaultBackgroundWithButtonsUnderlinedFiller(0, 0, this.getWidth(), this.getHeight()));
+        this.addElement(new OxygenTextLabel(4, 12, ClientReference.localize("oxygen_market.gui.market.title"), EnumBaseGUISetting.TEXT_TITLE_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt()));
 
-        addWidget(applyLatestFiltersButton = new ImageButton(61, 18, MarketScreen.BTN_SIZE, MarketScreen.BTN_SIZE,
-                MarketScreen.CLOCK_ICONS_TEXTURE, localize("oxygen_shop.gui.shop.image_button.apply_latest_filters"))
-                .setMouseClickListener((mouseX, mouseY, button) -> applyLatestFilters()));
-        addWidget(resetFiltersButton = new ImageButton(68, 18, MarketScreen.BTN_SIZE, MarketScreen.BTN_SIZE,
-                MarketScreen.CROSS_ICONS_TEXTURE, localize("oxygen_shop.gui.shop.image_button.reset_filters"))
-                .setMouseClickListener((mouseX, mouseY, button) -> resetFilters()));
+        this.addElement(this.applyLatestFiltersButton = new OxygenTexturedButton(61, 18, 5, 5, OxygenGUITextures.CLOCK_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.latestFilters")));         
+        this.addElement(this.resetFiltersButton = new OxygenTexturedButton(68, 18, 5, 5, OxygenGUITextures.CROSS_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.resetFilters")));         
 
-        //categories filter
+        //offers panel
+        this.addElement(this.offersPanel = new OxygenScrollablePanel(this.screen, 76, 16, this.getWidth() - 85, 16, 1, 100, 9, EnumBaseGUISetting.TEXT_PANEL_SCALE.get().asFloat(), true));
 
-        addWidget(new TextLabel(6, 24, Texts.additionalDark("oxygen_core.gui.label.item_category")));
-        String commonItemsCategory = ItemCategoriesPresetClient.COMMON_CATEGORY_NAME;
-        addWidget(itemCategoryDDList = new DropDownList<>(6, 25, 67, commonItemsCategory)
-                .<String>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    cachedItemCategory = currItemCategory = current.getEntry();
-                    updateItemSubCategoriesFilter(current.getEntry());
-                    filterDeals();
-                }));
-        itemCategoryDDList.addElement(ListEntry.of(commonItemsCategory, commonItemsCategory));
-        for (String categoryName : screen.getItemCategoriesPreset().getSortedCategories()) {
-            itemCategoryDDList.addElement(ListEntry.of(localize(categoryName), categoryName));
-        }
+        this.offersPanel.<OfferPanelEntry>setElementClickListener((previous, clicked, mouseX, mouseY, mouseButton)->{
+            if (mouseButton == 0 && !clicked.isOverpriced() && !clicked.isPurchased())
+                MarketManagerClient.instance().getOffersManager().purchaseItemSynced(clicked.getWrapped().getId());
+        });
 
-        addWidget(itemSubCategoryDDList = new DropDownList<>(6, 36, 67, ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME)
-                .<String>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    cachedItemSubCategory = currItemSubCategory = current.getEntry();
-                    filterDeals();
-                }));
-        updateItemSubCategoriesFilter(commonItemsCategory);
+        if (PrivilegesProviderClient.getAsBoolean(EnumMarketPrivilege.MARKET_MENU_OPERATOR_OPTIONS.id(), false))
+            this.offersPanel.initContextMenu(new OxygenContextMenu(
+                    new CancelOfferContextAction(),
+                    new RemoveOfferContextAction()));
 
-        //sorters filter
-
-        addWidget(new TextLabel(6, 54, Texts.additionalDark("oxygen_market.gui.market.buy.sort_by")));
-        addWidget(sorterDDList = new DropDownList<>(6, 56, 67, DealsSorter.PURCHASE_PRICE_MIN_TO_MAX.getDisplayName())
-                .<Integer>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    currDealsSorter = cachedDealsSorter = DealsSorter.values()[current.getEntry()];
-                    filterDeals();
-                }));
-
-        for (DealsSorter sorter : DealsSorter.values()) {
-            sorterDDList.addElement(ListEntry.of(sorter.getDisplayName(), sorter.ordinal()));
-        }
+        //sections switcher
+        this.addElement(new OxygenSectionSwitcher(this.getWidth() - 4, 5, this, this.screen.getSellingSection(), this.screen.getOffersSection(), this.screen.getSalesHistorySection()));
 
         //price filter
+        this.addElement(new OxygenTextLabel(6, 74, ClientReference.localize("oxygen_market.gui.market.priceRange"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
+        this.addElement(this.minPriceField = new OxygenNumberField(6, 76, 30, "", Long.MAX_VALUE, false, 0, true));
+        this.minPriceField.setInputListener((keyChar, keyCode)->minPriceCached = this.currentMinPrice = this.minPriceField.getTypedNumberAsLong());
 
-        addWidget(new TextLabel(6, 74, Texts.additionalDark("oxygen_market.gui.market.buy.price_range")));
-        addWidget(minPriceField = new NumberField(6, 76, 30, 0L, Long.MAX_VALUE)
-                .setKeyPressListener((keyCode, keyChar) -> {
-                    currMinPrice = cachedMinPrice = minPriceField.getTypedNumberAsLong();
-                    filterDeals();
-                }));
-        addWidget(maxPriceField = new NumberField(43, 76, 30, 0L, Long.MAX_VALUE)
-                .setKeyPressListener((keyCode, keyChar) -> {
-                    long typedMaxPrice = maxPriceField.getTypedNumberAsLong();
-                    if (typedMaxPrice == 0L) {
-                        typedMaxPrice = Long.MAX_VALUE;
-                    }
-                    currMaxPrice = cachedMaxPrice = typedMaxPrice;
-                    filterDeals();
-                }));
+        this.addElement(this.maxPriceField = new OxygenNumberField(43, 76, 30, "", Long.MAX_VALUE, false, 0, true));
+        this.maxPriceField.setInputListener((keyChar, keyCode)->maxPriceCached = this.currentMaxPrice = this.maxPriceField.getTypedNumberAsLong());
 
-        //text search
+        //search field
+        this.addElement(new OxygenTextLabel(6, 93, ClientReference.localize("oxygen_market.gui.market.search"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
+        this.addElement(this.textField = new OxygenTextField(6, 95, 67, 20, ""));
 
-        addWidget(new TextLabel(6, 93, Texts.additionalDark("oxygen_market.gui.market.buy.text_search")));
-        addWidget(textFiled = new TextField(6, 95, 67, 24)
-                .setKeyPressListener((keyCode, keyChar) -> {
-                    currTextSearch = cachedTextSearch = textFiled.getTypedText();
-                    filterDeals();
-                }));
+        this.addElement(new OxygenTextLabel(6, 23, ClientReference.localize("oxygen_market.gui.market.category"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
+        this.addElement(new OxygenTextLabel(6, 54, ClientReference.localize("oxygen_market.gui.market.sortBy"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
+        this.addElement(new OxygenTextLabel(6, 112, ClientReference.localize("oxygen_market.gui.market.rarity"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
+        this.addElement(new OxygenTextLabel(6, 132, ClientReference.localize("oxygen_market.gui.market.profitability"), EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()));
 
-        //rarity filter
+        //filter offers button
+        this.addElement(this.filterOffersButton = new OxygenKeyButton(0, this.getY() + this.getHeight() + this.screen.guiTop - 8, ClientReference.localize("oxygen_market.gui.market.button.filterOffers"), Keyboard.KEY_E, this::filter).disable());
+        this.addElement(this.offersAmountLabel = new OxygenTextLabel(6, this.getHeight() - 15, "", EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F, EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()).disableFull());
 
-        addWidget(new TextLabel(6, 112, Texts.additionalDark("oxygen_market.gui.market.buy.rarity")));
-        String anyRarityStr = localize("oxygen_market.gui.market.buy.rarity.any");
-        addWidget(rarityDDList = new DropDownList<>(6, 114, 67, anyRarityStr)
-                .<Integer>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    currRarityOrdinal = cachedRarityOrdinal = current.getEntry();
-                    filterDeals();
-                }));
-
-        rarityDDList.addElement(ListEntry.of(anyRarityStr, -1));
-        for (EnumRarity rarity : EnumRarity.values()) {
-            rarityDDList.addElement(ListEntry.of(getRarityName(rarity), rarity.ordinal()));
-        }
+        //client data
+        this.addElement(this.inventoryLoad = new OxygenInventoryLoad(6, this.getHeight() - 8));
+        this.inventoryLoad.updateLoad();
+        this.addElement(this.balanceValue = new OxygenCurrencyValue(this.getWidth() - 14, this.getHeight() - 10));   
+        this.balanceValue.setValue(OxygenMain.COMMON_CURRENCY_INDEX, WatcherHelperClient.getLong(OxygenMain.COMMON_CURRENCY_INDEX));
 
         //profitability filter
+        this.profitabilityList = new OxygenDropDownList(6, 134, 67, ClientReference.localize("oxygen_market.profitability.any"));
+        this.profitabilityList.addElement(new OxygenDropDownListWrapperEntry<Integer>(- 1, ClientReference.localize("oxygen_market.profitability.any")));
+        for (austeretony.oxygen_core.common.EnumRarity rarity : austeretony.oxygen_core.common.EnumRarity.values())
+            this.profitabilityList.addElement(new OxygenDropDownListWrapperEntry<Integer>(rarity.ordinal(), rarity.localizedName())
+                    .setTextDynamicColor(rarity.getColor(), rarity.getColor(), rarity.getColor()));
+        this.addElement(this.profitabilityList);
+        this.profitabilityList.setEnabled(EnumMarketClientSetting.ENABLE_PROFITABILITY_CALCULATION.get().asBoolean());
 
-        boolean profitabilityEnabled = MarketSettings.ENABLE_DEALS_PROFITABILITY_DISPLAY.asBoolean();
-        addWidget(new TextLabel(6, 132, Texts.additionalDark("oxygen_market.gui.market.buy.profitability"))
-                .setVisible(profitabilityEnabled));
+        //profitability filter listener
+        this.profitabilityList.<OxygenDropDownListWrapperEntry<Integer>>setElementClickListener((element)->{
+            if (element.getWrapped() == - 1) {
+                this.profitabilityList.setTextDynamicColor(EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_HOVERED_COLOR.get().asInt());
+            } else {
+                int color = austeretony.oxygen_core.common.EnumRarity.values()[element.getWrapped()].getColor();
+                this.profitabilityList.setTextDynamicColor(color, color, color);
+            }
 
-        String anyProfitabilityStr = localize("oxygen_market.gui.market.buy.profitability.any");
-        addWidget(profitabilityDDList = new DropDownList<>(6, 134, 67, anyProfitabilityStr)
-                .<Integer>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    currProfitabilityOrdinal = cachedProfitabilityOrdinal = current.getEntry();
-                    profitabilityDDList.getText().setColorEnabled(current.getText().getColorEnabled());
-                    profitabilityDDList.getText().setColorMouseOver(current.getText().getColorEnabled());
-                    filterDeals();
-                }));
-        profitabilityDDList.setVisible(profitabilityEnabled);
+            profitabilityCached = this.currentProfitability = element.getWrapped();
+        });
 
-        profitabilityDDList.addElement(ListEntry.of(anyProfitabilityStr, -1));
-        for (Profitability profitability : Profitability.values()) {
-            if (profitability == Profitability.NO_DATA) continue;
-            ListEntry<Integer> entry = ListEntry.of(profitability.getDisplayName(), profitability.ordinal());
-            entry.getText().setColorEnabled(profitability.getColorHex());
-            entry.getText().setColorMouseOver(profitability.getColorHex());
-            profitabilityDDList.addElement(entry);
-        }
+        //rarity filter
+        this.rarityList = new OxygenDropDownList(6, 114, 67, ClientReference.localize("oxygen_market.rarity.any"));
+        this.rarityList.addElement(new OxygenDropDownListWrapperEntry<Integer>(- 1, ClientReference.localize("oxygen_market.rarity.any")));
+        for (EnumRarity rarity : EnumRarity.values())
+            this.rarityList.addElement(new OxygenDropDownListWrapperEntry<Integer>(rarity.ordinal(), getRarityName(rarity)));
+        this.addElement(this.rarityList);
 
-        //deals list
+        //rarity filter listener
+        this.rarityList.<OxygenDropDownListWrapperEntry<Integer>>setElementClickListener((element)->{
+            rarityCached = this.currentRarity = element.getWrapped();
+        });
 
-        addWidget(dealsList = new ScrollableList<>(76, 16, Fills.def(), 9, getWidth() - 85, 16, 1, true)
-                .<CombinedDealsEntry>setEntryMouseClickListener((previous, current, x, y, button) -> {
-                    MarketDealListEntry entry = (MarketDealListEntry) current;
-                    if (!entry.isAvailable()) return;
-                    entry.purchase();
-                }));
-        VerticalSlider slider = new VerticalSlider(6 + getWidth() - 6 * 2 - 3 + 1, 16, 2, 16 * 9 + 8);
-        addWidget(slider);
-        dealsList.setSlider(slider);
-        dealsList.createContextMenu(Collections.singletonList(new MarketBuySelectItemQuantityContextAction()));
+        //base sorters filter
+        this.sortersList = new OxygenDropDownList(6, 56, 67, this.currentSorter.localizedName());
+        for (EnumOffersSorter sorter : EnumOffersSorter.values())
+            this.sortersList.addElement(new OxygenDropDownListWrapperEntry<EnumOffersSorter>(sorter, sorter.localizedName()));
+        this.addElement(this.sortersList);
 
-        addWidget(dealsAmountLabel = new TextLabel(6, getHeight() - 15, Texts.additionalDark("")));
-        addWidget(noDealsLabel = new TextLabel(76, 23, Texts.additionalDark("oxygen_market.gui.market.label.buy.no_deals"))
-                .setVisible(false));
-        if (!screen.hasAccessToMarket()) {
-            addWidget(new TextLabel(76, 23, Texts.additionalDark("oxygen_market.gui.market.label.no_access")));
-        }
+        //base sorters listener
+        this.sortersList.<OxygenDropDownListWrapperEntry<EnumOffersSorter>>setElementClickListener((element)->{
+            sorterCached = this.currentSorter = element.getWrapped();
+        });
 
-        addWidget(inventoryLoad = new InventoryLoad(6, getHeight() - 10).updateLoad());
-        addWidget(balanceValue = new CurrencyValue(getWidth() - 14, getHeight() - 10)
-                .setCurrency(OxygenMain.CURRENCY_COINS, OxygenClient.getWatcherValue(OxygenMain.CURRENCY_COINS, 0L)));
+        //sub categories filter
+        this.subCategoriesList = new OxygenDropDownList(6, 36, 67, "");
+        this.addElement(this.subCategoriesList);
+
+        //sub categories listener
+        this.subCategoriesList.<OxygenDropDownListWrapperEntry<ItemSubCategory>>setElementClickListener((element)->{
+            subCategoryCached = this.currentSubCategory = element.getWrapped();
+        });
+
+        this.loadSubCategories(ItemCategoriesPresetClient.COMMON_CATEGORY);
+
+        //categories filter
+        this.categoriesList = new OxygenDropDownList(6, 25, 67, this.currentCategory.localizedName());
+        for (ItemCategory category : OxygenManagerClient.instance().getItemCategoriesPreset().getCategories())
+            this.categoriesList.addElement(new OxygenDropDownListWrapperEntry<ItemCategory>(category, category.localizedName()));
+        this.addElement(this.categoriesList);
+
+        //categories listener
+        this.categoriesList.<OxygenDropDownListWrapperEntry<ItemCategory>>setElementClickListener((element)->{
+            this.loadSubCategories(categoryCached = this.currentCategory = element.getWrapped());
+        });
+
+        String offersEmpty = ClientReference.localize("oxygen_market.gui.market.noOffersFound");
+        this.addElement(this.offersEmptyLabel = new OxygenTextLabel(76 + ((this.offersPanel.getButtonWidth() - this.textWidth(offersEmpty, EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F)) / 2), 
+                23, offersEmpty, EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F, EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()).setVisible(false));
     }
 
-    @Override
-    public void keyTyped(char typedChar, int keyCode) {
-        if (!textFiled.isFocused()) {
-            OxygenGUIUtils.closeScreenOnKeyPress(getScreen(), keyCode);
-        }
-        super.keyTyped(typedChar, keyCode);
+    private void calculateButtonsHorizontalPosition() {
+        ScaledResolution sr = new ScaledResolution(this.mc);
+        this.filterOffersButton.setX((sr.getScaledWidth() - (12 + this.textWidth(this.filterOffersButton.getDisplayText(), this.filterOffersButton.getTextScale()))) / 2 - this.screen.guiLeft);
     }
 
-    private void updateItemSubCategoriesFilter(String categoryName) {
-        itemSubCategoryDDList.clear();
-
-        String commonSubCategoryName = ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME;
-        itemSubCategoryDDList.getText().setText(commonSubCategoryName);
-        itemSubCategoryDDList.addElement(ListEntry.of(commonSubCategoryName, commonSubCategoryName));
-        if (categoryName.equals(ItemCategoriesPresetClient.COMMON_CATEGORY_NAME)) return;
-
-        List<ItemsSubCategory> subCategoriesList = screen.getItemCategoriesPreset()
-                .getSortedSubCategories(categoryName);
-        for (ItemsSubCategory subCategory : subCategoriesList) {
-            itemSubCategoryDDList.addElement(ListEntry.of(subCategory.getLocalizedName(), subCategory.getName()));
-        }
-        cachedItemSubCategory = currItemSubCategory = ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME;
+    private void loadSubCategories(ItemCategory category) {
+        this.currentSubCategory = category.getSubCategories().get(0);
+        this.subCategoriesList.reset();
+        this.subCategoriesList.setDisplayText(this.currentSubCategory.localizedName());
+        for (ItemSubCategory subCategory : category.getSubCategories())
+            this.subCategoriesList.addElement(new OxygenDropDownListWrapperEntry<ItemSubCategory>(subCategory, subCategory.localizedName()));
     }
 
     public static String getRarityName(EnumRarity rarity) {
-        return rarity.rarityColor + localize(rarity.rarityName);
+        return rarity.rarityColor + ClientReference.localize(rarity.rarityName);
     }
 
-    private void applyLatestFilters() {
-        currItemCategory = cachedItemCategory;
-        itemCategoryDDList.getText().setText(localize(currItemCategory));
+    private void filter() {
+        if (!this.textField.isDragged())
+            this.filterOffers();
+    }
 
-        currItemSubCategory = cachedItemSubCategory;
-        updateItemSubCategoriesFilter(currItemCategory);
+    public void filterOffers() {
+        List<OfferClient> offers = this.getOffers();
 
-        currDealsSorter = cachedDealsSorter;
-        sorterDDList.getText().setText(currDealsSorter.getDisplayName());
+        this.offersEmptyLabel.setVisible(offers.isEmpty());
 
-        currMinPrice = cachedMinPrice;
-        currMaxPrice = cachedMaxPrice;
-        minPriceField.setText(currMinPrice > 0L ? String.valueOf(currMinPrice) : "");
-        maxPriceField.setText(currMaxPrice < Long.MAX_VALUE ? String.valueOf(currMaxPrice) : "");
-
-        currTextSearch = cachedTextSearch;
-        textFiled.setText(currTextSearch);
-
-        currRarityOrdinal = cachedRarityOrdinal;
-        if (currRarityOrdinal >= 0) {
-            rarityDDList.getText().setText(getRarityName(EnumRarity.values()[currRarityOrdinal]));
-        } else {
-            rarityDDList.getText().setText(localize("oxygen_market.gui.market.buy.rarity.any"));
+        this.offersPanel.reset();
+        OfferPanelEntry entry;
+        for (OfferClient offer : offers) {
+            this.offersPanel.addEntry(entry = new OfferPanelEntry(
+                    offer, 
+                    this.screen.getCurrencyProperties(), 
+                    this.screen.getEqualStackAmount(offer.getStackWrapper()), offer.getPrice() > this.balanceValue.getValue()));
+            if (this.screen.historySynchronized)
+                entry.initProfitability(this.screen.getOfferProfitability(offer));
         }
 
-        currProfitabilityOrdinal = cachedProfitabilityOrdinal;
-        if (currProfitabilityOrdinal >= 0) {
-            Profitability profitability = Profitability.values()[currProfitabilityOrdinal];
-            profitabilityDDList.getText().setText(profitability.getDisplayName());
-            profitabilityDDList.getText().setColorEnabled(profitability.getColorHex());
-        } else {
-            profitabilityDDList.getText().setText(localize("oxygen_market.gui.market.buy.profitability.any"));
-            profitabilityDDList.getText().setColorEnabled(CoreSettings.COLOR_TEXT_BASE_ENABLED.asInt());
-        }
+        this.offersAmountLabel.setDisplayText(String.format("%d/%d", offers.size(), MarketManagerClient.instance().getOffersContainer().getOffersAmount()));
 
-        filterDeals();
+        this.offersPanel.getScroller().reset();
+        this.offersPanel.getScroller().updateRowsAmount(MathUtils.clamp(offers.size(), 9, 900));
     }
 
-    private void resetFilters() {
-        currItemCategory = ItemCategoriesPresetClient.COMMON_CATEGORY_NAME;
-        itemCategoryDDList.getText().setText(localize(currItemCategory));
-
-        currItemSubCategory = ItemCategoriesPresetClient.COMMON_SUB_CATEGORY_NAME;
-        updateItemSubCategoriesFilter(currItemCategory);
-
-        currDealsSorter = DealsSorter.PURCHASE_PRICE_MIN_TO_MAX;
-        sorterDDList.getText().setText(currDealsSorter.getDisplayName());
-
-        currMinPrice = 0L;
-        currMaxPrice = Long.MAX_VALUE;
-        minPriceField.setText("");
-        maxPriceField.setText("");
-
-        textFiled.setText("");
-
-        currRarityOrdinal = -1;
-        rarityDDList.getText().setText(localize("oxygen_market.gui.market.buy.rarity.any"));
-
-        currProfitabilityOrdinal = -1;
-        profitabilityDDList.getText().setText(localize("oxygen_market.gui.market.buy.profitability.any"));
-        profitabilityDDList.getText().setColorEnabled(CoreSettings.COLOR_TEXT_BASE_ENABLED.asInt());
-
-        filterDeals();
-    }
-
-    private boolean canPlayerAfford(Deal deal) {
-        return deal.getPrice() <= balanceValue.getValue();
-    }
-
-    private void filterDeals() {
-        if (!screen.hasAccessToMarket()) return;
-
-        int displayLimit = MarketSettings.MARKET_SCREEN_MAX_DISPLAYED_DEALS.asInt();
-        List<CombinedDealsEntry> deals = getDeals();
-        dealsList.clear();
-        int index = 0;
-        for (CombinedDealsEntry entry : deals) {
-            if (++index > displayLimit) break;
-            dealsList.addElement(new MarketDealListEntry(entry, screen.getPlayerItemStock(entry.getDeal().getStackWrapper()),
-                    canPlayerAfford(entry.getDeal()), screen.getDealProfitability(entry.getDeal()), screen.getCurrencyProperties()));
-        }
-
-        int dealsTotal = screen.getCombinedDealsList().size();
-        dealsAmountLabel.getText().setText(Math.min(deals.size(), displayLimit) + "/" + dealsTotal);
-        noDealsLabel.setVisible(screen.hasAccessToMarket() && deals.isEmpty());
-    }
-
-    private List<CombinedDealsEntry> getDeals() {
-        return screen.getCombinedDealsList()
+    private List<OfferClient> getOffers() {
+        return MarketManagerClient.instance().getOffersContainer().getOffers()
                 .stream()
-                .filter(this::isValidCategory)
-                .filter(this::isValidPrice)
-                .filter(this::isValidItemName)
-                .filter(this::isValidRarity)
-                .filter(this::isValidProfitability)
-                .sorted(Comparator.comparingInt(e -> e.getDeal().getStackWrapper().getItemId()))
-                .sorted(currDealsSorter.comparator)
+                .filter(this::filterByCategory)
+                .filter(this::filterByPriceRange)
+                .filter(this::filterByName)
+                .filter(this::filterByRarity)
+                .filter(this::filterByProfitability)
+                .sorted((o1, o2)->(o1.getStackWrapper().getItemId() - o2.getStackWrapper().getItemId()))
+                .sorted(this.currentSorter.comparator)
                 .collect(Collectors.toList());
     }
 
-    private boolean isValidCategory(CombinedDealsEntry entry) {
-        return screen.getItemCategoriesPreset().isValidForCategory(currItemCategory, currItemSubCategory,
-                entry.getDeal().getStackWrapper().getItemStackCached());
+    private boolean filterByCategory(OfferClient offer) {
+        return this.currentCategory.isValid(this.currentSubCategory, offer.getStackWrapper().getCachedItemStack().getItem().getRegistryName());
     }
 
-    private boolean isValidPrice(CombinedDealsEntry entry) {
-        return entry.getDeal().getPrice() >= currMinPrice && entry.getDeal().getPrice() <= currMaxPrice;
+    private boolean filterByPriceRange(OfferClient offer) {
+        return offer.getPrice() >= this.currentMinPrice && offer.getPrice() <= this.currentMaxPrice;
     }
 
-    private boolean isValidItemName(CombinedDealsEntry entry) {
-        return currTextSearch.isEmpty() || entry.getDeal().getStackWrapper().getItemStackCached().getDisplayName().contains(currTextSearch);
+    private boolean filterByName(OfferClient offer) {
+        return this.textField.getTypedText().isEmpty() || offer.getStackWrapper().getCachedItemStack().getDisplayName().contains(textSearchCached = this.textField.getTypedText());
     }
 
-    private boolean isValidRarity(CombinedDealsEntry entry) {
-        return currRarityOrdinal < 0 || entry.getDeal().getStackWrapper().getItemStackCached().getRarity().ordinal() == currRarityOrdinal;
+    private boolean filterByRarity(OfferClient offer) {
+        return this.currentRarity == - 1 || offer.getStackWrapper().getCachedItemStack().getRarity().ordinal() == this.currentRarity;
     }
 
-    private boolean isValidProfitability(CombinedDealsEntry entry) {
-        if (currProfitabilityOrdinal < 0) return true;
-        DealProfitability dealProfitability = screen.getDealProfitability(entry.getDeal());
-        if (currProfitabilityOrdinal == Profitability.OVERPRICE.ordinal()) {
-            return dealProfitability.getProfitability() == Profitability.OVERPRICE;
-        }
-        return dealProfitability.getProfitability().ordinal() >= currProfitabilityOrdinal;
+    private boolean filterByProfitability(OfferClient offer) {
+        int offerProfitability = this.screen.calculateOfferProfitability(offer);
+        if (offerProfitability == - 2)
+            offerProfitability = - 1;
+        return this.currentProfitability == - 1 || offerProfitability >= this.currentProfitability;
     }
 
-    protected void dataSynchronized() {
-        filterDeals();
-    }
-
-    protected void dealsCreated(int dealsQuantity, Deal deal, long balance) {
-        balanceValue.setValue(balance);
-        screen.incrementPlayerStock(deal.getStackWrapper(), -deal.getQuantity() * dealsQuantity);
-        inventoryLoad.updateLoad(screen.getInventoryContentMap());
-        checkDealsOverpriced(balance);
-    }
-
-    private void checkDealsOverpriced(long balance) {
-        for (Widget widget : dealsList.getWidgets()) {
-            ((MarketDealListEntry) widget).checkIsOverpriced(balance);
+    public void setFilterButtonState(boolean flag) {
+        this.filterOffersButton.setEnabled(flag);
+        if (flag) {
+            this.offersAmountLabel.enableFull();
+            this.offersAmountLabel.setDisplayText(String.format("0/%d", MarketManagerClient.instance().getOffersContainer().getOffersAmount()));
         }
     }
 
-    protected void dealCanceled(Set<Long> dealsIds) {
-        dealProcessed(dealsIds, MarketDealListEntry.State.FAILED);
+    private void applyLatestFilters() {
+        this.currentCategory = categoryCached;
+        this.categoriesList.setDisplayText(this.currentCategory.localizedName());
+        this.loadSubCategories(this.currentCategory);
+        this.currentSubCategory = subCategoryCached;
+        if (this.currentSubCategory != null)
+            this.subCategoriesList.setDisplayText(this.currentSubCategory.localizedName());
+        this.currentSorter = sorterCached;
+        this.sortersList.setDisplayText(this.currentSorter.localizedName());
+        this.currentRarity = rarityCached;
+        this.rarityList.setDisplayText(this.currentRarity == - 1 ? ClientReference.localize("oxygen_market.rarity.any") : getRarityName(EnumRarity.values()[this.currentRarity]));
+        this.currentProfitability = profitabilityCached;
+        this.profitabilityList.setDisplayText(this.currentProfitability == - 1 ? ClientReference.localize("oxygen_market.profitability.any") : austeretony.oxygen_core.common.EnumRarity.values()[this.currentProfitability].localizedName());
+        if (this.currentProfitability == - 1)
+            this.profitabilityList.setTextDynamicColor(EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_HOVERED_COLOR.get().asInt());
+        else {
+            int color = austeretony.oxygen_core.common.EnumRarity.values()[this.currentProfitability].getColor();
+            this.profitabilityList.setTextDynamicColor(color, color, color);
+        }
+
+        this.currentMinPrice = minPriceCached;
+        if (this.currentMinPrice == 0L)
+            this.minPriceField.reset();
+        else
+            this.minPriceField.setText(String.valueOf(this.currentMinPrice));
+        this.currentMaxPrice = maxPriceCached;
+        if (this.currentMaxPrice == Long.MAX_VALUE)
+            this.maxPriceField.reset();
+        else
+            this.maxPriceField.setText(String.valueOf(this.currentMaxPrice));
+
+        this.textField.setText(textSearchCached);
     }
 
-    private void dealProcessed(Set<Long> dealsIds, MarketDealListEntry.State state) {
-        for (Widget widget : dealsList.getWidgets()) {
-            MarketDealListEntry entry = (MarketDealListEntry) widget;
-            boolean success = false;
-            for (long dealId : dealsIds) {
-                if (entry.isDealExist(dealId)) {
-                    entry.dealProcessed(dealId, state);
-                    success = true;
-                }
-            }
-            if (success) {
-                break;
-            }
+    private void resetFilters() {
+        this.currentCategory = ItemCategoriesPresetClient.COMMON_CATEGORY;
+        this.categoriesList.setDisplayText(this.currentCategory.localizedName());
+        this.loadSubCategories(this.currentCategory);
+        this.currentSorter = EnumOffersSorter.PURCHASE_PRICE;
+        this.sortersList.setDisplayText(this.currentSorter.localizedName());
+        this.currentRarity = - 1;
+        this.rarityList.setDisplayText(ClientReference.localize("oxygen_market.rarity.any"));
+        this.rarityList.setTextDynamicColor(EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_HOVERED_COLOR.get().asInt());
+        this.currentProfitability = - 1;
+        this.profitabilityList.setDisplayText(ClientReference.localize("oxygen_market.profitability.any"));
+        this.profitabilityList.setTextDynamicColor(EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_HOVERED_COLOR.get().asInt());
+
+        this.currentMinPrice = 0L;
+        this.minPriceField.reset();
+        this.currentMaxPrice = Long.MAX_VALUE;
+        this.maxPriceField.reset();
+
+        this.textField.reset();
+    }
+
+    @Override
+    public boolean keyTyped(char typedChar, int keyCode) {   
+        if (!this.textField.isDragged() 
+                && !this.minPriceField.isDragged() 
+                && !this.maxPriceField.isDragged() 
+                && !this.hasCurrentCallback())
+            if (OxygenGUIHelper.isOxygenMenuEnabled()) {
+                if (keyCode == MarketMenuScreen.MARKET_MENU_ENTRY.getKeyCode())
+                    this.screen.close();
+            } else if (MarketConfig.ENABLE_MARKET_MENU_KEY.asBoolean() 
+                    && keyCode == MarketManagerClient.instance().getKeyHandler().getTradeMenuKeybinding().getKeyCode())
+                this.screen.close();
+        return super.keyTyped(typedChar, keyCode); 
+    }
+
+    @Override
+    public void handleElementClick(AbstractGUISection section, GUIBaseElement element, int mouseButton) {
+        if (mouseButton == 0) {
+            if (element == this.filterOffersButton)
+                this.filterOffers();
+            else if (element == this.applyLatestFiltersButton)
+                this.applyLatestFilters();
+            else if (element == this.resetFiltersButton)
+                this.resetFilters();
         }
     }
 
-    protected void purchased(Set<Long> dealsIds, long balance) {
-        balanceValue.setValue(balance);
-        dealProcessed(dealsIds, MarketDealListEntry.State.PURCHASED);
-        checkDealsOverpriced(balance);
+    public void offersSynchronized() {
+        this.setFilterButtonState(this.screen.enableMarketAccess);
+
+        this.calculateButtonsHorizontalPosition();
     }
 
-    protected void purchaseFailed(Set<Long> dealsIds) {
-        dealProcessed(dealsIds, MarketDealListEntry.State.FAILED);
+    public void salesHistorySynchronized() {
+        OfferPanelEntry entry;
+        for (GUIButton button : this.offersPanel.buttonsBuffer) {
+            entry = (OfferPanelEntry) button;
+            entry.initProfitability(this.screen.getOfferProfitability(entry.getWrapped()));
+        }
+    }
+
+    public void itemPurchased(OfferClient offer, long balance) {
+        this.balanceValue.updateValue(balance);
+
+        OfferPanelEntry entry;
+        for (GUIButton button : this.offersPanel.buttonsBuffer) {
+            entry = (OfferPanelEntry) button;
+            if (entry.getWrapped().getPrice() > balance)
+                entry.setOverpriced();
+            if (entry.getWrapped().getId() == offer.getId())
+                entry.setPurchased();
+        }
+
+        this.offersAmountLabel.setDisplayText(String.format("%s/%s", this.offersPanel.buttonsBuffer.size() - 1, MarketManagerClient.instance().getOffersContainer().getOffersAmount()));
+    }
+
+    public void offerCreated(OfferClient offer, long balance) {
+        this.balanceValue.updateValue(balance);
+        this.inventoryLoad.setLoad(this.screen.getSellingSection().getInventoryLoad().getLoad());
+
+        OfferPanelEntry entry;
+        for (GUIButton button : this.offersPanel.buttonsBuffer) {
+            entry = (OfferPanelEntry) button;
+            if (entry.getWrapped().getPrice() > balance)
+                entry.setOverpriced();
+        }
+
+        this.offersAmountLabel.setDisplayText(String.format("%s/%s", this.offersPanel.buttonsBuffer.size(), MarketManagerClient.instance().getOffersContainer().getOffersAmount()));
+    }
+
+    public void offerCanceled(OfferClient offer, long balance) {
+        if (!this.offersPanel.buttonsBuffer.isEmpty())
+            this.filterOffers();
+    }
+
+    public OxygenInventoryLoad getInventoryLoad() {
+        return this.inventoryLoad;
+    }
+
+    public OxygenCurrencyValue getBalanceValue() {
+        return this.balanceValue;
     }
 }

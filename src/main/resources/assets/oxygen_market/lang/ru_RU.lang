@@ -1,88 +1,91 @@
-key.oxygen_market.open_market_screen=Открыть Маркет
+key.oxygen_market.marketMenu=Открыть Меню Торговли
 
-oxygen.gui.setting.market_screen_alignment=Выравнивание меню маркета
-oxygen.gui.setting.market_screen_max_displayed_deals=Количество отображаемых сделок
+oxygen_market.gui.settings.option.addMarketMenu=Меню Торговли
+oxygen_market.gui.settings.option.alignmentMarketMenu=Меню Торговли
+oxygen_market.gui.settings.option.profitabilityCalculation=Расчёт Привлекательности Сделок
 
-oxygen.gui.setting.add_market_screen=Добавить меню маркета
+oxygen_market.status.message.itemPurchased=Предмет приобретён. Проверить почту: 
+oxygen_market.status.message.itemPurchaseFailed=Сбой при покупке
+oxygen_market.status.message.offerCreated=Сделка создана
+oxygen_market.status.message.offerCreationFailed=Сбой при создания сделки
+oxygen_market.status.message.itemDamaged=Предмет повреждён
+oxygen_market.status.message.itemBlacklisted=Предмет в чёрном списке
+oxygen_market.status.message.offerCancelled=Сделка отменена
+oxygen_market.status.message.offerCancellationFailed=Сбой при отмене сделки
 
-oxygen.gui.setting.enable_deals_profitability_display=Показывать профитность сделок
+oxygen_market.message.clickHere=кликнуть здесь
 
-oxygen_market.deals_sorter.purchase_price_min_to_max=Стоимость +
-oxygen_market.deals_sorter.purchase_price_max_to_min=Стоимость -
-oxygen_market.deals_sorter.unit_price_min_to_max=Стоимость за ед. +
-oxygen_market.deals_sorter.unit_price_max_to_min=Стоимость за ед. -
-oxygen_market.deals_sorter.seller_name=Имя продавца
-oxygen_market.deals_sorter.time_left_min_to_max=Оставшееся время +
-oxygen_market.deals_sorter.time_left_max_to_min=Оставшееся время -
+oxygen_market.offersSorter.purchasePrice=Стоимость
+oxygen_market.offersSorter.unitPrice=Стоимость за Единицу
+oxygen_market.offersSorter.sellerName=Имя Продавца
+oxygen_market.offersSorter.timeLeft=Оставшееся Время
 
-oxygen_market.gui.market.title=Маркет
-oxygen_market.gui.market.section.buy=Покупка
-oxygen_market.gui.market.section.my_deals=Мои Сделки
+oxygen_market.salesHistorySorter.purchases=Покупки
+oxygen_market.salesHistorySorter.sales=Продажи
 
-oxygen_shop.gui.shop.image_button.apply_latest_filters=Применить недавние фильтры
-oxygen_shop.gui.shop.image_button.reset_filters=Сбросить фильтры
+oxygen_market.rarity.any=Любое
+oxygen_market.profitability.any=Любое
 
-oxygen_market.gui.market.buy.sort_by=Сортировка
-oxygen_market.gui.market.buy.price_range=Диапазон стоимости
-oxygen_market.gui.market.buy.text_search=Текстовый поиск
-oxygen_market.gui.market.buy.rarity=Редкость
-oxygen_market.gui.market.buy.rarity.any=Любая
-oxygen_market.gui.market.buy.profitability=Профитность
-oxygen_market.gui.market.buy.profitability.any=Любая
+oxygen_market.gui.market.title=Торговля
+oxygen_market.gui.market.buy=Покупка
+oxygen_market.gui.market.selling=Продажа
+oxygen_market.gui.market.offers=Сделки
+oxygen_market.gui.market.history=История
+oxygen_market.gui.market.category=Категория:
+oxygen_market.gui.market.sortBy=Сортировка:
+oxygen_market.gui.market.priceRange=Диапазон Стоимости:
+oxygen_market.gui.market.search=Текстовый Поиск:
+oxygen_market.gui.market.rarity=Качество:
+oxygen_market.gui.market.profitability=Рентабельность:
 
-oxygen_market.gui.market.my_deals.label.deals_amount=Количество сделок:
-oxygen_market.gui.market.my_deals.button.create_deal=Создать сделку
-oxygen_market.gui.market.my_deals.button.cancel_deal=Отменить сделку
+oxygen_market.gui.market.button.filterOffers=Фильтровать Сделки
+oxygen_market.gui.market.button.createOffer=Создать Сделку
+oxygen_market.gui.market.button.filterHistory=Фильтровать Историю
 
-oxygen_market.gui.market.my_deals.callback.create_deal=Создать Сделку
-oxygen_market.gui.market.my_deals.label.item=Предмет
-oxygen_market.gui.market.my_deals.label.unit_price=Стоимость за ед.
-oxygen_market.gui.market.my_deals.label.total_price=Стоимость
-oxygen_market.gui.market.my_deals.label.deals_quantity=Количество сделок
-oxygen_market.gui.market.my_deals.label.deal_place_fee=Комиссия за размещение
-oxygen_market.gui.market.my_deals.label.sale_fee=Комиссия с продажи
-oxygen_market.gui.market.my_deals.label.sale_income=Доход с продажи
+oxygen_market.gui.market.noOffersFound=Предложений Не Найдено
 
-oxygen_market.gui.market.buy.callback.select_purchase_quantity=Покупка Предмета
-oxygen_market.gui.market.buy.callback.select_purchase_quantity.message=Укажите количество товаров, которое вы хотите приобрести
-oxygen_market.gui.market.my_deals.callback.item_selection=Выбор Предмета
-oxygen_market.gui.market.my_deals.callback.item_selection.message=Выбирите предмет и количество для создания сделки
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity=Отмена Сделок
-oxygen_market.gui.market.my_deals.callback.select_cancel_quantity.message=Укажите количество сделок которые вы хотите отменить
+oxygen_market.gui.market.offersAmount=Сделки:
+oxygen_market.gui.market.amount=Количество:
+oxygen_market.gui.market.unitPrice=Стоимость за Ед.:
+oxygen_market.gui.market.totalPrice=Общая Стоимость:
+oxygen_market.gui.market.listingFee=Размещение:
+oxygen_market.gui.market.saleFee=Комиссия:
+oxygen_market.gui.market.profit=Доход:
 
-oxygen_market.gui.market.label.my_deals.no_deals=Нет сделок
-oxygen_market.gui.market.label.buy.no_deals=Нет сделок
-oxygen_market.gui.market.label.no_access=Нет доступа
+oxygen_market.gui.market.filter=Фильтр:
+oxygen_market.gui.market.purchasedFrom=Куплено у: %s
+oxygen_market.gui.market.soldTo=Продано: %s
+oxygen_market.gui.market.ago=%s назад
+oxygen_market.gui.market.noDataFound=Нет Данных
 
-oxygen_market.gui.market.tooltip.now=Сейчас
-oxygen_market.gui.market.tooltip.transactions_amount=Кол-во транзакций: %s
-oxygen_market.gui.market.tooltip.sold_amount=Продано предметов: %s
+oxygen_market.gui.market.callback.offerCreation.title=Создание Сделки
 
-oxygen_market.gui.market.buy.context.select_item_quantity=Указать количество
+oxygen_market.gui.market.seller=Продавец: %s
+oxygen_market.gui.market.buyer=Покупатель: %s
 
-oxygen_market.status_message.too_many_deals=Слишком много сделок
-oxygen_market.status_message.too_many_items=Слишком много предметов
-oxygen_market.status_message.too_high_price=Слишком высокая стоимость
+oxygen_market.gui.market.tooltip.latestFilters=Недавние Фильтры
+oxygen_market.gui.market.tooltip.resetFilters=Сбросить Фильтры
+oxygen_market.gui.market.tooltip.applyRecommended=Рыночная Стоимость
 
-oxygen_market.profitability.no_data=Нет данных
-oxygen_market.profitability.overprice=Цена завышена
-oxygen_market.profitability.normal=Нормальная
-oxygen_market.profitability.good=Хорошая
-oxygen_market.profitability.very_good=Очень хорошая
+oxygen_market.historySorter.time=Время
+oxygen_market.historySorter.buyerName=Имя Покупателя
 
-oxygen_market.mail.sender=Market
-oxygen_market.mail.return.subject=Возврат предмета
-oxygen_market.mail.return.message=Время размещения вашего товара истекло. Предмет прикреплён к письму.
-oxygen_market.mail.cancel.subject=Сделка отменена
-oxygen_market.mail.cancel.message=Вы сняли предмет с продажи. Предмет прикреплён к письму.
-oxygen_market.mail.purchase.subject=Покупка
-oxygen_market.mail.purchase.message=Вы купили предмет у игрока '%s'. Предмет прикреплён к письму.
-oxygen_market.mail.income.subject=Продажа
-oxygen_market.mail.income.message=Игрок '%s' купил ваш предмет '%s'. Доход от продажи прикреплён к письму.
+oxygen_market.gui.history.title=История Продаж
+oxygen_market.gui.history.buyer=Покупатель:
+oxygen_market.gui.history.seller=Продавец:
+oxygen_market.gui.history.bought=%s купил у %s
 
-oxygen_market.status_message.deal_created=Сделка создана
-oxygen_market.status_message.deal_canceled=Сделка отменена
-oxygen_market.status_message.mailbox_is_full=Почтовый ящик заполнен
-oxygen_market.status_message.deal_not_found=Товар не найден
-oxygen_market.status_message.self_purchase_disabled=Запрещено покупать собственные товары
-oxygen_market.status_message.purchased=Предмет куплен
+market.sender.market=Маркет
+market.purchased=Маркет: Покупка
+market.purchasedItemMessage=Вы приобрели <§f%s§rx§f%s§r> у §f%s§r.
+market.sold=Маркет: Продажа
+market.soldItemMessage=Ваш предмет <§f%s§rx§f%s§r> был куплен §f%s§r.
+market.cancel=Маркет: Отмена
+market.cancelOfferMessage=Вы сняли предмет <§f%s§rx§f%s§r> с продажи.
+market.expired=Маркет: Возврат
+market.expiredOfferMessage=Время размещения предмета <§f%s§rx§f%s§r> истекло.
+
+oxygen_market.command.dataReset=Данные клиента для Oxygen Market сброшены.
+
+oxygen_market.message.command.oxygens.trade.clearHistoryGlobal=История продаж за последние %s часов очищена.
+oxygen_market.message.command.oxygens.trade.clearHistoryItem=История продаж за последние %s часов очищена для предмета: %s.
