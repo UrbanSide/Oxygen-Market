@@ -1,0 +1,82 @@
+#Chinese Translated By ahdg,lian20,Lingdong,NEWLY_1129514
+key.oxygen_groups.groupMenu=打开群组菜单
+ 
+oxygen_groups.gui.settings.module.groups=群组
+ 
+oxygen_groups.gui.settings.option.addGroupMenu=群组菜单
+oxygen_groups.gui.settings.option.hideGroupOverlay=隐藏群组菜单覆盖
+
+oxygen_groups.gui.settings.option.showActiveEffects=显示可用的效果
+
+ 
+oxygen_groups.gui.settings.option.alignmentGroupMenu=群组菜单
+oxygen_groups.gui.settings.option.alignmentGroupOverlay=群组菜单覆盖
+oxygen_groups.gui.settings.option.groupOverlayOffsetX=水平覆盖偏移
+oxygen_groups.gui.settings.option.groupOverlayOffsetY=垂直覆盖偏移
+oxygen_groups.gui.settings.option.barColor=状态栏
+oxygen_groups.gui.settings.option.squadOverlayScaleFactor=小队覆盖
+
+oxygen_groups.gui.settings.option.raidOverlayScaleFactor=突袭覆盖
+
+oxygen_groups.gui.settings.option.partyOverlayScaleFactor=派对覆盖
+
+oxygen_groups.gui.settings.option.statusBarText=状态栏文本
+ 
+oxygen_groups.gui.settings.tooltip.background=背景
+oxygen_groups.gui.settings.tooltip.offline=离线
+oxygen_groups.gui.settings.tooltip.health=健康值
+oxygen_groups.gui.settings.tooltip.absorption=专注值
+oxygen_groups.gui.settings.tooltip.armor=护甲值
+ 
+oxygen_groups.gui.overlay.barText.none=空
+oxygen_groups.gui.overlay.barText.healthAndMaxHealth=当前 血量./最大 血量.
+oxygen_groups.gui.overlay.barText.healthAndMaxHealthPlusAbsorption=当前 血量./最大 血量.+专注值
+oxygen_groups.gui.overlay.barText.healthPercent=当前 血量.(%s)
+oxygen_groups.gui.overlay.barText.healthPercentPlusAbsorption=当前 血量.(%s)+专注值
+ 
+oxygen_groups.gui.interaction.inviteToGroup=邀请进小组
+ 
+oxygen_groups.context.inviteToGroup=邀请进小组
+ 
+oxygen_groups.request.groupInvite=%s 邀请你进小组.
+oxygen_groups.request.readinessCheck=小组准备情况检查。你准备好了吗？
+oxygen_groups.request.kickPlayer=是否将玩家 %s 踢出小组?
+ 
+oxygen_groups.gui.group.button.invitePlayer=邀请玩家
+oxygen_groups.gui.group.button.leaveGroup=离开小组
+
+ 
+oxygen_groups.gui.groupMenu.title=群组
+ 
+oxygen_groups.gui.group.setting.acceptInvitations=自动接受邀请
+
+oxygen_groups.gui.group.setting.hideOverlay=隐藏群组覆盖
+ 
+oxygen_groups.gui.action.kick=踢出
+oxygen_groups.gui.action.promoteToLeader=设置领导者
+ 
+oxygen_groups.gui.autoAccept=接受邀请
+oxygen_groups.gui.callback.invitePlayer=邀请玩家
+oxygen_groups.gui.callback.invitePlayer.request=邀请玩家到小组.
+oxygen_groups.gui.callback.leaveGroup=离开小组
+oxygen_groups.gui.callback.leaveGroup.request=你将离开小组.
+oxygen_groups.gui.callback.promoteToLeader=更换领导者
+oxygen_groups.gui.callback.promoteToLeader.request=玩家将被提升为领导者.
+oxygen_groups.gui.callback.kickPlayer=踢出玩家
+oxygen_groups.gui.callback.kickPlayer.request=玩家将会被踢出.
+ 
+oxygen_groups.status.message.acceptedSender=你的小组加入申请已被接受
+oxygen_groups.status.message.acceptedTarget=你接受了小组的加入申请
+oxygen_groups.status.message.rejectedSender=你的小组加入申请被回绝
+oxygen_groups.status.message.rejectedTarget=你回绝了小组的加入申请
+oxygen_groups.status.message.joinedGroup=你加入了小组
+oxygen_groups.status.message.leftGroup=你离开了小组
+oxygen_groups.status.message.playerKicked=玩家被踢出小组
+oxygen_groups.status.message.newLeaderSet=任命新领导人
+oxygen_groups.status.message.groupSynchronized=小组同步
+ 
+oxygen_groups.groupMode.squad=小队
+oxygen_groups.groupMode.raid=突击
+oxygen_groups.groupMode.party=派对
+ 
+oxygen_groups.command.dataReset=<oxygen: groups> 客户端数据重置.

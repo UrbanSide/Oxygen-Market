@@ -1,0 +1,74 @@
+key.oxygen_groups.groupMenu=Ouvrir le menu de ton groupe
+
+oxygen_groups.gui.settings.module.groups=Groupes
+
+oxygen_groups.gui.settings.option.addGroupMenu=Menu des groupes
+oxygen_groups.gui.settings.option.hideGroupOverlay=Cacher le menu groupes
+oxygen_groups.gui.settings.option.showActiveEffects=Afficher les effets actifs d'un joueur
+
+oxygen_groups.gui.settings.option.alignmentGroupMenu=Menu Groupes
+oxygen_groups.gui.settings.option.alignmentGroupOverlay=Overlay des Groupes
+oxygen_groups.gui.settings.option.groupOverlayOffsetX=Groupes Overylay Horizontal Offet
+oxygen_groups.gui.settings.option.groupOverlayOffsetY=Groupes Overylay Vertical Offet
+oxygen_groups.gui.settings.option.barColor=Bar
+oxygen_groups.gui.settings.option.squadOverlayScaleFactor=Squad Overlay
+oxygen_groups.gui.settings.option.raidOverlayScaleFactor=Raid Overlay
+oxygen_groups.gui.settings.option.partyOverlayScaleFactor=Party Overlay
+oxygen_groups.gui.settings.option.statusBarText=Statut de la Barre de Texte
+
+oxygen_groups.gui.settings.tooltip.background=Arrière-plan
+oxygen_groups.gui.settings.tooltip.offline=Hors ligne
+oxygen_groups.gui.settings.tooltip.health=Santé
+oxygen_groups.gui.settings.tooltip.absorption=Absorption
+oxygen_groups.gui.settings.tooltip.armor=Armure
+
+oxygen_groups.gui.overlay.barText.none=Aucun
+oxygen_groups.gui.overlay.barText.healthAndMaxHealth=Santé H./Max H.
+oxygen_groups.gui.overlay.barText.healthAndMaxHealthPlusAbsorption=Santé H./Max H.+Absorption
+oxygen_groups.gui.overlay.barText.healthPercent=Santé H.(%s)
+oxygen_groups.gui.overlay.barText.healthPercentPlusAbsorption=Santé H.(%s)+Absorption
+
+oxygen_groups.gui.interaction.inviteToGroup=Inviter au groupe
+
+oxygen_groups.context.inviteToGroup=Invite dans le groupe
+
+oxygen_groups.request.groupInvite=%s vous a invité dans son groupe.
+oxygen_groups.request.readinessCheck=Préparation du groupe en cours. Prêt?
+oxygen_groups.request.kickPlayer=Kick le joueur %s du groupe?
+
+oxygen_groups.gui.group.button.invitePlayer=Inviter le joueur
+oxygen_groups.gui.group.button.leaveGroup=Quitter le groupe
+
+oxygen_groups.gui.groupMenu.title=Groupes
+
+oxygen_groups.gui.group.setting.acceptInvitations=Accepter automatiquement les invitations
+oxygen_groups.gui.group.setting.hideOverlay=Cacher l'overlay des groupes
+
+oxygen_groups.gui.action.kick=Kick
+oxygen_groups.gui.action.promoteToLeader=Élire comme chef du groupe
+
+oxygen_groups.gui.autoAccept=Accepter les invitations
+oxygen_groups.gui.callback.invitePlayer=Inviter un joueur
+oxygen_groups.gui.callback.invitePlayer.request=Inviter le joueur dans le groupe.
+oxygen_groups.gui.callback.leaveGroup=Quitter le groupe
+oxygen_groups.gui.callback.leaveGroup.request=Tu vas quitter le groupe.
+oxygen_groups.gui.callback.promoteToLeader=Changer le chef du groupe
+oxygen_groups.gui.callback.promoteToLeader.request=Le joueur sera le nouveau chef du groupe.
+oxygen_groups.gui.callback.kickPlayer=Kick le joueur
+oxygen_groups.gui.callback.kickPlayer.request=Le joueur sera kick.
+
+oxygen_groups.status.message.acceptedSender=Ton invitation dans le groupe a été accepté!
+oxygen_groups.status.message.acceptedTarget=Tu as accepté l'invitation au groupe!
+oxygen_groups.status.message.rejectedSender=Ton invitation dans le groupe a été rejeté.
+oxygen_groups.status.message.rejectedTarget=Tu as rejeté l'invitation au groupe.
+oxygen_groups.status.message.joinedGroup=Tu as rejoint le groupe
+oxygen_groups.status.message.leftGroup=Tu as quitté le groupe.
+oxygen_groups.status.message.playerKicked=Joueur kické du groupe.
+oxygen_groups.status.message.newLeaderSet=Nouveau chef de groupe
+oxygen_groups.status.message.groupSynchronized=Groupes syncronisés
+
+oxygen_groups.groupMode.squad=Squad
+oxygen_groups.groupMode.raid=Raid
+oxygen_groups.groupMode.party=Party
+
+oxygen_groups.command.dataReset=<oxygen: groups> client data reset.

@@ -1,0 +1,25 @@
+oxygen_exchange.gui.interaction.offerExchange=Oferecer Troca
+
+oxygen_exchange.gui.settings.module.exchange=Troca
+
+oxygen_exchange.gui.settings.option.alignmentExchangeMenu=Menu de Troca
+oxygen_exchange.gui.settings.option.slotsColor=Slots
+oxygen_exchange.gui.settings.tooltip.bottomLayer=Camada Inferior
+oxygen_exchange.gui.settings.tooltip.higlighting=Destaque
+
+oxygen_exchange.request.exchange=%s oferece a você uma troca.
+
+oxygen_exchange.gui.exchange.title=Troca
+oxygen_exchange.gui.exchange.yourOffer=Sua Oferta
+oxygen_exchange.gui.exchange.playerOffer=Oferta de %s
+oxygen_exchange.gui.exchange.callback.confirmExchange=Confirmar Troca
+oxygen_exchange.gui.exchange.confirmCallback.request=Você tem certeza?
+
+oxygen_exchange.gui.exchange.confirmed=Troca confirmada
+oxygen_exchange.gui.exchange.notConfirmed=Troca não confirmada
+
+oxygen_exchange.status.acceptedSender=Seu pedido de troca foi aceito
+oxygen_exchange.status.acceptedTarget=Você aceitou o pedido de troca
+oxygen_exchange.status.rejectedSender=Seu pedido de troca foi rejeitado
+oxygen_exchange.status.rejectedTarget=Você rejeitou o pedido de troca
+oxygen_exchange.status.itemBlacklisted=Item na lista negra

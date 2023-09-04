@@ -1,0 +1,44 @@
+oxygen_dailyrewards.gui.settings.module.dailyrewards=Récompenses quotidiennes
+
+oxygen_dailyrewards.gui.settings.option.addDailyRewardsMenu=Menu des Récompenses quotidiennes
+oxygen_dailyrewards.gui.settings.option.dailyRewardsMenuAlignment=Menu des Récompenses quotidiennes
+
+oxygen_dailyrewards.gui.dailyrewards.menu.title=Récompenses quotidiennes
+
+oxygen_dailyrewards.gui.dailyrewards.title=Récompenses quotidiennes: %s
+oxygen_dailyrewards.gui.dailyrewards.rewardDay=Jour %s
+oxygen_dailyrewards.gui.dailyrewards.rewardAvailable=Disponible
+oxygen_dailyrewards.gui.dailyrewards.nextReward=Prochaine Récompense
+oxygen_dailyrewards.gui.dailyrewards.amount=x%s
+oxygen_dailyrewards.gui.dailyrewards.nextMonthBegins=- avant que le prochain mois débute
+
+oxygen_dailyrewards.gui.dailyrewards.button.claimReward=Réclamer la récompense
+oxygen_dailyrewards.gui.dailyrewards.button.prevWeek=Semaine précédente
+oxygen_dailyrewards.gui.dailyrewards.button.nextWeek=Semaine prochaine
+
+oxygen_dailyrewards.description.item=Item
+oxygen_dailyrewards.description.currency=Monnaie
+
+oxygen_dailyrewards.status.message.dailyRewardAvailable=Tu as une récompense quotidienne de disponible !
+oxygen_dailyrewards.status.message.dailyRewardClaimed=Récompense quotidienne réclamée !
+oxygen_dailyrewards.status.message.dailyRewardUnavailable=Récompense quotidienne non disponible.
+
+oxygen_dailyrewards.status.message.dailyRewardReloaded=Récompenses quotidiennes rechargées
+oxygen_dailyrewards.status.message.playerLatestRewardReset=Dernier reset des Récompenses quotidiennes
+oxygen_dailyrewards.status.message.playerRewardsAmountSet=Récompenses quotidiennes choix montant
+
+oxygen_dailyrewards.status.message.dailyRewardAvailable=Tu as une récompense quotidienne de disponible : 
+oxygen_dailyrewards.status.message.clickHere=clique ici !
+
+oxygen_core.month.january=Janvier
+oxygen_core.month.february=Février
+oxygen_core.month.march=Mars
+oxygen_core.month.april=Avril
+oxygen_core.month.may=Mai
+oxygen_core.month.june=Juin
+oxygen_core.month.july=Juillet
+oxygen_core.month.august=Août
+oxygen_core.month.september=Septembre
+oxygen_core.month.october=Octobre
+oxygen_core.month.november=Novembre
+oxygen_core.month.december=Décembre

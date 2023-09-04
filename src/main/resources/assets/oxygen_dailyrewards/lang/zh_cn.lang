@@ -1,0 +1,38 @@
+oxygen_dailyrewards.gui.settings.module.dailyrewards=登录奖励
+
+oxygen_dailyrewards.gui.settings.option.addDailyRewardsMenu=登录奖励菜单
+oxygen_dailyrewards.gui.settings.option.dailyRewardsMenuAlignment=登录奖励菜单
+
+oxygen_dailyrewards.gui.dailyrewards.menu.title=登录奖励
+
+oxygen_dailyrewards.gui.dailyrewards.title=登录奖励: %s
+oxygen_dailyrewards.gui.dailyrewards.rewardDay=第 %s 天
+oxygen_dailyrewards.gui.dailyrewards.rewardAvailable=待领取的
+oxygen_dailyrewards.gui.dailyrewards.nextReward=明天奖励
+
+oxygen_dailyrewards.gui.dailyrewards.amount=x%s
+oxygen_dailyrewards.gui.dailyrewards.nextMonthBegins=- 新的一个月开始了
+
+oxygen_dailyrewards.description.item=物品
+oxygen_dailyrewards.description.currency=货币
+
+oxygen_dailyrewards.status.message.dailyRewardAvailable=您有待领取的登录奖励
+oxygen_dailyrewards.status.message.dailyRewardClaimed=登录奖励已领取
+oxygen_dailyrewards.status.message.dailyRewardUnavailable=登录奖励不可用
+oxygen_dailyrewards.status.message.dailyRewardReloaded=登录奖励已重载
+oxygen_dailyrewards.status.message.dailyRewardAvailable=您有待领取的登录奖励:
+ 
+oxygen_dailyrewards.status.message.clickHere=点击这里
+
+oxygen_core.month.january=正月
+oxygen_core.month.february=二月
+oxygen_core.month.march=三月
+oxygen_core.month.april=四月
+oxygen_core.month.may=五月
+oxygen_core.month.june=六月
+oxygen_core.month.july=七月
+oxygen_core.month.august=八月
+oxygen_core.month.september=九月
+oxygen_core.month.october=十月
+oxygen_core.month.november=冬月
+oxygen_core.month.december=腊月

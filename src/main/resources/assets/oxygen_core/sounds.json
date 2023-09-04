@@ -1,0 +1,58 @@
+{
+  "misc_inventory_operation": { 
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:misc_inventory_operation"
+      }
+    ]
+  },
+  "misc_ringing_coins": { 
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:misc_ringing_coins"
+      }
+    ]
+  },
+  "ui_request_received": {
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:ui_request_received"
+      }
+    ]
+  },
+  "ui_button_click": {
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:ui_button_click"
+      }
+    ]
+  },
+  "ui_context_menu_open": {
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:ui_context_menu_open"
+      }
+    ]
+  },
+  "ui_context_menu_close": {
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:ui_context_menu_close"
+      }
+    ]
+  },
+  "ui_drop_down_list_open": {
+    "category": "player", 
+    "sounds": [
+      {
+        "name": "oxygen_core:ui_drop_down_list_open"
+      }
+    ]
+  }
+}

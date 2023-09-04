@@ -240,7 +240,7 @@ public class BuySection extends Section {
     }
 
     public static String getRarityName(EnumRarity rarity) {
-        return rarity.rarityColor + localize(rarity.rarityName);
+        return rarity.color + localize(rarity.rarityName);
     }
 
     private void applyLatestFilters() {

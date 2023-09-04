@@ -1,0 +1,43 @@
+key.oxygen_friendslist.friendsList=Открыть Список Друзей
+
+oxygen_friendslist.gui.settings.option.alignmentFriendsList=Список Друзей
+oxygen_friendslist.gui.settings.option.addFriendsList=Список Друзей
+
+oxygen_friendslist.gui.action.addToFriends=Доб. в Друзья
+oxygen_friendslist.gui.action.addToIgnored=Игнорировать
+
+oxygen_friendslist.interaction.addFriend=Добавить в Друзья
+oxygen_friendslist.interaction.ignore=Игнорировать
+
+oxygen_friendslist.gui.friendslist.title=Друзья
+oxygen_friendslist.gui.ignorelist.title=Игнорируемые
+oxygen_friendslist.gui.friends.autoAccept=Автоматически принимать заявки
+oxygen_friendslist.gui.friendslist.callback.addFriend=Добавить в Друзья
+oxygen_friendslist.gui.friendslist.callback.addFriend.request=Отправить запрос дружбы.
+oxygen_friendslist.gui.friendslist.callback.remove=Удалить из Друзей
+oxygen_friendslist.gui.friendslist.callback.remove.request=Игрок будет удалён из списка.
+oxygen_friendslist.gui.friendslist.callback.ignore=Игнорировать
+oxygen_friendslist.gui.friendslist.callback.ignore.request=Добавить в список игнорируемых.
+oxygen_friendslist.gui.ignorelist.callback.addIgnored=Игнорировать
+oxygen_friendslist.gui.ignorelist.callback.addIgnored.request=Добавить в список игнорируемых.
+oxygen_friendslist.gui.ignorelist.callback.remove=Удалить
+oxygen_friendslist.gui.ignorelist.callback.remove.request=Игрок будет удалён из списка.
+oxygen_friendslist.gui.friendslist.callback.editNote=Редакторовать Заметку
+
+oxygen_friendslist.gui.friendslist.button.addFriend=Добавить в Друзья
+oxygen_friendslist.gui.friendslist.button.addIgnored=Добавить в Игнор
+
+oxygen_friendslist.gui.context.editNote=Редакт. Заметку
+
+oxygen_friendslist.request.friendRequest=%s отправил вам запрос в друзья.
+
+oxygen_friendslist.status.senderFriendRequestAccepted=Ваш запрос в друзья принят
+oxygen_friendslist.status.targetFriendRequestAccepted=Вы приняли запрос в друзья
+oxygen_friendslist.status.senderFriendRequestRejected=Ваш запрос в друзья отклонён
+oxygen_friendslist.status.targetFriendRequestRejected=Вы отклонили запрос в друзья
+oxygen_friendslist.status.friendRemoved=Игрок убран из списка друзей
+oxygen_friendslist.status.addedToIgnored=Игрок добавлен в игнор лист
+oxygen_friendslist.status.noteEdited=Заметка отредактирована
+oxygen_friendslist.status.ignoredRemoved=Игрок убран из списка игнорируемых
+
+oxygen_friendslist.command.dataReset=Данные <oxygen: friends list> сброшены для клиента.

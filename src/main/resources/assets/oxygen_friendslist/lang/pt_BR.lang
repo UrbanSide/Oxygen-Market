@@ -1,0 +1,42 @@
+key.oxygen_friendslist.friendsList=Abrir Lista de Amigos
+
+oxygen_friendslist.gui.settings.module.friendslist=Lista de Amigos
+
+oxygen_friendslist.gui.settings.option.addFriendsList=Lista de Amigos
+oxygen_friendslist.gui.settings.option.alignmentFriendsList=Lista de Amigos
+
+oxygen_friendslist.gui.action.addToFriends=Adicionar aos Amigos
+oxygen_friendslist.gui.action.addToIgnored=Ignorar
+
+oxygen_friendslist.interaction.addFriend=Adicionar aos Amigos
+oxygen_friendslist.interaction.ignore=Ignorar
+
+oxygen_friendslist.gui.friendslist.title=Amigos
+oxygen_friendslist.gui.ignorelist.title=Ignorados
+oxygen_friendslist.gui.friends.autoAccept=Auto-aceitar pedidos
+oxygen_friendslist.gui.friendslist.callback.addFriend=Adicionar à Lista de Amigos
+oxygen_friendslist.gui.friendslist.callback.addFriend.request=Enviar pedido de amizade para o jogador.
+oxygen_friendslist.gui.friendslist.callback.remove=Remover
+oxygen_friendslist.gui.friendslist.callback.remove.request=O Jogador será removido da lista.
+oxygen_friendslist.gui.friendslist.callback.ignore=Ignorar
+oxygen_friendslist.gui.friendslist.callback.ignore.request=O Jogador será adicionado na lista de ignorados.
+oxygen_friendslist.gui.ignorelist.callback.addIgnored=Adicionar à lista de ignorados
+oxygen_friendslist.gui.ignorelist.callback.addIgnored.request=Adicionar jogador à lista de ignorados.
+oxygen_friendslist.gui.ignorelist.callback.remove=Remover
+oxygen_friendslist.gui.ignorelist.callback.remove.request=O Jogador será removido da lista.
+oxygen_friendslist.gui.friendslist.callback.editNote=Editar Nota
+
+oxygen_friendslist.gui.context.editNote=Editar Nota
+
+oxygen_friendslist.request.friendRequest=%s lhe enviou um pedido de amizade.
+
+oxygen_friendslist.status.senderFriendRequestAccepted=Seu pedido de amizade foi aceito
+oxygen_friendslist.status.targetFriendRequestAccepted=Você aceitou o pedido de amizade
+oxygen_friendslist.status.senderFriendRequestRejected=Seu pedido de amizade foi rejeitado
+oxygen_friendslist.status.targetFriendRequestRejected=Você rejeitou o pedido de amizade
+oxygen_friendslist.status.friendRemoved=Jogador removido da lista de amigos
+oxygen_friendslist.status.addedToIgnored=Jogador adicionado à lista de ignorados
+oxygen_friendslist.status.noteEdited=Nota editada
+oxygen_friendslist.status.ignoredRemoved=Jogador removido da lista de ignorados
+
+oxygen_friendslist.command.dataReset=Lista de Amigos Client resetada.
