@@ -1,0 +1,36 @@
+//file:noinspection DependencyNotationArgument
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'CurseMaven'
+                url 'https://cursemaven.com'
+            }
+        }
+        filter {
+            includeGroup 'curse.maven'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'Modrinth'
+                url 'https://api.modrinth.com/maven'
+            }
+        }
+        filter {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    mavenLocal() // Must be last for caching to work
+}
+
+dependencies {
+    // Util dependencies
+    if (project.use_util.toBoolean()) {
+        implementation rfg.deobf("club.minnced:discord-webhooks:0.8.4")
+        implementation rfg.deobf("maven.modrinth:the-one-probe:1.12-1.4.28")
+        implementation rfg.deobf("curse.maven:had-enough-items-557549:4571247")
+    }
+}

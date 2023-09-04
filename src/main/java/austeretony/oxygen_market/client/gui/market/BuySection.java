@@ -75,12 +75,12 @@ public class BuySection extends AbstractGUISection {
 
     private EnumOffersSorter currentSorter = EnumOffersSorter.PURCHASE_PRICE;
 
-    private int 
+    private int
     currentRarity = - 1,
     currentProfitability = - 1;
 
-    private long 
-    currentMinPrice = 0L, 
+    private long
+    currentMinPrice = 0L,
     currentMaxPrice = Long.MAX_VALUE;
 
     //cache
@@ -91,12 +91,12 @@ public class BuySection extends AbstractGUISection {
 
     private static EnumOffersSorter sorterCached = EnumOffersSorter.PURCHASE_PRICE;
 
-    private static int 
+    private static int
     rarityCached = - 1,
     profitabilityCached = - 1;
 
-    private static long 
-    minPriceCached = 0L, 
+    private static long
+    minPriceCached = 0L,
     maxPriceCached = Long.MAX_VALUE;
 
     private static String textSearchCached = "";
@@ -108,12 +108,12 @@ public class BuySection extends AbstractGUISection {
     }
 
     @Override
-    public void init() {                
+    public void init() {
         this.addElement(new OxygenDefaultBackgroundWithButtonsUnderlinedFiller(0, 0, this.getWidth(), this.getHeight()));
         this.addElement(new OxygenTextLabel(4, 12, ClientReference.localize("oxygen_market.gui.market.title"), EnumBaseGUISetting.TEXT_TITLE_SCALE.get().asFloat(), EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt()));
 
-        this.addElement(this.applyLatestFiltersButton = new OxygenTexturedButton(61, 18, 5, 5, OxygenGUITextures.CLOCK_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.latestFilters")));         
-        this.addElement(this.resetFiltersButton = new OxygenTexturedButton(68, 18, 5, 5, OxygenGUITextures.CROSS_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.resetFilters")));         
+        this.addElement(this.applyLatestFiltersButton = new OxygenTexturedButton(61, 18, 5, 5, OxygenGUITextures.CLOCK_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.latestFilters")));
+        this.addElement(this.resetFiltersButton = new OxygenTexturedButton(68, 18, 5, 5, OxygenGUITextures.CROSS_ICONS, 5, 5, ClientReference.localize("oxygen_market.gui.market.tooltip.resetFilters")));
 
         //offers panel
         this.addElement(this.offersPanel = new OxygenScrollablePanel(this.screen, 76, 16, this.getWidth() - 85, 16, 1, 100, 9, EnumBaseGUISetting.TEXT_PANEL_SCALE.get().asFloat(), true));
@@ -155,7 +155,7 @@ public class BuySection extends AbstractGUISection {
         //client data
         this.addElement(this.inventoryLoad = new OxygenInventoryLoad(6, this.getHeight() - 8));
         this.inventoryLoad.updateLoad();
-        this.addElement(this.balanceValue = new OxygenCurrencyValue(this.getWidth() - 14, this.getHeight() - 10));   
+        this.addElement(this.balanceValue = new OxygenCurrencyValue(this.getWidth() - 14, this.getHeight() - 10));
         this.balanceValue.setValue(OxygenMain.COMMON_CURRENCY_INDEX, WatcherHelperClient.getLong(OxygenMain.COMMON_CURRENCY_INDEX));
 
         //profitability filter
@@ -225,7 +225,7 @@ public class BuySection extends AbstractGUISection {
         });
 
         String offersEmpty = ClientReference.localize("oxygen_market.gui.market.noOffersFound");
-        this.addElement(this.offersEmptyLabel = new OxygenTextLabel(76 + ((this.offersPanel.getButtonWidth() - this.textWidth(offersEmpty, EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F)) / 2), 
+        this.addElement(this.offersEmptyLabel = new OxygenTextLabel(76 + ((this.offersPanel.getButtonWidth() - this.textWidth(offersEmpty, EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F)) / 2),
                 23, offersEmpty, EnumBaseGUISetting.TEXT_SUB_SCALE.get().asFloat() - 0.05F, EnumBaseGUISetting.TEXT_DARK_ENABLED_COLOR.get().asInt()).setVisible(false));
     }
 
@@ -243,7 +243,7 @@ public class BuySection extends AbstractGUISection {
     }
 
     public static String getRarityName(EnumRarity rarity) {
-        return rarity.rarityColor + ClientReference.localize(rarity.rarityName);
+        return rarity.color + ClientReference.localize(rarity.rarityName);
     }
 
     private void filter() {
@@ -260,8 +260,8 @@ public class BuySection extends AbstractGUISection {
         OfferPanelEntry entry;
         for (OfferClient offer : offers) {
             this.offersPanel.addEntry(entry = new OfferPanelEntry(
-                    offer, 
-                    this.screen.getCurrencyProperties(), 
+                    offer,
+                    this.screen.getCurrencyProperties(),
                     this.screen.getEqualStackAmount(offer.getStackWrapper()), offer.getPrice() > this.balanceValue.getValue()));
             if (this.screen.historySynchronized)
                 entry.initProfitability(this.screen.getOfferProfitability(offer));
@@ -373,18 +373,18 @@ public class BuySection extends AbstractGUISection {
     }
 
     @Override
-    public boolean keyTyped(char typedChar, int keyCode) {   
-        if (!this.textField.isDragged() 
-                && !this.minPriceField.isDragged() 
-                && !this.maxPriceField.isDragged() 
+    public boolean keyTyped(char typedChar, int keyCode) {
+        if (!this.textField.isDragged()
+                && !this.minPriceField.isDragged()
+                && !this.maxPriceField.isDragged()
                 && !this.hasCurrentCallback())
             if (OxygenGUIHelper.isOxygenMenuEnabled()) {
                 if (keyCode == MarketMenuScreen.MARKET_MENU_ENTRY.getKeyCode())
                     this.screen.close();
-            } else if (MarketConfig.ENABLE_MARKET_MENU_KEY.asBoolean() 
+            } else if (MarketConfig.ENABLE_MARKET_MENU_KEY.asBoolean()
                     && keyCode == MarketManagerClient.instance().getKeyHandler().getTradeMenuKeybinding().getKeyCode())
                 this.screen.close();
-        return super.keyTyped(typedChar, keyCode); 
+        return super.keyTyped(typedChar, keyCode);
     }
 
     @Override

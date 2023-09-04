@@ -1,0 +1,93 @@
+key.oxygen_mail.mailMenu=Ouvrir le menu des messages
+
+oxygen_mail.gui.settings.module.mail=Message
+
+oxygen_mail.gui.settings.option.addMailMenu=Menu des messages
+oxygen_mail.gui.settings.option.alignmentMailMenu=Menu des messages
+
+oxygen_mail.incoming=Tu as reçu un nouveau message.
+
+oxygen_mail.message.genericTitle=Lettre
+
+oxygen_mail.gui.context.take=Prendre
+oxygen_mail.gui.context.pay=Payer
+oxygen_mail.gui.context.return=Restituer
+oxygen_mail.gui.context.remove=Supprimer
+
+oxygen_mail.gui.mail.button.takeAttachment=Prendre la pièce jointe
+oxygen_mail.gui.mail.button.payForAttachment=Payer la pièce jointe
+oxygen_mail.gui.mail.button.removeMessage=Supprimer le message
+
+oxygen_mail.gui.mail.button.sendMessage=Envoyer le message
+oxygen_mail.gui.mail.button.selectItem=Sélectionner un objet
+
+oxygen_mail.gui.mail.title=Messages
+
+oxygen_mail.gui.mail.selectItemButton=Sélectionner
+oxygen_mail.gui.mail.sendButton=Envoyer
+
+oxygen_mail.gui.mail.incoming=Messages reçus
+oxygen_mail.gui.mail.sending=Envoyer un message
+oxygen_mail.gui.mail.attachment=Pièce jointe
+oxygen_mail.gui.mail.attachment.cost=Prix:
+oxygen_mail.gui.mail.addressee=Pour: %s
+oxygen_mail.gui.mail.noAttachment=Pas de pièce jointe
+
+oxygen_mail.gui.mail.callback.takeAttachment=Prendre la pièce jointe
+oxygen_mail.gui.mail.callback.takeAttachment.request=Prendre la pièce jointe ?
+oxygen_mail.gui.mail.callback.returnAttachment=Retourner la pièce jointe
+oxygen_mail.gui.mail.callback.returnAttachment.request=Retourner à l'expéditeur
+oxygen_mail.gui.mail.callback.removeMessage=Supprimer le message
+oxygen_mail.gui.mail.callback.removeMessage.request=Le message sera supprimé.
+oxygen_mail.gui.mail.callback.selectItem=Sélectionner un objet
+oxygen_mail.gui.mail.callback.sendMessage=Envoyer le message
+
+oxygen_mail.gui.mail.sendTo=Pour:
+oxygen_mail.gui.mail.subject=Sujet:
+
+oxygen_mail.gui.mail.postage=Tarif:
+oxygen_mail.gui.mail.remittance=Versement
+oxygen_mail.gui.mail.cod=Paiement à la livraison
+oxygen_mail.gui.mail.parcel=Colis
+
+oxygen_mail.gui.mail.msg.sender=De: %s
+oxygen_mail.gui.mail.msg.expires=Expire dans: %s
+oxygen_mail.gui.mail.msg.received=Il y a %s
+
+oxygen_mail.gui.neverExpires=Jamais
+
+oxygen_mail.command.dataReset=<oxygen: mail> Data du client réinitialisée.
+
+oxygen_mail.mail.letter=Lettre
+oxygen_mail.mail.remittance=Paiement
+oxygen_mail.mail.parcel=Colis
+oxygen_mail.mail.cod=Colis avec paiement à la livraison
+
+oxygen_mail.gui.mail.label.currencyAmount=Monnaie:
+oxygen_mail.gui.mail.label.itemAmount=Objet:
+
+mail.sender.sys=Système
+mail.subject.returnExp=Retourner la pièce jointe
+mail.message.returnExp=La pièce jointe qui a expiré a été restitué.
+mail.message.attachmentReturn=§f%s§r a retourné la pièce jointe.
+mail.cod.pay.s=Payer avec le paiement à la livraison
+mail.cod.pay.m=§f%s§r a payé pour <§f%s§rx§f%s§r>.
+
+oxygen_mail.sorting.receiveTime=Date de réception
+oxygen_mail.sorting.subject=Sujet
+
+oxygen_mail.status.message.playerNotFound=Jouer non trouvé
+oxygen_mail.status.message.parcelDamaged=Colis endommagé
+oxygen_mail.status.message.itemBlackListed=Objet interdit
+oxygen_mail.status.message.messageSent=Message envoyé
+oxygen_mail.status.message.messageSendingFailed=L'envoi du message a échoué
+oxygen_mail.status.message.attachmentReceived=Colis reçu
+oxygen_mail.status.message.messageReturned=Colis restitué à l'expediteur
+oxygen_mail.status.message.messageRemoved=Message supprimé
+
+oxygen_mail.status.message.mailboxesCleared=Toutes les boites de messages ont été clear
+oxygen_mail.status.message.mailboxCleared=Boites de messages cleared
+
+oxygen_mail.message.command.oxygens.mail.letterSent=Lettre envoyée a <%s> - Sujet: %s, Message: %s
+oxygen_mail.message.command.oxygens.mail.remittanceSent=Paiement envoyé a <%s> - Sujet: %s, Message: %s, index: %d, value: %d
+oxygen_mail.message.command.oxygens.mail.parcelSent=Colis envoyé a <%s> - Sujet: %s, Message: %s, amount: %d, item: %s

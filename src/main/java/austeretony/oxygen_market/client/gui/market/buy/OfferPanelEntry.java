@@ -20,7 +20,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 
-public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {    
+public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
 
     //properties
     private final String playerStockStr, amountStr, sellerStr, expireTimeStr, priceStr, unitPriceStr, offerIdStr;
@@ -56,7 +56,7 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
         this.currencyProperties = properties;
 
         if (!overpriced)
-            this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? this.wrapped.getStackWrapper().getCachedItemStack().getRarity().rarityColor + this.wrapped.getStackWrapper().getCachedItemStack().getDisplayName() : this.wrapped.getStackWrapper().getCachedItemStack().getDisplayName());
+            this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? this.wrapped.getStackWrapper().getCachedItemStack().getRarity().color + this.wrapped.getStackWrapper().getCachedItemStack().getDisplayName() : this.wrapped.getStackWrapper().getCachedItemStack().getDisplayName());
         else
             this.setDisplayText(this.wrapped.getStackWrapper().getCachedItemStack().getDisplayName());
         this.enableDurabilityBar = EnumBaseClientSetting.ENABLE_ITEMS_DURABILITY_BAR.get().asBoolean();
@@ -85,14 +85,14 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
 
     @Override
     public void draw(int mouseX, int mouseY) {
-        if (this.isVisible()) {      
-            RenderHelper.enableGUIStandardItemLighting();            
+        if (this.isVisible()) {
+            RenderHelper.enableGUIStandardItemLighting();
             GlStateManager.enableDepth();
-            this.itemRender.renderItemAndEffectIntoGUI(this.wrapped.getStackWrapper().getCachedItemStack(), this.getX() + 2, this.getY());    
+            this.itemRender.renderItemAndEffectIntoGUI(this.wrapped.getStackWrapper().getCachedItemStack(), this.getX() + 2, this.getY());
 
             if (this.enableDurabilityBar) {
                 FontRenderer font = this.wrapped.getStackWrapper().getCachedItemStack().getItem().getFontRenderer(this.wrapped.getStackWrapper().getCachedItemStack());
-                if (font == null) 
+                if (font == null)
                     font = this.mc.fontRenderer;
                 this.itemRender.renderItemOverlayIntoGUI(font, this.wrapped.getStackWrapper().getCachedItemStack(), this.getX() + 2, this.getY(), null);
             }
@@ -100,16 +100,16 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
             GlStateManager.disableDepth();
             RenderHelper.disableStandardItemLighting();
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(this.getX(), this.getY(), 0.0F);            
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.getX(), this.getY(), 0.0F);
             GlStateManager.scale(this.getScale(), this.getScale(), 0.0F);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-            int color = this.getEnabledBackgroundColor();                     
-            if (!this.isEnabled())                  
+            int color = this.getEnabledBackgroundColor();
+            if (!this.isEnabled())
                 color = this.getDisabledBackgroundColor();
-            else if (this.isHovered())                  
-                color = this.getHoveredBackgroundColor();      
+            else if (this.isHovered())
+                color = this.getHoveredBackgroundColor();
 
             if (this.purchased)
                 color = this.getStaticBackgroundColor();
@@ -120,76 +120,76 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
             OxygenGUIUtils.drawGradientRect(this.getWidth() - third, 0.0D, this.getWidth(), this.getHeight(), 0x00000000, color, EnumGUIAlignment.LEFT);
 
             color = this.getEnabledTextColor();
-            if (!this.isEnabled())                  
-                color = this.getDisabledTextColor();           
-            else if (this.isHovered())                                          
+            if (!this.isEnabled())
+                color = this.getDisabledTextColor();
+            else if (this.isHovered())
                 color = this.getHoveredTextColor();
 
             if (this.isHovered()) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(16.0F, 1.0F, 0.0F);            
-                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);   
-                this.mc.fontRenderer.drawString(this.playerStockStr, 0, 0, color, true); 
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(16.0F, 1.0F, 0.0F);
+                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);
+                this.mc.fontRenderer.drawString(this.playerStockStr, 0, 0, color, true);
                 GlStateManager.popMatrix();
             }
 
             if (!this.singleItem) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(16.0F, 10.0F, 0.0F);            
-                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);   
-                this.mc.fontRenderer.drawString(this.amountStr, 0, 0, color, true);           
-                GlStateManager.popMatrix();      
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(16.0F, 10.0F, 0.0F);
+                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);
+                this.mc.fontRenderer.drawString(this.amountStr, 0, 0, color, true);
+                GlStateManager.popMatrix();
             }
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.priceStr, this.getTextScale()), 2.0F, 0.0F);            
-            GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F); 
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.priceStr, this.getTextScale()), 2.0F, 0.0F);
+            GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);
             this.mc.fontRenderer.drawString(this.priceStr, 0, 0, !this.overpriced ? color : this.getDebugColor(), false);
-            GlStateManager.popMatrix();      
+            GlStateManager.popMatrix();
 
             if (!this.singleItem) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.unitPriceStr, this.getTextScale() - 0.05F), 10.0F, 0.0F);            
-                GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F); 
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.unitPriceStr, this.getTextScale() - 0.05F), 10.0F, 0.0F);
+                GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F);
                 this.mc.fontRenderer.drawString(this.unitPriceStr, 0, 0, color, false);
-                GlStateManager.popMatrix();    
+                GlStateManager.popMatrix();
             }
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(35.0F, 10.0F, 0.0F);            
-            GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F);           
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(35.0F, 10.0F, 0.0F);
+            GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F);
             this.mc.fontRenderer.drawString(this.sellerStr, 0, 0, this.getEnabledColor(), false);
-            GlStateManager.popMatrix();  
+            GlStateManager.popMatrix();
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(this.getWidth() - 80.0F, 2.0F, 0.0F);            
-            GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F); 
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.getWidth() - 80.0F, 2.0F, 0.0F);
+            GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F);
             this.mc.fontRenderer.drawString(this.expireTimeStr, 0, 0, color, false);
-            GlStateManager.popMatrix();      
+            GlStateManager.popMatrix();
 
             if (this.profitabilityPercentStr != null) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(this.getWidth() - 80.0F, 10.0F, 0.0F);            
-                GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F); 
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(this.getWidth() - 80.0F, 10.0F, 0.0F);
+                GlStateManager.scale(this.getTextScale() - 0.05F, this.getTextScale() - 0.05F, 0.0F);
                 this.mc.fontRenderer.drawString(this.profitabilityPercentStr, 0, 0, this.profitabilityColorHex, false);
-                GlStateManager.popMatrix();      
+                GlStateManager.popMatrix();
             }
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(31.0F, 2.0F, 0.0F);            
-            GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);           
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(31.0F, 2.0F, 0.0F);
+            GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);
             this.mc.fontRenderer.drawString(this.getDisplayText(), 0, 0, !this.overpriced ? color : this.getDebugColor(), false);
-            GlStateManager.popMatrix();             
+            GlStateManager.popMatrix();
 
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-            GlStateManager.enableBlend(); 
+            GlStateManager.enableBlend();
             this.mc.getTextureManager().bindTexture(this.currencyProperties.getIcon());
-            GUIAdvancedElement.drawCustomSizedTexturedRect(this.getWidth() - 10 + this.currencyProperties.getXOffset(), this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());                 
-            GlStateManager.disableBlend(); 
+            GUIAdvancedElement.drawCustomSizedTexturedRect(this.getWidth() - 10 + this.currencyProperties.getXOffset(), this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());
+            GlStateManager.disableBlend();
 
             GlStateManager.popMatrix();
-        }     
+        }
     }
 
     @Override
@@ -201,11 +201,11 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
     }
 
     private void drawMarketDataTooltip(int mouseX, int mouseY) {
-        int 
+        int
         width = this.textWidth(this.profitabilityTooltipStr, this.getTooltipScaleFactor()) + 14,
         height = 10;
-        GlStateManager.pushMatrix();           
-        GlStateManager.translate(mouseX, mouseY - height - 2, 0.0F);            
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(mouseX, mouseY - height - 2, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         //background
@@ -219,22 +219,22 @@ public class OfferPanelEntry extends OxygenWrapperPanelEntry<OfferClient> {
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        GlStateManager.pushMatrix();           
-        GlStateManager.translate(((width - 8) - this.textWidth(this.profitabilityTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);            
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(((width - 8) - this.textWidth(this.profitabilityTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);
         GlStateManager.scale(this.getTooltipScaleFactor(), this.getTooltipScaleFactor(), 0.0F);
 
         this.mc.fontRenderer.drawString(this.profitabilityTooltipStr, 0, 0, this.getEnabledTextColor(), false);
 
-        GlStateManager.popMatrix();     
+        GlStateManager.popMatrix();
 
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        GlStateManager.enableBlend(); 
+        GlStateManager.enableBlend();
         this.mc.getTextureManager().bindTexture(this.currencyProperties.getIcon());
-        GUIAdvancedElement.drawCustomSizedTexturedRect(width - 10 + this.currencyProperties.getXOffset(), 1 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());                   
-        GlStateManager.disableBlend(); 
+        GUIAdvancedElement.drawCustomSizedTexturedRect(width - 10 + this.currencyProperties.getXOffset(), 1 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());
+        GlStateManager.disableBlend();
 
-        GlStateManager.popMatrix(); 
+        GlStateManager.popMatrix();
     }
 
     public void setOverpriced() {

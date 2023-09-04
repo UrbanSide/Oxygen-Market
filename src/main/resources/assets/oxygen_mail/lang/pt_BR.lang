@@ -1,0 +1,76 @@
+key.oxygen_mail.mailMenu=Abrir Menu de Correio
+
+oxygen_mail.gui.settings.module.mail=Correio
+
+oxygen_mail.gui.settings.option.addMailMenu=Menu de Correio
+oxygen_mail.gui.settings.option.alignmentMailMenu=Menu de Correio
+
+oxygen_mail.incoming=Você recebeu uma nova mensagem.
+
+oxygen_mail.message.genericTitle=Carta
+
+oxygen_mail.gui.context.take=Pegar
+oxygen_mail.gui.context.pay=Pagar
+oxygen_mail.gui.context.return=Retornar
+oxygen_mail.gui.context.remove=Remover
+
+oxygen_mail.gui.mail.title=Correio
+
+oxygen_mail.gui.mail.selectItemButton=Selecionar
+oxygen_mail.gui.mail.sendButton=Enviar
+
+oxygen_mail.gui.mail.incoming=Entrada
+oxygen_mail.gui.mail.sending=Envio
+oxygen_mail.gui.mail.attachment=Anexo
+oxygen_mail.gui.mail.attachment.cost=Custo:
+oxygen_mail.gui.mail.addressee=Para: %s
+oxygen_mail.gui.mail.noAttachment=Sem Anexo
+
+oxygen_mail.gui.mail.callback.takeAttachment=Pegar Anexo
+oxygen_mail.gui.mail.callback.takeAttachment.request=Pegar Anexo?
+oxygen_mail.gui.mail.callback.returnAttachment=Retornar Anexo
+oxygen_mail.gui.mail.callback.returnAttachment.request=Retornar para o remetente?
+oxygen_mail.gui.mail.callback.removeMessage=Remover Mensagem
+oxygen_mail.gui.mail.callback.removeMessage.request=A Mensagem será removida.
+oxygen_mail.gui.mail.callback.selectItem=Selecionar Item
+oxygen_mail.gui.mail.callback.sendMessage=Enviando
+
+oxygen_mail.gui.mail.sendTo=Para:
+oxygen_mail.gui.mail.subject=Assunto:
+
+oxygen_mail.gui.mail.postage=Postagem:
+oxygen_mail.gui.mail.remittance=Remessa
+oxygen_mail.gui.mail.cod=C.O.D.
+oxygen_mail.gui.mail.parcel=Pacote
+
+oxygen_mail.gui.mail.msg.sender=De: %s
+oxygen_mail.gui.mail.msg.expires=Expira em: %s
+oxygen_mail.gui.mail.msg.received=%s atrás
+
+oxygen_mail.gui.neverExpires=Nunca
+
+oxygen_mail.command.dataReset=<oxygen: mail> redefinido dados do client.
+
+oxygen_mail.mail.letter=Carta
+oxygen_mail.mail.remittance=Remessa
+oxygen_mail.mail.parcel=Pacote
+oxygen_mail.mail.cod=Pacote com C.O.D.
+
+mail.sender.sys=Sistema
+mail.subject.return=Retornar
+
+oxygen_mail.sorting.receiveTime=Tempo de Recebimento
+oxygen_mail.sorting.subject=Assunto
+
+oxygen_mail.status.message.playerNotFound=Jogador não encontrado
+oxygen_mail.status.message.parcelDamaged=Pacote danificado
+oxygen_mail.status.message.itemBlackListed=Item na lista negra
+oxygen_mail.status.message.messageSent=Mensagem enviada
+oxygen_mail.status.message.messageSendingFailed=O Envio de Mensagem falhou
+oxygen_mail.status.message.attachmentReceived=Anexo recebido
+oxygen_mail.status.message.messageReturned=Anexo retornado ao remetente
+oxygen_mail.status.message.messageRemoved=Mensagem removida
+
+oxygen_mail.message.command.oxygens.mail.letterSent=Carta enviada para <%s> - assunto: %s, mensagem: %s
+oxygen_mail.message.command.oxygens.mail.remittanceSent=Remessa enviada para <%s> - assunto: %s, mensagem: %s, index: %d, valor: %d
+oxygen_mail.message.command.oxygens.mail.parcelSent=Pacote enviado para <%s> - assunto: %s, mensagem: %s, valor: %d, item: %s

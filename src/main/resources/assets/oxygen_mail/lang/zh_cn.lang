@@ -1,0 +1,93 @@
+#Chinese Translated By ahdg,lian20,Lingdong,NEWLY_1129514
+key.oxygen_mail.mailMenu=打开邮箱菜单
+ 
+oxygen_mail.gui.settings.module.mail=邮箱
+ 
+oxygen_mail.gui.settings.option.addMailMenu=邮件菜单
+oxygen_mail.gui.settings.option.alignmentMailMenu=邮件菜单
+ 
+oxygen_mail.incoming=你有一条新消息!
+ 
+oxygen_mail.message.genericTitle=信件
+ 
+oxygen_mail.gui.context.take=拿取
+oxygen_mail.gui.context.pay=支付
+oxygen_mail.gui.context.return=退回
+oxygen_mail.gui.context.remove=移除
+ 
+oxygen_mail.gui.mail.button.takeAttachment=拿取附件
+oxygen_mail.gui.mail.button.payForAttachment=支付附件费
+oxygen_mail.gui.mail.button.removeMessage=移除信件
+
+oxygen_mail.gui.mail.button.sendMessage=发送信件
+oxygen_mail.gui.mail.button.selectItem=选择物品
+oxygen_mail.gui.mail.title=邮箱
+ 
+oxygen_mail.gui.mail.selectItemButton=选择物品
+oxygen_mail.gui.mail.sendButton=发送
+ 
+oxygen_mail.gui.mail.incoming=收件箱
+oxygen_mail.gui.mail.sending=发件箱
+oxygen_mail.gui.mail.attachment=附件
+oxygen_mail.gui.mail.attachment.cost=花费金额:
+oxygen_mail.gui.mail.addressee=收件者: %s
+oxygen_mail.gui.mail.noAttachment=无附件
+ 
+oxygen_mail.gui.mail.callback.takeAttachment=拿取附件
+oxygen_mail.gui.mail.callback.takeAttachment.request=确定拿取附件?
+oxygen_mail.gui.mail.callback.returnAttachment=返还附件
+oxygen_mail.gui.mail.callback.returnAttachment.request=确定返还给发送者?
+oxygen_mail.gui.mail.callback.removeMessage=移除信息
+oxygen_mail.gui.mail.callback.removeMessage.request=信息将被移除.
+oxygen_mail.gui.mail.callback.selectItem=选择物品
+oxygen_mail.gui.mail.callback.sendMessage=让我们最后确认一下
+ 
+oxygen_mail.gui.mail.sendTo=收件人:
+oxygen_mail.gui.mail.subject=主题:
+ 
+
+oxygen_mail.gui.mail.postage=邮费:
+oxygen_mail.gui.mail.remittance=汇款
+oxygen_mail.gui.mail.cod=货到付款
+oxygen_mail.gui.mail.parcel=包裹
+ 
+oxygen_mail.gui.mail.msg.sender=来自: %s
+oxygen_mail.gui.mail.msg.expires=将在 %s 过期
+oxygen_mail.gui.mail.msg.received=%s 以前
+ 
+oxygen_mail.gui.neverExpires=永不过期
+ 
+oxygen_mail.command.dataReset=<oxygen: mail> 客户端数据重置.
+ 
+
+oxygen_mail.mail.letter=信件
+oxygen_mail.mail.remittance=汇款
+oxygen_mail.mail.parcel=包裹
+oxygen_mail.mail.cod=包裹[货到付款] 
+oxygen_mail.gui.mail.label.currencyAmount=货币:
+oxygen_mail.gui.mail.label.itemAmount=物品:
+mail.sender.sys=系统
+mail.subject.returnExp=附件返还
+mail.message.returnExp=返回未被领取的附件。
+mail.message.attachmentReturn=玩家 §f%s§r 返还了附件。
+mail.cod.pay.s=货到付款 [支付]
+mail.cod.pay.m=玩家 §f%s§r 支付了款项 <§f%s§rx§f%s§r> 。
+ 
+oxygen_mail.sorting.receiveTime=接收时间
+oxygen_mail.sorting.subject=主题
+ 
+oxygen_mail.status.message.playerNotFound=未找到该玩家
+oxygen_mail.status.message.parcelDamaged=包裹损坏
+oxygen_mail.status.message.itemBlackListed=被列入黑名单的物品
+oxygen_mail.status.message.messageSent=信件发送
+oxygen_mail.status.message.messageSendingFailed=信件发送失败
+oxygen_mail.status.message.attachmentReceived=收到附件
+oxygen_mail.status.message.messageReturned=附件已被返还给发送者
+oxygen_mail.status.message.messageRemoved=邮件已被移除
+
+oxygen_mail.status.message.mailboxesCleared=所有邮箱已被清空
+oxygen_mail.status.message.mailboxCleared=清空邮箱
+ 
+oxygen_mail.message.command.oxygens.mail.letterSent=信件发送给 <%s> - 主题: %s, 信息: %s
+oxygen_mail.message.command.oxygens.mail.remittanceSent=汇款给 <%s> - 主题: %s, 信息: %s, 金额: %s
+oxygen_mail.message.command.oxygens.mail.parcelSent=包裹发送给 <%s> - 主题: %s, 信息: %s, 数量: %s, 物品: %s

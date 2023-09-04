@@ -1,0 +1,93 @@
+key.oxygen_mail.mailMenu=Otwórz Skrzynkę Pocztową
+
+oxygen_mail.gui.settings.module.mail=Skrzynka Pocztowa
+
+oxygen_mail.gui.settings.option.addMailMenu=Wyświetlaj menu ze skrzynką pocztową
+oxygen_mail.gui.settings.option.alignmentMailMenu=Pokazuj menu ze skrzynką pocztową
+
+oxygen_mail.incoming=Otrzymałeś nową wiadomość.
+
+oxygen_mail.message.genericTitle=List
+
+oxygen_mail.gui.context.take=Weź
+oxygen_mail.gui.context.pay=Zapłać
+oxygen_mail.gui.context.return=Powrót
+oxygen_mail.gui.context.remove=Skasuj
+
+oxygen_mail.gui.mail.button.takeAttachment=Weź Załącznik
+oxygen_mail.gui.mail.button.payForAttachment=Zapłać za Załącznik
+oxygen_mail.gui.mail.button.removeMessage=Skasuj Wiadomość
+
+oxygen_mail.gui.mail.button.sendMessage=Wyślij Wiadomość
+oxygen_mail.gui.mail.button.selectItem=Wybierz Przedmiot
+
+oxygen_mail.gui.mail.title=Skrzynka Pocztowa
+
+oxygen_mail.gui.mail.selectItemButton=Wybierz
+oxygen_mail.gui.mail.sendButton=Wyślij
+
+oxygen_mail.gui.mail.incoming=Przychodzące
+oxygen_mail.gui.mail.sending=Do wysłania
+oxygen_mail.gui.mail.attachment=Załączniki
+oxygen_mail.gui.mail.attachment.cost=Koszt:
+oxygen_mail.gui.mail.addressee=Do: %s
+oxygen_mail.gui.mail.noAttachment=Brak Załącznika
+
+oxygen_mail.gui.mail.callback.takeAttachment=Odbierz Załącznik
+oxygen_mail.gui.mail.callback.takeAttachment.request=Odebrać przysłany załącznik?
+oxygen_mail.gui.mail.callback.returnAttachment=Zwróć Załącznik
+oxygen_mail.gui.mail.callback.returnAttachment.request=Zwrócić go nadawcy?
+oxygen_mail.gui.mail.callback.removeMessage=Skasuj Wiadomość
+oxygen_mail.gui.mail.callback.removeMessage.request=Wiadomość zostanie skasowana. Na pewno?
+oxygen_mail.gui.mail.callback.selectItem=Wybierz Przedmiot
+oxygen_mail.gui.mail.callback.sendMessage=Wysłane
+
+oxygen_mail.gui.mail.sendTo=Do:
+oxygen_mail.gui.mail.subject=Temat:
+
+oxygen_mail.gui.mail.postage=Opłata pocztowa:
+oxygen_mail.gui.mail.remittance=Przelew
+oxygen_mail.gui.mail.cod=C.O.D.
+oxygen_mail.gui.mail.parcel=Paczka
+
+oxygen_mail.gui.mail.msg.sender=Od: %s
+oxygen_mail.gui.mail.msg.expires=Wygasa za: %s
+oxygen_mail.gui.mail.msg.received=%s temu
+
+oxygen_mail.gui.neverExpires=Nigdy
+
+oxygen_mail.command.dataReset=<oxygen: mail> zresetowane.
+
+oxygen_mail.mail.letter=List
+oxygen_mail.mail.remittance=Przelew
+oxygen_mail.mail.parcel=Paczka
+oxygen_mail.mail.cod=C.O.D.
+
+oxygen_mail.gui.mail.label.currencyAmount=Kwota do wysłania:
+oxygen_mail.gui.mail.label.itemAmount=Ilość przedmiotu:
+
+mail.sender.sys=System
+mail.subject.returnExp=Zwróć Załącznik
+mail.message.returnExp=Czas na zwrot załącznika minął.
+mail.message.attachmentReturn=§f%s§r zwrócił załącznik.
+mail.cod.pay.s=Płatność C.O.D.
+mail.cod.pay.m=§f%s§r zapłacił za <§f%s§rx§f%s§r>.
+
+oxygen_mail.sorting.receiveTime=Czas Otrzymania
+oxygen_mail.sorting.subject=Temat
+
+oxygen_mail.status.message.playerNotFound=Nie znaleziono gracza
+oxygen_mail.status.message.parcelDamaged=Placówka uszkodzona
+oxygen_mail.status.message.itemBlackListed=Przedmiot jest na czarnej liście
+oxygen_mail.status.message.messageSent=Wiadomość wysłana
+oxygen_mail.status.message.messageSendingFailed=Wiadomość nie została wysłana
+oxygen_mail.status.message.attachmentReceived=Załącznik otrzymany
+oxygen_mail.status.message.messageReturned=Załącznik powrócił do nadawcy
+oxygen_mail.status.message.messageRemoved=Wiadomość skasowana
+
+oxygen_mail.status.message.mailboxesCleared=Skrzynka Pocztowa jest czysta.
+oxygen_mail.status.message.mailboxCleared=Skrzynka Pocztowa wyczyszczona.
+
+oxygen_mail.message.command.oxygens.mail.letterSent=List wysłany do <%s> - Temat: %s, Wiadomość: %s
+oxygen_mail.message.command.oxygens.mail.remittanceSent=Przekaz pieniężny wysłany do <%s> - Temat: %s, Wiadomość: %s, Indeks: %d, Ilość: %d
+oxygen_mail.message.command.oxygens.mail.parcelSent=Paczka wysłana do <%s> - Temat: %s, Wiadomość: %s, Ilość: %d, Przedmiot: %s

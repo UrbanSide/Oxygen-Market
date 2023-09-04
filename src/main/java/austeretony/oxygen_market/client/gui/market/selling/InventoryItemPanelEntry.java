@@ -26,7 +26,7 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
     //currency
     private CurrencyProperties currencyProperties;
 
-    //cache 
+    //cache
     private int playerStock;
 
     //widget
@@ -44,10 +44,10 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
 
         this.singleItem = playerStock == 1;
 
-        this.currencyProperties = properties;   
+        this.currencyProperties = properties;
 
         this.enableDurabilityBar = EnumBaseClientSetting.ENABLE_ITEMS_DURABILITY_BAR.get().asBoolean();
-        this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? stackWrapper.getCachedItemStack().getRarity().rarityColor + stackWrapper.getCachedItemStack().getDisplayName() : stackWrapper.getCachedItemStack().getDisplayName());
+        this.setDisplayText(EnumBaseClientSetting.ENABLE_RARITY_COLORS.get().asBoolean() ? stackWrapper.getCachedItemStack().getRarity().color + stackWrapper.getCachedItemStack().getDisplayName() : stackWrapper.getCachedItemStack().getDisplayName());
         this.setDynamicBackgroundColor(EnumBaseGUISetting.ELEMENT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.ELEMENT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.ELEMENT_HOVERED_COLOR.get().asInt());
         this.setTextDynamicColor(EnumBaseGUISetting.TEXT_ENABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_DISABLED_COLOR.get().asInt(), EnumBaseGUISetting.TEXT_HOVERED_COLOR.get().asInt());
         this.setTooltipScaleFactor(EnumBaseGUISetting.TEXT_TOOLTIP_SCALE.get().asFloat());
@@ -56,27 +56,27 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
         this.requireDoubleClick();
     }
 
-    public void initMarketData(ItemStackMarketData marketData) {   
+    public void initMarketData(ItemStackMarketData marketData) {
         if (marketData != null) {
             if (marketData.getAveragePrice() > 0.0F)
                 this.averageMarketPriceStr = OxygenUtils.formatDecimalCurrencyValue(MarketMenuScreen.DECIMAL_FORMAT.format(marketData.getAveragePrice()));
-            this.averageMarketPrice = marketData.getAveragePrice();   
-            this.marketDataTooltipStr = "(" + String.valueOf(marketData.getCompletedTransactionsAmount()) + 
-                    "/" + String.valueOf(marketData.getTotalItemsSoldAmount()) + 
+            this.averageMarketPrice = marketData.getAveragePrice();
+            this.marketDataTooltipStr = "(" + String.valueOf(marketData.getCompletedTransactionsAmount()) +
+                    "/" + String.valueOf(marketData.getTotalItemsSoldAmount()) +
                     "): " + String.valueOf(MarketMenuScreen.DECIMAL_FORMAT.format(marketData.getAveragePrice()));
         }
     }
 
     @Override
     public void draw(int mouseX, int mouseY) {
-        if (this.isVisible()) {         
-            RenderHelper.enableGUIStandardItemLighting();            
+        if (this.isVisible()) {
+            RenderHelper.enableGUIStandardItemLighting();
             GlStateManager.enableDepth();
-            this.itemRender.renderItemAndEffectIntoGUI(this.wrapped.getCachedItemStack(), this.getX() + 2, this.getY());    
+            this.itemRender.renderItemAndEffectIntoGUI(this.wrapped.getCachedItemStack(), this.getX() + 2, this.getY());
 
             if (this.enableDurabilityBar) {
                 FontRenderer font = this.wrapped.getCachedItemStack().getItem().getFontRenderer(this.wrapped.getCachedItemStack());
-                if (font == null) 
+                if (font == null)
                     font = this.mc.fontRenderer;
                 this.itemRender.renderItemOverlayIntoGUI(font, this.wrapped.getCachedItemStack(), this.getX() + 2, this.getY(), null);
             }
@@ -84,16 +84,16 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
             GlStateManager.disableDepth();
             RenderHelper.disableStandardItemLighting();
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(this.getX(), this.getY(), 0.0F);            
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(this.getX(), this.getY(), 0.0F);
             GlStateManager.scale(this.getScale(), this.getScale(), 0.0F);
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-            int color = this.getEnabledBackgroundColor();                     
-            if (!this.isEnabled())                  
+            int color = this.getEnabledBackgroundColor();
+            if (!this.isEnabled())
                 color = this.getDisabledBackgroundColor();
-            else if (this.isHovered() || this.isToggled())                  
-                color = this.getHoveredBackgroundColor();      
+            else if (this.isHovered() || this.isToggled())
+                color = this.getHoveredBackgroundColor();
 
             int third = this.getWidth() / 3;
 
@@ -102,48 +102,48 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
             OxygenGUIUtils.drawGradientRect(this.getWidth() - third, 0.0D, this.getWidth(), this.getHeight(), 0x00000000, color, EnumGUIAlignment.LEFT);
 
             color = this.getEnabledTextColor();
-            if (!this.isEnabled())                  
-                color = this.getDisabledTextColor();           
-            else if (this.isHovered() || this.isToggled())                                          
+            if (!this.isEnabled())
+                color = this.getDisabledTextColor();
+            else if (this.isHovered() || this.isToggled())
                 color = this.getHoveredTextColor();
 
             if (!this.singleItem) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(16.0F, 10.0F, 0.0F);            
-                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);   
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(16.0F, 10.0F, 0.0F);
+                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);
 
                 this.mc.fontRenderer.drawString(this.playerStockStr, 0, 0, color, true);
 
-                GlStateManager.popMatrix();     
+                GlStateManager.popMatrix();
             }
 
             if (this.averageMarketPriceStr != null) {
-                GlStateManager.pushMatrix();           
-                GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.averageMarketPriceStr, this.getTextScale()), (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F + 0.5F, 0.0F);            
-                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F); 
+                GlStateManager.pushMatrix();
+                GlStateManager.translate(this.getWidth() - 12.0F - this.textWidth(this.averageMarketPriceStr, this.getTextScale()), (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F + 0.5F, 0.0F);
+                GlStateManager.scale(this.getTextScale(), this.getTextScale(), 0.0F);
 
                 this.mc.fontRenderer.drawString(this.averageMarketPriceStr, 0, 0, color, false);
 
-                GlStateManager.popMatrix();  
+                GlStateManager.popMatrix();
 
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-                GlStateManager.enableBlend(); 
+                GlStateManager.enableBlend();
                 this.mc.getTextureManager().bindTexture(this.currencyProperties.getIcon());
-                GUIAdvancedElement.drawCustomSizedTexturedRect(this.getWidth() - 10 + this.currencyProperties.getXOffset(), (this.getHeight() - this.currencyProperties.getIconHeight()) / 2 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());            
+                GUIAdvancedElement.drawCustomSizedTexturedRect(this.getWidth() - 10 + this.currencyProperties.getXOffset(), (this.getHeight() - this.currencyProperties.getIconHeight()) / 2 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());
                 GlStateManager.disableBlend();
             }
 
-            GlStateManager.pushMatrix();           
-            GlStateManager.translate(31.0F, (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F, 0.0F);            
-            GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);           
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(31.0F, (this.getHeight() - this.textHeight(this.getTextScale())) / 2.0F, 0.0F);
+            GlStateManager.scale(this.getTextScale() + 0.05F, this.getTextScale() + 0.05F, 0.0F);
 
             this.mc.fontRenderer.drawString(this.getDisplayText(), 0, 0, color, false);
 
-            GlStateManager.popMatrix();             
+            GlStateManager.popMatrix();
 
             GlStateManager.popMatrix();
-        }     
+        }
     }
 
     @Override
@@ -155,11 +155,11 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
     }
 
     private void drawMarketDataTooltip(int mouseX, int mouseY) {
-        int 
+        int
         width = this.textWidth(this.marketDataTooltipStr, this.getTooltipScaleFactor()) + 14,
         height = 10;
-        GlStateManager.pushMatrix();           
-        GlStateManager.translate(mouseX, mouseY - height - 2, 0.0F);            
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(mouseX, mouseY - height - 2, 0.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         //background
@@ -173,22 +173,22 @@ public class InventoryItemPanelEntry extends OxygenWrapperPanelEntry<ItemStackWr
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        GlStateManager.pushMatrix();           
-        GlStateManager.translate(((width - 8) - this.textWidth(this.marketDataTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);            
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(((width - 8) - this.textWidth(this.marketDataTooltipStr, this.getTooltipScaleFactor())) / 2, (height - UIUtils.getTextHeight(this.getTooltipScaleFactor())) / 2.0F + 1.0F, 0.0F);
         GlStateManager.scale(this.getTooltipScaleFactor(), this.getTooltipScaleFactor(), 0.0F);
 
         this.mc.fontRenderer.drawString(this.marketDataTooltipStr, 0, 0, this.getEnabledTextColor(), false);
 
-        GlStateManager.popMatrix();     
+        GlStateManager.popMatrix();
 
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);  
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        GlStateManager.enableBlend(); 
+        GlStateManager.enableBlend();
         this.mc.getTextureManager().bindTexture(this.currencyProperties.getIcon());
-        GUIAdvancedElement.drawCustomSizedTexturedRect(width - 10 + this.currencyProperties.getXOffset(), 1 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());                    
-        GlStateManager.disableBlend(); 
+        GUIAdvancedElement.drawCustomSizedTexturedRect(width - 10 + this.currencyProperties.getXOffset(), 1 + this.currencyProperties.getYOffset(), 0, 0, this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight(), this.currencyProperties.getIconWidth(), this.currencyProperties.getIconHeight());
+        GlStateManager.disableBlend();
 
-        GlStateManager.popMatrix(); 
+        GlStateManager.popMatrix();
     }
 
     public int getPlayerStock() {
