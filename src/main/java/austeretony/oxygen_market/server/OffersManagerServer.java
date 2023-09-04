@@ -30,9 +30,15 @@ import austeretony.oxygen_market.common.main.EnumOfferAction;
 import austeretony.oxygen_market.common.network.client.CPOfferAction;
 import austeretony.oxygen_market.server.market.OfferServer;
 import austeretony.oxygen_market.server.market.SalesHistoryEntryServer;
+import club.minnced.discord.webhook.WebhookClient;
+import club.minnced.discord.webhook.send.WebhookEmbed;
+import club.minnced.discord.webhook.send.WebhookEmbedBuilder;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import static austeretony.oxygen_market.common.config.MarketConfig.DISCORD_WEBHOOK_URL;
 
 public class OffersManagerServer {
 
@@ -158,6 +164,11 @@ public class OffersManagerServer {
                     if (MarketConfig.ADVANCED_LOGGING.asBoolean())
                         OxygenMain.LOGGER.info("[Market] Offer created: {}.", 
                                 offer);
+                    ItemStack itemStack = offer.getStackWrapper().getItemStack();
+                    String item_name = itemStack.getDisplayName();
+                    if (!DISCORD_WEBHOOK_URL.equals("null")) {
+                        sendWebhookMessage(offer.getOwnerUsername(), offer.getAmount(), item_name, offer.getPrice());
+                    }
 
                     return true;
                 }
@@ -165,7 +176,24 @@ public class OffersManagerServer {
         }
         return false;
     }
+    public static void sendWebhookMessage(String username, int count,String item, long price) {
+        // Создаем объект DiscordWebhook с указанием статического URL вебхука
+        // Using the builder
+        // Send and log (using embed)
+        // Using the factory methods
+        WebhookClient client = WebhookClient.withUrl(DISCORD_WEBHOOK_URL.asString()); // or withId(id, token)
+        WebhookEmbed embed = new WebhookEmbedBuilder()
+                .setColor(0x00FF90)
+                .setDescription("Новое предложение на рынке!")
+                .addField(new WebhookEmbed.EmbedField(true, "Игрок", username))
+                .addField(new WebhookEmbed.EmbedField(true, "Товар", item))
+                .addField(new WebhookEmbed.EmbedField(true, "К-во", ""+count))
+                .addField(new WebhookEmbed.EmbedField(true, "Цена", ""+price))
+                .build();
 
+        client.send(embed)
+                .thenAccept((message) ->  OxygenMain.LOGGER.info("Message with embed has been sent [%s]%n", message.getId()));
+    }
     private boolean validateItem(EntityPlayerMP playerMP, ItemStackWrapper stackWrapper) {
         if (stackWrapper.getItemId() == Item.getIdFromItem(Items.AIR)) {
             this.manager.sendStatusMessage(playerMP, EnumMarketStatusMessage.ITEM_DAMAGED);

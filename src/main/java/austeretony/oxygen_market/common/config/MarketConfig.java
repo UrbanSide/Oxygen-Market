@@ -15,6 +15,7 @@ public class MarketConfig extends AbstractConfig {
     MARKET_MENU_KEY = ConfigValueUtils.getValue("client", "market_menu_key", 27),
 
     MARKET_MENU_OPERATIONS_TIMEOUT_MILLIS = ConfigValueUtils.getValue("server", "market_menu_operations_timeout_millis", 240000),
+    DISCORD_WEBHOOK_URL = ConfigValueUtils.getValue("server", "DiscordWebHookUrl", "null"),
     ENABLE_MARKET_MENU_ACCESS_CLIENTSIDE = ConfigValueUtils.getValue("server", "enable_market_menu_access_clientside", true, true),
     ENABLE_SELF_PURCHASE = ConfigValueUtils.getValue("server", "enable_self_purchase", true),
     MAX_OFFERS_PER_PLAYER = ConfigValueUtils.getValue("server", "max_offers_per_player", 30, true),
@@ -60,6 +61,7 @@ public class MarketConfig extends AbstractConfig {
         values.add(SALES_HISTORY_EXPIRE_TIME_HOURS);
         values.add(OFFER_CREATION_FEE_PERCENT);
         values.add(OFFER_SALE_FEE_PERCENT);
+        values.add(DISCORD_WEBHOOK_URL);
         values.add(ADVANCED_LOGGING);
     }
 }

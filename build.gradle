@@ -187,6 +187,7 @@ dependencies {
             transitive = false
         }
     }
+    compileOnly group: 'net.minecraftforge', name: 'forge', version: '1.12.2-14.23.5.2854'
 }
 
 apply from: 'dependencies.gradle'
