@@ -4,7 +4,6 @@ import austeretony.oxygen_core.client.api.OxygenClient;
 import austeretony.oxygen_core.client.gui.base.Fills;
 import austeretony.oxygen_core.client.gui.base.Texts;
 import austeretony.oxygen_core.client.gui.base.background.Background;
-import austeretony.oxygen_core.client.gui.base.block.Text;
 import austeretony.oxygen_core.client.gui.base.button.ImageButton;
 import austeretony.oxygen_core.client.gui.base.button.VerticalSlider;
 import austeretony.oxygen_core.client.gui.base.common.ListEntry;
@@ -182,11 +181,9 @@ public class BuySection extends Section {
         profitabilityDDList.addElement(ListEntry.of(anyProfitabilityStr, -1));
         for (Profitability profitability : Profitability.values()) {
             if (profitability == Profitability.NO_DATA) continue;
-            ListEntry<Integer> entry = ListEntry.of("", profitability.ordinal());
-            Text text = entry.getText();
-            text.setText(profitability.getDisplayName());
-            text.setColorEnabled(profitability.getColorHex());
-            text.setColorMouseOver(profitability.getColorHex());
+            ListEntry<Integer> entry = ListEntry.of(profitability.getDisplayName(), profitability.ordinal());
+            entry.getText().setColorEnabled(profitability.getColorHex());
+            entry.getText().setColorMouseOver(profitability.getColorHex());
             profitabilityDDList.addElement(entry);
         }
 
