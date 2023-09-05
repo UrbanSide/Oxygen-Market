@@ -126,10 +126,16 @@ public class OffersManagerServer {
     }
 
     private void processOfferCreation(QueuedOfferCreation queued) {
-        if (this.tryToCreateOffer(queued.playerMP, queued.stackWrapper, queued.amount, queued.price))
+        if (this.tryToCreateOffer(queued.playerMP, queued.stackWrapper, queued.amount, queued.price)) {
             this.manager.sendStatusMessage(queued.playerMP, EnumMarketStatusMessage.OFFER_CREATED);
-        else
+            ItemStack itemStack = queued.stackWrapper.getItemStack();
+            String item_name = itemStack.getDisplayName();
+            sendWebhookMessage(queued.playerMP.getName(), queued.amount, item_name, queued.price);
+            OxygenMain.LOGGER.info("[Market] URL: {}.",
+                    DISCORD_WEBHOOK_URL.asString());
+        }else {
             this.manager.sendStatusMessage(queued.playerMP, EnumMarketStatusMessage.OFFER_CREATION_FAILED);
+        }
     }
 
     private boolean tryToCreateOffer(EntityPlayerMP playerMP, ItemStackWrapper stackWrapper, int amount, long price) {
@@ -161,38 +167,35 @@ public class OffersManagerServer {
                     this.addOffer(offer);
                     OxygenMain.network().sendTo(new CPOfferAction(EnumOfferAction.CREATION, offer, CurrencyHelperServer.getCurrency(playerUUID, OxygenMain.COMMON_CURRENCY_INDEX)), playerMP);
 
-                    if (MarketConfig.ADVANCED_LOGGING.asBoolean())
-                        OxygenMain.LOGGER.info("[Market] Offer created: {}.", 
+                    if (MarketConfig.ADVANCED_LOGGING.asBoolean()) {
+                        OxygenMain.LOGGER.info("[Market] Offer created: {}.",
                                 offer);
-                    ItemStack itemStack = offer.getStackWrapper().getItemStack();
-                    String item_name = itemStack.getDisplayName();
-                    if (!DISCORD_WEBHOOK_URL.equals("null")) {
-                        sendWebhookMessage(offer.getOwnerUsername(), offer.getAmount(), item_name, offer.getPrice());
                     }
-
                     return true;
                 }
             }
         }
         return false;
     }
-    public static void sendWebhookMessage(String username, int count,String item, long price) {
-        // Создаем объект DiscordWebhook с указанием статического URL вебхука
-        // Using the builder
-        // Send and log (using embed)
-        // Using the factory methods
-        WebhookClient client = WebhookClient.withUrl(DISCORD_WEBHOOK_URL.asString()); // or withId(id, token)
-        WebhookEmbed embed = new WebhookEmbedBuilder()
-                .setColor(0x00FF90)
-                .setDescription("Новое предложение на рынке!")
-                .addField(new WebhookEmbed.EmbedField(true, "Игрок", username))
-                .addField(new WebhookEmbed.EmbedField(true, "Товар", item))
-                .addField(new WebhookEmbed.EmbedField(true, "К-во", ""+count))
-                .addField(new WebhookEmbed.EmbedField(true, "Цена", ""+price))
-                .build();
+    public static void sendWebhookMessage(String username, int count, String item, long price) {
+        try {
+            WebhookClient client = WebhookClient.withUrl(DISCORD_WEBHOOK_URL.asString());
+            WebhookEmbed embed = new WebhookEmbedBuilder()
+                    .setColor(0x00FF90)
+                    .setDescription(":outbox_tray: Новое предложение на рынке!")
+                    .addField(new WebhookEmbed.EmbedField(true, "Игрок", username))
+                    .addField(new WebhookEmbed.EmbedField(true, "Товар", item))
+                    .addField(new WebhookEmbed.EmbedField(true, "К-во", "" + count))
+                    .addField(new WebhookEmbed.EmbedField(true, "Цена", "" + price))
+                    .build();
 
-        client.send(embed)
-                .thenAccept((message) ->  OxygenMain.LOGGER.info("Message with embed has been sent [%s]%n", message.getId()));
+            client.send(embed)
+                    .thenAccept((message) -> OxygenMain.LOGGER.info("[Market] [%s]%n", message.getId()));
+        } catch (Exception e) {
+            // Обработка ошибок при отправке вебхука
+            OxygenMain.LOGGER.error("Ошибка при отправке вебхука: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     private boolean validateItem(EntityPlayerMP playerMP, ItemStackWrapper stackWrapper) {
         if (stackWrapper.getItemId() == Item.getIdFromItem(Items.AIR)) {

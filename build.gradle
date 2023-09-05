@@ -41,7 +41,7 @@ warnAndSetDefaultProperty 'minecraft_username', 'Developer'
 warnAndSetDefaultProperty 'change_minecraft_sources', false
 
 if (project.property('spotless')) {
-    apply plugin: 'com.diffplug.spotless'
+    //apply plugin: 'com.diffplug.spotless'
 }
 
 version = project.property('mod_version')
@@ -71,38 +71,38 @@ configurations {
     implementation.extendsFrom(embed)
 }
 
-spotless {
-    if (project.property('spotless')) {
-        encoding 'UTF-8'
-        format 'misc', {
-            target '.gitignore'
-
-            endWithNewline()
-            indentWithSpaces()
-            trimTrailingWhitespace()
-        }
-        java {
-            target 'src/main/java/**/*.java', 'src/test/java/**/*.java'
-
-            endWithNewline()
-            formatAnnotations()
-            importOrder()
-            indentWithSpaces()
-            removeUnusedImports()
-            toggleOffOn()
-            trimTrailingWhitespace()
-
-            if (project.property('cleanthat')) {
-                cleanthat().sourceCompatibility('1.8')
-            }
-        }
-//        json {
-//            target 'src/main/resources/**/*.json', 'src/test/resources/**/*.json'
+//spotless {
+//    if (project.property('spotless')) {
+//        encoding 'UTF-8'
+//        format 'misc', {
+//            target '.gitignore'
 //
-//            simple().indentWithSpaces(6)
+//            endWithNewline()
+//            indentWithSpaces()
+//            trimTrailingWhitespace()
 //        }
-    }
-}
+//        java {
+//            target 'src/main/java/**/*.java', 'src/test/java/**/*.java'
+//
+//            endWithNewline()
+//            formatAnnotations()
+//            importOrder()
+//            indentWithSpaces()
+//            removeUnusedImports()
+//            toggleOffOn()
+//            trimTrailingWhitespace()
+//
+//            if (project.property('cleanthat')) {
+//                cleanthat().sourceCompatibility('1.8')
+//            }
+//        }
+////        json {
+////            target 'src/main/resources/**/*.json', 'src/test/resources/**/*.json'
+////
+////            simple().indentWithSpaces(6)
+////        }
+//    }
+//}
 
 minecraft {
     mcVersion = '1.12.2'
